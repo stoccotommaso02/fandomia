@@ -15,6 +15,7 @@
             </ul>
         </nav>
         <form id="loginForm" action="login.php" method="post"> 
+            {{errors}}
             <label for="mail">Email</label>
             <input id="mail" type="email" name="usermail"
             placeholder="Inserisci la tua Email" required>
