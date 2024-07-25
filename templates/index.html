@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <title>Fandomia</title>
+        <link rel="stylesheet"  href="../templates/assets/css/style.css" />
+        <meta name="viewport" content="width=device-width , initial-scale=1" />
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul>
+              <li><span aria-current="page">Home</span></li>
+            </ul>
+          </nav>
+        <main>
+            <section>
+            <h2> Ultimi arrivi </h2>
+             {latestItemsCarousel}
+            </section>
+            <section>
+                <h2>E i prossimi...</h2>
+                {incomingItemsCarousel}
+            </section>
+        <section>    
+        <h2> Promozioni </h2>
+        {saleItemsCarousel}
+        </section>
+        </main>
+        {{footer}}
+    </body>
+</html>
