@@ -18,17 +18,17 @@
             <div class="container">
             <form id="signUpForm" name="signUpForm" action="signup.php" method="post">
                 <label for="name">Nome</label>
-                <input id="name" name="name" type="text"
+                <input id="name" name="name" type="text" maxlength="40" pattern="[A-Za-z]{2,40}"
                 placeholder="Inserisci il tuo nome" required/>
                 <label for="surname">Cognome</label>
-                <input id="surname" name="surname" type="text"
+                <input id="surname" name="surname" type="text" maxlength="40" pattern="[A-Za-z]{2,40}"
                 placeholder="Inserisci il tuo cognome" required/>
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail"
                 placeholder="Inserisci la tua Email" required>
                 <label for="pwd">Password</label>
-                <input id="pwd" type="password" 
-                placeholder="Inserisci la tua password" required/>
+                <input id="pwd" type="password" minlength="8" maxlength="16"
+                placeholder="Inserisci la tua password" required pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* )"/>
                 <label for="confirmPwd">Conferma password</label>
                 <input type="password" id="confirmPwd"
                 placeholder="Ripeti la password" required/>
