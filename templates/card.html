@@ -1,0 +1,25 @@
+
+<div>
+{{titolo}}
+<div class="item-row">
+    <div class="item-image">
+        <picture><img src="{{immagine}}" alt="" ></picture>
+    </div>
+    <div class="item-info">
+<dl>
+    <dt class="srOnly">Descrizione</dt>
+    <dd class="comic_box2">{{descrizione}}</dd>
+    <dt>Prezzo</dt>
+    <dd id="prezzo">{{prezzo}} &euro;</dd> 
+    <dt>Disponibilità</dt><dd>{{disponibilità}}</dd>
+    <dt>Data di uscita</dt><dd>{{releaseDate}}</dd>
+    <dt>Genere</dt><dd>{{genere}}</dd>
+    {{item-info}}
+</dl>
+</div>
+<div class="item-actions">
+    <a  role="button" href="wishList.php?id=<component>id</component>">Aggiungi alla wish-list</a>
+    <a  role="button" href="prenotaRitiro.php?id=<component>id</component>">Prenota il ritiro</a>
+</div>
+</div>
+</div>
