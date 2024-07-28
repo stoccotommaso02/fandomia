@@ -18,8 +18,14 @@
 </dl>
 </div>
 <div class="item-actions">
-    <a  role="button" href="wishList.php?id=<component>id</component>">Aggiungi alla wish-list</a>
-    <a  role="button" href="prenotaRitiro.php?id=<component>id</component>">Prenota il ritiro</a>
+    <form action="wishList.php" method="POST">
+        {{productIdforWishList}}
+        <button type="submit" name="submit">Aggiungi alla wishList</button>
+    </form>
+    <form action="prenotazioneRitiro.php" method="POST">
+        {{productIdforReservation}}
+        <button type="submit" name="submit">Prenota il ritiro</button>
+    </form>
 </div>
 </div>
 </div>
