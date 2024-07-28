@@ -1,4 +1,4 @@
-
+<li>
 <div>
 {{titolo}}
 <div class="item-row">
@@ -7,8 +7,6 @@
     </div>
     <div class="item-info">
 <dl>
-    <dt class="srOnly">Descrizione</dt>
-    <dd class="comic_box2">{{descrizione}}</dd>
     <dt>Prezzo</dt>
     <dd id="prezzo">{{prezzo}} &euro;</dd> 
     <dt>Disponibilità</dt><dd>{{disponibilità}}</dd>
@@ -19,13 +17,14 @@
 </div>
 <div class="item-actions">
     <form action="wishList.php" method="POST">
-        {{productIdforWishList}}
-        <button type="submit" name="submit">Aggiungi alla wishList</button>
+        <input type="hidden" name="product_id" value="{{productId}}">
+        <button type="submit" name="submit">Aggiungi alla wish-list</button>
     </form>
     <form action="prenotazioneRitiro.php" method="POST">
-        {{productIdforReservation}}
+        <input type="hidden" name="product_id" value="{{productId}}">
         <button type="submit" name="submit">Prenota il ritiro</button>
     </form>
 </div>
 </div>
 </div>
+</li>

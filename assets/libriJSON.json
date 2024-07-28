@@ -1,0 +1,222 @@
+[
+    {
+        "id": 1,
+        "autore": "Lucrezia Bartoli",
+        "titolo": "Vitae laborum ullam.",
+        "prezzo": 26.11,
+        "genere": "Biografia",
+        "data di uscita": "2022-07-31",
+        "disponibilità": true,
+        "sconto_percentuale": 16,
+        "numero_pagine": 623
+    },
+    {
+        "id": 2,
+        "autore": "Laura Galeati",
+        "titolo": "Consequuntur consequuntur atque reiciendis.",
+        "prezzo": 17.15,
+        "genere": "Storico",
+        "data di uscita": "2024-07-12",
+        "disponibilità": false,
+        "sconto_percentuale": 22,
+        "numero_pagine": 697
+    },
+    {
+        "id": 3,
+        "autore": "Dott. Graziella Calarco",
+        "titolo": "Tempore placeat.",
+        "prezzo": 27.29,
+        "genere": "Romanzo",
+        "data di uscita": "2024-01-06",
+        "disponibilità": true,
+        "sconto_percentuale": 18,
+        "numero_pagine": 243
+    },
+    {
+        "id": 4,
+        "autore": "Bettina Nitto",
+        "titolo": "Et odit dignissimos mollitia.",
+        "prezzo": 23.9,
+        "genere": "Avventura",
+        "data di uscita": "2023-10-07",
+        "disponibilità": false,
+        "sconto_percentuale": 34,
+        "numero_pagine": 822
+    },
+    {
+        "id": 5,
+        "autore": "Gabriella Blasi",
+        "titolo": "Totam at saepe quae quos.",
+        "prezzo": 25.26,
+        "genere": "Giallo",
+        "data di uscita": "2020-01-04",
+        "disponibilità": false,
+        "sconto_percentuale": 6,
+        "numero_pagine": 847
+    },
+    {
+        "id": 6,
+        "autore": "Melissa Montecchi",
+        "titolo": "Quas provident aperiam.",
+        "prezzo": 6.84,
+        "genere": "Horror",
+        "data di uscita": "2021-11-19",
+        "disponibilità": false,
+        "sconto_percentuale": 35,
+        "numero_pagine": 203
+    },
+    {
+        "id": 7,
+        "autore": "Elmo Vento",
+        "titolo": "At voluptatibus soluta voluptatum.",
+        "prezzo": 13.84,
+        "genere": "Horror",
+        "data di uscita": "2024-02-29",
+        "disponibilità": true,
+        "sconto_percentuale": 35,
+        "numero_pagine": 588
+    },
+    {
+        "id": 8,
+        "autore": "Leone Vigorelli",
+        "titolo": "Provident molestias repellendus.",
+        "prezzo": 16.07,
+        "genere": "Thriller",
+        "data di uscita": "2021-09-23",
+        "disponibilità": false,
+        "sconto_percentuale": 3,
+        "numero_pagine": 924
+    },
+    {
+        "id": 9,
+        "autore": "Paloma Lupo",
+        "titolo": "At reiciendis et doloribus.",
+        "prezzo": 27.96,
+        "genere": "Fantascienza",
+        "data di uscita": "2021-07-25",
+        "disponibilità": true,
+        "sconto_percentuale": 46,
+        "numero_pagine": 960
+    },
+    {
+        "id": 10,
+        "autore": "Flavio Balla",
+        "titolo": "Voluptatem ea architecto perspiciatis consectetur.",
+        "prezzo": 14.97,
+        "genere": "Fantascienza",
+        "data di uscita": "2021-04-09",
+        "disponibilità": false,
+        "sconto_percentuale": 21,
+        "numero_pagine": 349
+    },
+    {
+        "id": 11,
+        "autore": "Biagio Veltroni",
+        "titolo": "Saepe minima maxime doloremque.",
+        "prezzo": 23.26,
+        "genere": "Fantasy",
+        "data di uscita": "2021-10-30",
+        "disponibilità": true,
+        "sconto_percentuale": 36,
+        "numero_pagine": 327
+    },
+    {
+        "id": 12,
+        "autore": "Renata Pucci-Leone",
+        "titolo": "Laudantium odit praesentium voluptatem.",
+        "prezzo": 10.97,
+        "genere": "Giallo",
+        "data di uscita": "2023-01-15",
+        "disponibilità": false,
+        "sconto_percentuale": 5,
+        "numero_pagine": 182
+    },
+    {
+        "id": 13,
+        "autore": "Manuel Carpaccio",
+        "titolo": "Nesciunt excepturi deleniti accusamus.",
+        "prezzo": 29.83,
+        "genere": "Thriller",
+        "data di uscita": "2022-04-22",
+        "disponibilità": false,
+        "sconto_percentuale": 6,
+        "numero_pagine": 408
+    },
+    {
+        "id": 14,
+        "autore": "Giancarlo Palazzo",
+        "titolo": "Ex repellendus aut.",
+        "prezzo": 18.78,
+        "genere": "Fantasy",
+        "data di uscita": "2021-03-30",
+        "disponibilità": false,
+        "sconto_percentuale": 34,
+        "numero_pagine": 308
+    },
+    {
+        "id": 15,
+        "autore": "Dott. Anita Udinesi",
+        "titolo": "Perspiciatis ad odio non nemo.",
+        "prezzo": 29.1,
+        "genere": "Avventura",
+        "data di uscita": "2023-04-30",
+        "disponibilità": false,
+        "sconto_percentuale": 28,
+        "numero_pagine": 193
+    },
+    {
+        "id": 16,
+        "autore": "Napoleone Carriera",
+        "titolo": "Non deserunt.",
+        "prezzo": 19.91,
+        "genere": "Biografia",
+        "data di uscita": "2021-07-28",
+        "disponibilità": false,
+        "sconto_percentuale": 36,
+        "numero_pagine": 347
+    },
+    {
+        "id": 17,
+        "autore": "Dott. Matilda Fracci",
+        "titolo": "Vel ad.",
+        "prezzo": 12.26,
+        "genere": "Romanzo",
+        "data di uscita": "2023-08-15",
+        "disponibilità": true,
+        "sconto_percentuale": 2,
+        "numero_pagine": 727
+    },
+    {
+        "id": 18,
+        "autore": "Bettina Guinizzelli",
+        "titolo": "Dolore officia.",
+        "prezzo": 29.53,
+        "genere": "Storico",
+        "data di uscita": "2022-12-24",
+        "disponibilità": false,
+        "sconto_percentuale": 4,
+        "numero_pagine": 191
+    },
+    {
+        "id": 19,
+        "autore": "Elena Binaghi",
+        "titolo": "Iusto nisi praesentium hic.",
+        "prezzo": 21.97,
+        "genere": "Giallo",
+        "data di uscita": "2022-03-19",
+        "disponibilità": true,
+        "sconto_percentuale": 2,
+        "numero_pagine": 962
+    },
+    {
+        "id": 20,
+        "autore": "Sig. Fabrizio Fiorucci",
+        "titolo": "Ratione culpa.",
+        "prezzo": 7.01,
+        "genere": "Thriller",
+        "data di uscita": "2021-05-18",
+        "disponibilità": false,
+        "sconto_percentuale": 45,
+        "numero_pagine": 637
+    }
+]
