@@ -17,11 +17,11 @@
         <form id="loginForm" action="login.php" method="post"> 
             {{errors}}
             <label for="mail">Email</label>
-            <input id="mail" type="email" name="usermail"
+            <input id="mail" type="email" name="usermail" maxlength="40" pattern="[A-Za-z]{2,40}"
             placeholder="Inserisci la tua Email" required>
             <label for="pwd">Password</label>
-            <input id="pwd" type="password" 
-            placeholder="Inserisci la tua password" required/>
+            <input id="pwd" type="password" minlength="8" maxlength="16"
+            placeholder="Inserisci la tua password" required pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* )" />
             <button type="submit">Accedi</button>
             <a href="signup.html">Non sei già registrato?</a>
         </form>  
