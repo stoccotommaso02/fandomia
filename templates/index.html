@@ -17,15 +17,11 @@
           </nav>
         <main>
             <h2> Ultimi arrivi </h2>
-            {{latestItem}}
-            <section>
-                <h2>E i prossimi...</h2>
-                {incomingItemsCarousel}
-            </section>
-        <section>    
-        <h2> Promozioni </h2>
-        {saleItemsCarousel}
-        </section>
+            {{latestItems}}
+            <h2> ...ed i prossimi </h2>
+            {{nextItems}}
+            <h2> Promozioni</h2>
+            {{saleItems}}
         </main>
         {{footer}}
     </body>
