@@ -66,17 +66,9 @@ CREATE TABLE Wishlist (
   FOREIGN KEY(product_id) REFERENCES products(id)
 );
 
-
-CREATE TABLE ProductCategories (
-  product_id INT UNSIGNED NOT NULL,
-  category_id INT UNSIGNED NOT NULL,
-  PRIMARY KEY(product_id, category_id),
-  FOREIGN KEY(product_id) REFERENCES products(id),
-  FOREIGN KEY(category_id) REFERENCES Categories(id)
-);
-
 CREATE TABLE Categories (
-  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  PRIMARY KEY(id)
-)
+  product_id INT UNSIGNED NOT NULL,
+  category_name VARCHAR(100) NOT NULL,
+  PRIMARY KEY(product_id, category_name),
+  FOREIGN KEY(prdouct_id) REFERENCES products(id)
+);
