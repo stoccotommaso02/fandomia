@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="fandomia,fumetti,videogiochi,Padova,libri,musica">
     <title>Fandomia</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/mobile.css">
     <link rel="stylesheet" href="assets/css/print.css" media="print">
     </head>
     <body>
         {{header}}
         <nav aria-label="breadcrumb" class="breadcrumb">
+          <p>Ti trovi in :</p>
             <ul>
               <li><span aria-current="page">Home</span></li>
             </ul>
@@ -18,10 +19,13 @@
         <main>
             <h2> Ultimi arrivi </h2>
             {{latestItems}}
+            <a href="latestItems.php">Vedi tutti gli ultimi arrivi</a>
             <h2> ...ed i prossimi </h2>
             {{nextItems}}
+            <a href="nextItems.php">Vedi tutti i prossimi arrivi</a>
             <h2> Promozioni</h2>
             {{saleItems}}
+            <a href="saleItems.php">Vedi tutti i prodotti in offerta</a>
         </main>
         {{footer}}
     </body>
