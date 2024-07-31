@@ -70,5 +70,5 @@ CREATE TABLE Categories (
   product_id INT UNSIGNED NOT NULL,
   category_name VARCHAR(100) NOT NULL,
   PRIMARY KEY(product_id, category_name),
-  FOREIGN KEY(prdouct_id) REFERENCES products(id)
+  FOREIGN KEY(product_id) REFERENCES products(id)
 );
