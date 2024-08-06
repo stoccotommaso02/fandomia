@@ -28,7 +28,7 @@ CREATE TABLE Books (
   pages INT UNSIGNED,
   genre VARCHAR(50),
   PRIMARY KEY(id),
-  FOREIGN KEY(id) REFERENCES products(id)
+  FOREIGN KEY(id) REFERENCES Products(id)
 );
 
 CREATE TABLE Music (
@@ -38,7 +38,7 @@ CREATE TABLE Music (
   genre VARCHAR(50),
   format ENUM('cd', 'vinyl', 'other'),
   PRIMARY KEY(id),
-  FOREIGN KEY(id) REFERENCES products(id)
+  FOREIGN KEY(id) REFERENCES Products(id)
 );
 
 CREATE TABLE Comics (
@@ -47,7 +47,7 @@ CREATE TABLE Comics (
   pages INT UNSIGNED,
   genre VARCHAR(50),
   PRIMARY KEY(id),
-  FOREIGN KEY(id) REFERENCES products(id)
+  FOREIGN KEY(id) REFERENCES Products(id)
 );
 
 CREATE TABLE Videogames (
@@ -55,28 +55,25 @@ CREATE TABLE Videogames (
   genre VARCHAR(50),
   developer VARCHAR(50),
   PRIMARY KEY(id),
-  FOREIGN KEY(id) REFERENCES products(id)
+  FOREIGN KEY(id) REFERENCES Products(id)
 );
 
 CREATE TABLE Wishlist (
   user_username VARCHAR(25) NOT NULL,
   product_id INT UNSIGNED NOT NULL,
   PRIMARY KEY(user_username, product_id),
-  FOREIGN KEY(user_username) REFERENCES users(username),
-  FOREIGN KEY(product_id) REFERENCES products(id)
+  FOREIGN KEY(user_username) REFERENCES Users(username),
+  FOREIGN KEY(product_id) REFERENCES Products(id)
 );
 
 CREATE TABLE Categories (
   product_id INT UNSIGNED NOT NULL,
   category_name VARCHAR(100) NOT NULL,
   PRIMARY KEY(product_id, category_name),
-  FOREIGN KEY(product_id) REFERENCES products(id)
+  FOREIGN KEY(product_id) REFERENCES Products(id)
 );
 
 
----------------------------
-----    DUMP VALORI    ----
----------------------------
 
 -- Users
 INSERT INTO Users (username, password) VALUES
