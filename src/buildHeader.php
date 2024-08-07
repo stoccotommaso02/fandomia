@@ -2,7 +2,7 @@
 
 function buildHeader() : string {
 
-    $headerTemplate = file_get_contents("../templates/header.html");
+    $headerTemplate = file_get_contents("./templates/header.html");
     
     if ( !isset($_SESSION['id_utente'])) {
 
