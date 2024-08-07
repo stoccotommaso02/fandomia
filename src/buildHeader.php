@@ -1,16 +1,15 @@
 <?php 
-
 function buildHeader() : string {
+    
+    session_start();
 
     $headerTemplate = file_get_contents("./templates/header.html");
-    
-    if ( !isset($_SESSION['id_utente'])) {
-
-        $login='<a href="login.php" id="loginForm>Login<a>';
-        $headerTemplate = str_replace('{{areaPersonale}}',$login,$headerTemplate);
-    } else {
-        $areaPersonale='<a href="areaPersonale.php" id="linkAreaPersoanle">Area personale<a>';
+    if (isset($_SESSION['loggedUser'])) {
+        $areaPersonale = '<a href="areaPersonale.php" id="areaPersonale">Area personale</a>';
         $headerTemplate = str_replace('{{areaPersonale}}',$areaPersonale,$headerTemplate);
+    } else {
+        $login='<a href="login.php" id="loginForm">Login</a>';
+        $headerTemplate = str_replace('{{areaPersonale}}',$login,$headerTemplate);
     }
 
     return $headerTemplate;

@@ -1,5 +1,6 @@
 <?php 
 
+require_once("./lib/global.php");
 require_once("./buildHeader.php");
 //Servono :
 //-una funzione/classe per compilare il template della card di ogni prodotto;
@@ -32,12 +33,60 @@ echo($homePageTemplate);
 function getLatestItems() : string {
     //implementazione;
     $latestItems = '';
+    $connection = getConnection();
+    $query = "SELECT *
+              from Products
+              where release_date < CURDATE()
+              order by release_date DESC
+              limit 3 ";
+    $result = $connection->query($query);
+    if($result->num_rows > 0) {
+        // ciclo dei record restituiti dalla query
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+
+            $latestItemTemplate=file_get_contents("./templates/card.html");
+    
+            $latestItemTemplate=str_replace('{{titolo}}',$row['name'],$latestItemTemplate);
+            $latestItemTemplate=str_replace('{{prezzo}}',$row['price'],$latestItemTemplate);
+            $latestItemTemplate=str_replace('{{disponibilità}}',$row['status'],$latestItemTemplate);
+            $latestItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$latestItemTemplate);
+            $latestItemTemplate=str_replace('{{genere}}',$row['product_type'],$latestItemTemplate);
+            $latestItemTemplate = str_replace('{{productId}}',$row['id'],$latestItemTemplate);
+            $latestItems .= $latestItemTemplate;
+        }
+     } else {
+        $latestItems = "il DB è vuoto";
+    }
     return $latestItems;
 }
 
 function getNextItems() : string {
     //implementazione 
     $nextItems = '';
+    $connection = getConnection();
+    $query = "SELECT *
+              from Products
+              where release_date > CURDATE()
+              order by release_date ASC
+              limit 3 ";
+    $result = $connection->query($query);
+    if($result->num_rows > 0) {
+        // ciclo dei record restituiti dalla query
+        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+
+            $nextItemTemplate=file_get_contents("./templates/card.html");
+    
+            $nextItemTemplate=str_replace('{{titolo}}',$row['name'],$nextItemTemplate);
+            $nextItemTemplate=str_replace('{{prezzo}}',$row['price'],$nextItemTemplate);
+            $nextItemTemplate=str_replace('{{disponibilità}}',$row['status'],$nextItemTemplate);
+            $nextItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$nextItemTemplate);
+            $nextItemTemplate=str_replace('{{genere}}',$row['product_type'],$nextItemTemplate);
+            $nextItemTemplate = str_replace('{{productId}}',$row['id'],$nextItemTemplate);
+            $nextItems .= $nextItemTemplate;
+        }
+     } else {
+        $nextItems = "il DB è vuoto";
+    }
     return $nextItems;
 };
 

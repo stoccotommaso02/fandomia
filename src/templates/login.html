@@ -10,17 +10,17 @@
         {{header}}
         <nav aria-label="breadcrumb" class="breadcrumb">
             <ul>
-              <li><a href="./../public/index.php" lang="en">Home</a></li>
+              <li><a href="index.php" lang="en">Home</a></li>
               <li><span aria-current="page" lang="en">Login</span></li>
             </ul>
         </nav>
-        <form id="loginForm" action="login.php" method="post"> 
+        <form id="loginForm" action="./lib/loginController.php" method="post"> 
             {{errors}}
             <label for="mail">Email</label>
-            <input id="mail" type="email" name="usermail" 
+            <input id="mail" type="email" name="userEmail" 
             placeholder="Inserisci la tua Email" required>
             <label for="pwd">Password</label>
-            <input id="pwd" type="password" 
+            <input id="pwd" type="password" name="password"
             placeholder="Inserisci la tua password" required  />
             <button type="submit">Accedi</button>
             <a href="signup.html">Non sei già registrato?</a>
