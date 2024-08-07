@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>Fandomia - Login</title>
+        <meta name="keywords" content="login, fandomia">
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul>
+              <li><a href="./../public/index.php" lang="en">Home</a></li>
+              <li><span aria-current="page" lang="en">Login</span></li>
+            </ul>
+        </nav>
+        <form id="loginForm" action="login.php" method="post"> 
+            {{errors}}
+            <label for="mail">Email</label>
+            <input id="mail" type="email" name="usermail" 
+            placeholder="Inserisci la tua Email" required>
+            <label for="pwd">Password</label>
+            <input id="pwd" type="password" 
+            placeholder="Inserisci la tua password" required  />
+            <button type="submit">Accedi</button>
+            <a href="signup.html">Non sei già registrato?</a>
+        </form>  
+    {{footer}}
+    </body>
+</html>
