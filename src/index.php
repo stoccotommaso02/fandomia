@@ -1,7 +1,8 @@
 <?php 
 
 require_once("./lib/global.php");
-require_once("./buildHeader.php");
+require_once("./header.php");
+require_once("./footer.php");
 //Servono :
 //-una funzione/classe per compilare il template della card di ogni prodotto;
 //-una funzione/classe per compilare ogni section presente in homePage;
@@ -21,9 +22,11 @@ $saleSection = file_get_contents("./templates/section.html");
 $saleSection = str_replace('{{listaProdotti}}',$saleItems,$saleSection);
 
 $header = buildHeader();
+$footer = buildFooter();
 
 $homePageTemplate = file_get_contents("./templates/index.html");
 $homePageTemplate = str_replace('{{header}}',$header,$homePageTemplate);
+$homePageTemplate = str_replace('{{footer}}',$footer,$homePageTemplate);
 $homePageTemplate = str_replace('{{latestItems}}',$latestSection,$homePageTemplate);
 $homePageTemplate = str_replace('{{nextItems}}',$nextItems,$homePageTemplate);
 $homePageTemplate = str_replace('{{saleItems}}',$saleSection,$homePageTemplate);
