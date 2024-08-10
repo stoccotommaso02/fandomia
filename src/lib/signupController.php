@@ -5,8 +5,8 @@ require_once('./global.php');
 $user = $password = $errors = '';
 $connection = getConnection();
 
-if (isset($_POST['user'])) {
-    $user = sanitizeString($_POST['user']);
+if (isset($_POST['usermail'])) {
+    $user = sanitizeString($_POST['usermail']);
     $password = sanitizeString($_POST['password']);
 
     if ($user == '' || $password = '')
@@ -14,6 +14,8 @@ if (isset($_POST['user'])) {
     else {
         if (!checkUserAvalaibility($user)) {
             $errors = 'Username non disponibile!';
+            header("Location: ../signup.php?errors=" . urlencode($errors));
+            exit();
         }
             else {
                 $insertionQuery = "INSERT into Users
@@ -41,4 +43,13 @@ function checkUserAvalaibility(string $username) : bool {
         return true;
         else return false;
 }
+
+function sanitizeString(string $var) : string
+{
+$var = strip_tags($var);
+$var = htmlentities($var);
+$var = stripslashes($var);
+return $var;
+}
+
 ?>

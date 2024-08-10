@@ -8,15 +8,15 @@ di registrazione; useremo poi un signUpController che si occupa
 di gestire i dati submittati dal form */
 $header = buildHeader();
 $footer = buildFooter();
+$errorMessage = '';
 
 if (isset($_GET['errors'])) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['errors']) . '</p>';
-} else {
-    $errorMessage = '';
-}
+} 
 
 $signUpForm = file_get_contents("templates/signup.html");
 $signUpForm = str_replace('{{header}}',$header,$signUpForm);
+$signUpForm = str_replace('{{errors}}',$errorMessage,$signUpForm);
 $signUpForm = str_replace('{{footer}}',$footer,$signUpForm);
 
 echo($signUpForm);
