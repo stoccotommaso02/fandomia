@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fandomia - Prenotazione</title>
+        <meta name="keywords" content="prenotazione, fandomia">
+        <meta name="viewport" content="width=device-width" />
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul>
+              <li><a href="index.php" lang="en">Home</a></li>
+              <li><span aria-current="page" lang="en">Prenotazione ritiro</span></li>
+            </ul>
+        </nav>
+        <form id="loginForm" action="./lib/reservationController.php" method="post"> 
+            {{errors}}
+            <label>Scegli il giorno:</label>
+            <input type="date" required name="withdrawDate">
+            <label>Scegli l'orario</label>
+            <input type="time" name="withdrawTime" min="09:00" max="19:00" required>
+            <label for="notes">Note:</label>
+            <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140"></textarea>
+            <button type="submit">Prenota</button>
+        </form>  
+    {{footer}}
+    </body>
+</html>

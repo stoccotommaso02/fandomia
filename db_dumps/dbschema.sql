@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS Music;
 DROP TABLE IF EXISTS Books;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Reservation;
 
 CREATE TABLE Users (
   username VARCHAR(25) NOT NULL,
@@ -71,6 +72,15 @@ CREATE TABLE Categories (
   category_name VARCHAR(100) NOT NULL,
   PRIMARY KEY(product_id, category_name),
   FOREIGN KEY(product_id) REFERENCES Products(id)
+);
+
+CREATE TABLE Reservation (
+  product_id INT UNSIGNED NOT NULL,
+  username VARCHAR(25) NOT NULL,
+  reservation_time TIMESTAMP NOT NULL,
+  PRIMARY KEY (product_id,username,reservation_time),
+  FOREIGN KEY(product_id) REFERENCES Products(id),
+  FOREIGN KEY(username) REFERENCES Users(username)
 );
 
 

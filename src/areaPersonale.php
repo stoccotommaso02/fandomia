@@ -1,6 +1,6 @@
 <?php
 
-require_once("buildHeader.php");
+require_once("header.php");
 
 $headerTemplate = buildHeader();
 
