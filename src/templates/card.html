@@ -20,7 +20,7 @@
         <input type="hidden" name="product_id" value="{{productId}}">
         <button type="submit" name="submit">Aggiungi alla wish-list</button>
     </form>
-    <form action="prenotazioneRitiro.php" method="POST">
+    <form action="prenotazioneRitiro.php?id={{productId}}" method="GET">
         <input type="hidden" name="product_id" value="{{productId}}">
         <button type="submit" name="submit">Prenota il ritiro</button>
     </form>

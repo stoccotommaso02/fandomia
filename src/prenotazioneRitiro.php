@@ -12,6 +12,8 @@ if (!isset($_SESSION['loggedUser'])) {
     exit();
 }
 
+$productId = $_GET['product_id'];
+
 if (isset($_GET['error'])) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
 } else {
@@ -25,9 +27,9 @@ $header = buildHeader();
 
 $reservationTemplate = file_get_contents("./templates/reservationForm.html");
 $reservationTemplate = str_replace('{{header}}',$header,$reservationTemplate);
+$reservationTemplate = str_replace('{{productId}}',$productId,$reservationTemplate);
 $reservationTemplate = str_replace('{{footer}}',$footer,$reservationTemplate);
 $reservationTemplate = str_replace('{{errors}}',$errorMessage,$reservationTemplate);
-$reservationTemplate = str_replace('{{Registration confirmed}}',$message,$reservationTemplate);
 
 echo($reservationTemplate);
 

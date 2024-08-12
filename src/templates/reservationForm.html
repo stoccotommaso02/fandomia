@@ -14,11 +14,11 @@
               <li><span aria-current="page" lang="en">Prenotazione ritiro</span></li>
             </ul>
         </nav>
-        <form id="loginForm" action="./lib/reservationController.php" method="post"> 
+        <form id="reservationForm" action="./lib/reservationController.php?productId={{productId}}" method="post"> 
             {{errors}}
-            <label>Scegli il giorno:</label>
+            <label for="withdrawDate">Scegli il giorno:</label>
             <input type="date" required name="withdrawDate">
-            <label>Scegli l'orario</label>
+            <label for="withdrawTime">Scegli l'orario</label>
             <input type="time" name="withdrawTime" min="09:00" max="19:00" required>
             <label for="notes">Note:</label>
             <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140"></textarea>
