@@ -78,6 +78,7 @@ CREATE TABLE Reservation (
   product_id INT UNSIGNED NOT NULL,
   username VARCHAR(25) NOT NULL,
   reservation_time TIMESTAMP NOT NULL,
+  notes VARCHAR(140),
   PRIMARY KEY (product_id,username,reservation_time),
   FOREIGN KEY(product_id) REFERENCES Products(id),
   FOREIGN KEY(username) REFERENCES Users(username)

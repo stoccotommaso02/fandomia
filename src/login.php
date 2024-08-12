@@ -5,6 +5,10 @@ require_once("footer.php");
 $header = '';
 $footer = buildFooter();
 
+if (session_start() && isset($_SESSION['loggedUser'])) {
+    header("Location :areaPersonale.php");
+}
+
 if (isset($_GET['error'])) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
 } else {
@@ -13,10 +17,8 @@ if (isset($_GET['error'])) {
         $message = '<p>' . htmlspecialchars($_GET['state']) . '</p>';
         else $message = '';
 }
-if (session_start() && isset($_SESSION['loggedUser']))
-   { $header = $_SESSION['loggedUser'];}
-else 
-    {$header = buildHeader();}
+
+$header = buildHeader();
 
 $loginTemplate = file_get_contents("./templates/login.html");
 $loginTemplate = str_replace('{{header}}',$header,$loginTemplate);
