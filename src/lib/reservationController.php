@@ -48,7 +48,9 @@
                     }
                     if ($result) {
                         $message = "La prenotazione è andata a buon fine!";
-                        header("Location: ../prenotazioneRitiro.php?errors=" . urlencode($message));
+                        $_SESSION['message'] = $message;
+                        header("Location: ../reservationList.php");
+                        exit();
                     } else {
                         $errors = "Prenotazione non andata a buon fine";
                         header("Location: ../prenotazioneRitiro.php?errors=" . urlencode($errors));
