@@ -8,7 +8,12 @@ $headerTemplate = buildHeader();
 $footerTemplate = buildFooter();
 $reservationList = '';
 
-session_start();
+if (!isset($_SESSION['loggedUser'])) {
+    $error = "Devi prima loggarti per visualizzare la lista delle tue prenotazioni";
+    $_SESSION['errors'] = $error;
+    header("Location: login.php");
+    exit();
+}
 
 if (isset($_SESSION['message'])) {
     $reservationList = "<p>" . $_SESSION['message'] . "</p>";
@@ -23,7 +28,7 @@ $reservationTemplate = str_replace('{{footer}}',$footerTemplate,$reservationTemp
 echo($reservationTemplate);
 
 function retrieveReservationList() : string {
-$reservationList = '';
+$reservationList = "";
 $connection = getConnection();
 
 $user = $_SESSION['loggedUser'];
@@ -33,9 +38,13 @@ $query = "SELECT *
            where username = '$user'";
 $result = $connection -> query($query);
 if ($result->num_rows > 0) {
+    $reservationList = "<ul>";
     $records = $result -> fetch_all(MYSQLI_ASSOC);
     foreach ($records as $record)
-        $reservationList .= "<p>" . $record['product_id'] . $record['username'] . $record['reservation_time'] . "</p>";
+        $reservationList .= "<li><dt>Prodotto: </dt><dd>" . $record['name'] ."</dd>" .
+                                "<dt>Timestamp di ritiro: </dt><dd>" . $record['reservation_time'] . "</dd>" .
+                            "</li>";
+    $reservationList .= "</ul>";
 } elseif ($result->num_rows == 0) {
     $reservationList = "<p>Non è presente nessuna prenotazione!</p>";
 }

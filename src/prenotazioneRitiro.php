@@ -14,8 +14,9 @@ if (!isset($_SESSION['loggedUser'])) {
 
 $productId = $_GET['product_id'];
 
-if (isset($_GET['error'])) {
-    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
+if (isset($_SESSION['errors'])) {
+    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
+    unset($_SESSION['errors']);
 } else {
     $errorMessage = '';
     if (isset($_GET['state']))

@@ -15,23 +15,30 @@
 
     require_once('global.php');
 
-    session_start();
-
     $productId = $withdrawDate = $withdrawTime = $notes = $errors = '';
     $connection = getConnection();
 
+    if(!isset($_SESSION['loggedUser'])) {
+        header("Location: ../login.php");
+        exit();
+    }
     if (isset($_GET['productId'])) {
         $productId = sanitizeString($_GET['productId']);
         $withdrawDate = sanitizeString($_POST['withdrawDate']);
         $withdrawTime = sanitizeString($_POST['withdrawTime']);
         $notes = sanitizeString($_POST['notes']);
     
-        if ($withdrawDate == '' || $withdrawTime == '')
-            $errors = 'Alcuni campi mancanti!';
+        if ($withdrawDate == '' || $withdrawTime == '') {
+            $error = 'Alcuni campi mancanti!';
+            $_SESSION['errors'] = $error;
+            header("Location: ../prenotazioneRitiro.php");
+            exit();
+        }
         else {
             if (!checkProductAvalaibility($productId)) {
-                $errors = 'Prodotto non disponibile!';
-                header("Location: ../index.php?errors=" . urlencode($errors));
+                $error = 'Prodotto non disponibile!';
+                $_SESSION['errors'] = $error;
+                header("Location: ../index.php");
                 exit();
             }   else {
                     $reservationTimestamp = $withdrawDate . ' ' . $withdrawTime;
@@ -52,24 +59,27 @@
                         header("Location: ../reservationList.php");
                         exit();
                     } else {
-                        $errors = "Prenotazione non andata a buon fine";
-                        header("Location: ../prenotazioneRitiro.php?errors=" . urlencode($errors));
+                        $error = "Prenotazione non andata a buon fine";
+                        $_SESSION['errors'] = $error;
+                        header("Location: ../prenotazioneRitiro.php?productId=" . $productId);
                         exit();
                     }
                 }
         }
     }
-    /* Al momento controllo solo se il prodotto è nel DB;
-       successivamente inserierò il controllo della disponibilità effettiva*/
+    
     function checkProductAvalaibility(string $productId) : bool {
         global $connection;
         $checkQuery = "SELECT * 
                        from Products
                        where id = $productId ";
         $result = $connection->query($checkQuery);
-        if ($result->num_rows > 0)
-            return true;
-            else return false;
+        if ($result->num_rows > 0)  {
+            $record = $result -> fetch(MYSQLI_ASSOC);
+            if ($record['status'] == 'avalaible') 
+                return true;
+        }
+            return false;
     }
 
     function sanitizeString(string $var) : string

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 function getConnection(): mysqli{
   $url = "fandomiadb";
   $user = "testuser";

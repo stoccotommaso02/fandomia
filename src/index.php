@@ -35,7 +35,7 @@ echo($homePageTemplate);
 
 function getLatestItems() : string {
     //implementazione;
-    $latestItems = '';
+    $latestItems = '<ul>';
     $connection = getConnection();
     $query = "SELECT *
               from Products
@@ -43,11 +43,12 @@ function getLatestItems() : string {
               order by release_date DESC
               limit 3 ";
     $result = $connection->query($query);
+   
     if($result->num_rows > 0) {
         // ciclo dei record restituiti dalla query
         while($row = $result->fetch_array(MYSQLI_ASSOC)){
 
-            $latestItemTemplate=file_get_contents("./templates/card.html");
+            $latestItemTemplate = file_get_contents("./templates/card.html");
     
             $latestItemTemplate=str_replace('{{titolo}}',$row['name'],$latestItemTemplate);
             $latestItemTemplate=str_replace('{{prezzo}}',$row['price'],$latestItemTemplate);
@@ -55,9 +56,13 @@ function getLatestItems() : string {
             $latestItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$latestItemTemplate);
             $latestItemTemplate=str_replace('{{genere}}',$row['product_type'],$latestItemTemplate);
             $latestItemTemplate = str_replace('{{productId}}',$row['id'],$latestItemTemplate);
-            $latestItems .= $latestItemTemplate;
+
+            $latestItems .= $latestItemTemplate . "</ul>";
         }
-     } else {
+     } 
+      /* Da aggiungere caso in cui Server non funziona e non 
+       non sono reperiti i prodotti dal DB */
+        else {
         $latestItems = "il DB è vuoto";
     }
     return $latestItems;
