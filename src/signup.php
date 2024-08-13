@@ -1,5 +1,6 @@
 <?php 
 
+require_once("./lib/global.php");
 require_once("header.php");
 require_once("footer.php");
 
@@ -10,8 +11,9 @@ $header = buildHeader();
 $footer = buildFooter();
 $errorMessage = '';
 
-if (isset($_GET['errors'])) {
-    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['errors']) . '</p>';
+if (isset($_SESSION['errors'])) {
+    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
+    unset($_SESSION['errors']);
 } 
 
 $signUpForm = file_get_contents("templates/signup.html");

@@ -9,12 +9,16 @@ class DBconnection {
     private $connection;
     private $isConnected = false;
 
-    function setConnection() {
+    function setConnection() : bool {
         $this -> connection = new mysqli(DBconnection::HOST_DB,
                                          DBconnection::USER ,
                                          DBconnection::PASSWORD , 
                                          DBconnection::DATABASE);
-        $this -> isConnected = true;
+        if (mysqli_connect_errno()==0)  {
+            $this -> isConnected = true;
+            return true;
+        }
+        return false;
     }
 
     function getConnection() : mysqli {
@@ -25,8 +29,18 @@ class DBconnection {
         return $this-> isConnected;
     }
 
-    function queryDB(string $query) : bool {
-        return false;
+    function queryDB(string $query) {
+        $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
+            if(mysqli_num_rows($queryResult)!=0)    {
+                $result=array();
+                while($row = mysqli_fetch_assoc($queryResult)){
+                    $result[]=$row; //append
+                }
+                $queryResult ->free(); //liberiamo la memoria
+                return $result;
+            }else{
+                return null;
+            }
     }
 
     function destroyConnection() : bool {
