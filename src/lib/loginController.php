@@ -8,8 +8,7 @@ if (isset($_POST['userEmail']))
  $pass = sanitizeString($_POST['password']);
  if ($user == "" || $pass == "") {
  $error = "Non sono stati compilati tutti i campi!";
- $_SESSION['errors'] = $error;
- header("Location: ../login.php");
+ header("Location: ../login.php?error=" . urlencode($error));
  exit();
 }
  else
@@ -18,15 +17,15 @@ if (isset($_POST['userEmail']))
  WHERE username='$user' AND password='$pass'");
  if ($result->num_rows == 0)
  {
-   $error = "Credenziali non corrette";
-   $_SESSION['errors'] = $error;
-   header("Location: ../login.php");
-   exit();
+ $error = "Credenziali non corrette.";
+ header("Location: ../login.php?error=" . urlencode($error));
+ exit();
  }
  else
  {
-   $_SESSION['loggedUser'] = $user;
-   header("Location: ../index.php");
+ session_start();
+ $_SESSION['loggedUser'] = $user;
+ header("Location: ../index.php");
  }
  }
  }

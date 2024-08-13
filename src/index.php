@@ -23,17 +23,9 @@ $saleSection = str_replace('{{listaProdotti}}',$saleItems,$saleSection);
 
 $header = buildHeader();
 $footer = buildFooter();
-$state = '';
-
-if (isset($_SESSION['state'])) {
-    global $state;
-    $state = "<p>" . $_SESSION['state'] . "</p>";
-    unset($_SESSION['state']);
-}
 
 $homePageTemplate = file_get_contents("./templates/index.html");
 $homePageTemplate = str_replace('{{header}}',$header,$homePageTemplate);
-$homePageTemplate = str_replace('{{state}}',$state,$homePageTemplate);
 $homePageTemplate = str_replace('{{footer}}',$footer,$homePageTemplate);
 $homePageTemplate = str_replace('{{latestItems}}',$latestSection,$homePageTemplate);
 $homePageTemplate = str_replace('{{nextItems}}',$nextItems,$homePageTemplate);
