@@ -1,6 +1,6 @@
 <li>
 <div>
-{{titolo}}
+{{name}}
 <div class="item-row">
     <div class="item-image">
         <picture><img src="{{immagine}}" alt="" ></picture>
@@ -8,10 +8,10 @@
     <div class="item-info">
 <dl>
     <dt>Prezzo</dt>
-    <dd id="prezzo">{{prezzo}} &euro;</dd> 
-    <dt>Disponibilità</dt><dd>{{disponibilità}}</dd>
-    <dt>Data di uscita</dt><dd>{{releaseDate}}</dd>
-    <dt>Genere</dt><dd>{{genere}}</dd>
+    <dd id="prezzo">{{price}} &euro;</dd> 
+    <dt>Disponibilità</dt><dd>{{status}}</dd>
+    <dt>Data di uscita</dt><dd>{{release_date}}</dd>
+    <dt>Genere</dt><dd>{{product_type}}</dd>
     {{item-info}}
 </dl>
 </div>
@@ -20,8 +20,8 @@
         <input type="hidden" name="product_id" value="{{productId}}">
         <button type="submit" name="submit">Aggiungi alla wish-list</button>
     </form>
-    <form action="prenotazioneRitiro.php?id={{productId}}" method="POST">
-        <input type="hidden" name="product_id" value="{{productId}}">
+    <form action="prenotazioneRitiro.php?id={{id}}" method="POST">
+        <input type="hidden" name="product_id" value="{{id}}">
         <button type="submit" name="submit">Prenota il ritiro</button>
     </form>
 </div>

@@ -2,6 +2,7 @@
 
 require_once("./lib/global.php");
 require_once("./lib/DBController.php");
+require_once("./lib/templateController.php");
 require_once("./header.php");
 require_once("./footer.php");
 
@@ -54,8 +55,16 @@ function getLatestItems() : string {
               order by release_date DESC
               limit 3 ";
     $rows = $connection->queryDB($query);
-   
-    if(!empty($rows)) {
+    if (!empty($rows)) {
+    foreach ($rows as $row) {
+    $latestItemTemplate = new Template();
+    $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
+    $latestItems .= $latestItemTemplate;
+    }
+
+    $latestItems .= "</ul>";
+}
+   /* if(!empty($rows)) {
         // ciclo dei record restituiti dalla query     
         foreach ($rows  as $row) {
             
@@ -70,7 +79,7 @@ function getLatestItems() : string {
 
             $latestItems .= $latestItemTemplate . "</ul>";
         }
-     } 
+     } */
       /* Da aggiungere caso in cui Server non funziona e non 
        non sono reperiti i prodotti dal DB */
         else {
