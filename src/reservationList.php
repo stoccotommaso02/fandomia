@@ -20,11 +20,12 @@ if (isset($_SESSION['message'])) {
     unset($_SESSION['message']);
 }
 
-$reservationTemplate = file_get_contents("./templates/areaPersonale.html");
 $reservationList .= retrieveReservationList();
-$reservationTemplate = str_replace('{{header}}',$headerTemplate,$reservationTemplate);
-$reservationTemplate = str_replace('{{contenutoAreaPersonale}}',$reservationList,$reservationTemplate);
-$reservationTemplate = str_replace('{{footer}}',$footerTemplate,$reservationTemplate);
+
+$reservationTemplate = new Template();
+$reservationTemplate = $reservationTemplate->render("areaPersonale.html",array('header' => $headerTemplate,
+                                                                               'contenutoAreaPersonale' => $reservationList,
+                                                                               'footer' => $footerTemplate));
 
 echo($reservationTemplate);
 

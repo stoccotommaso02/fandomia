@@ -28,7 +28,7 @@ class DBconnection {
     function isConnected() : bool {
         return $this-> isConnected;
     }
-
+    /* Da modificare con dei prepared statements, più sicuri rispetto alla SQL injection*/
     function queryDB(string $query)  {
         $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
             if(mysqli_num_rows($queryResult) !=0 )  {

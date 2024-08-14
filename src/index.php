@@ -34,13 +34,13 @@ if (isset($_SESSION['state'])) {
     unset($_SESSION['state']);
 }
 
-$homePageTemplate = file_get_contents("./templates/index.html");
-$homePageTemplate = str_replace('{{header}}',$header,$homePageTemplate);
-$homePageTemplate = str_replace('{{state}}',$state,$homePageTemplate);
-$homePageTemplate = str_replace('{{footer}}',$footer,$homePageTemplate);
-$homePageTemplate = str_replace('{{latestItems}}',$latestSection,$homePageTemplate);
-$homePageTemplate = str_replace('{{nextItems}}',$nextItems,$homePageTemplate);
-$homePageTemplate = str_replace('{{saleItems}}',$saleSection,$homePageTemplate);
+$homePageTemplate = new Template();
+$homePageTemplate = $homePageTemplate->render("index.html",array("header" => $header,
+                                                                 "state" => $state,
+                                                                 "latestItems" => $latestSection,
+                                                                 "nextItems" => $nextItems,
+                                                                 "saleItems" => $saleItems,
+                                                                 "footer" => $footer));
 
 echo($homePageTemplate);
 

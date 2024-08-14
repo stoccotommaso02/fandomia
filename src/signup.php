@@ -16,10 +16,10 @@ if (isset($_SESSION['errors'])) {
     unset($_SESSION['errors']);
 } 
 
-$signUpForm = file_get_contents("templates/signup.html");
-$signUpForm = str_replace('{{header}}',$header,$signUpForm);
-$signUpForm = str_replace('{{errors}}',$errorMessage,$signUpForm);
-$signUpForm = str_replace('{{footer}}',$footer,$signUpForm);
+$signUpForm = new Template();
+$signUpForm = $signUpForm -> render('signup.html',array("header" => $header,
+                                                        "errors" => $errorMessage,
+                                                        "footer" => $footer));
 
 echo($signUpForm);
 ?>

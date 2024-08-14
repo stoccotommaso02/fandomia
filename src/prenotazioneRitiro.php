@@ -1,12 +1,13 @@
 <?php 
 
 require_once("./lib/global.php");
+require_once("./lib/templateController.php");
 require_once("header.php");
 require_once("footer.php");
 
 $header = '';
 $footer = buildFooter();
-
+$errorMessage = '';
 if (!isset($_SESSION['loggedUser'])) {
     $errorMessage = "Devi essere loggato per effettuare una prenotazione";
     $_SESSION['errors'] = $errorMessage;
@@ -17,18 +18,18 @@ if (!isset($_SESSION['loggedUser'])) {
 $productId = $_POST['product_id'];
 unset($_POST['product_id']);
 
-if (isset($_SESSION['errors'])) {
+if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
     unset($_SESSION['errors']);
 }
 
 $header = buildHeader();
 
-$reservationTemplate = file_get_contents("./templates/reservationForm.html");
-$reservationTemplate = str_replace('{{header}}',$header,$reservationTemplate);
-$reservationTemplate = str_replace('{{productId}}',$productId,$reservationTemplate);
-$reservationTemplate = str_replace('{{footer}}',$footer,$reservationTemplate);
-$reservationTemplate = str_replace('{{errors}}',$errorMessage,$reservationTemplate);
+$reservationTemplate = new Template();
+$reservationTemplate =  $reservationTemplate->render("reservationForm.html",array('header' => $header,
+                                                                                  'productId' => $productId,
+                                                                                  'footer' => $footer,
+                                                                                  'errors' => $errorMessage));
 
 echo($reservationTemplate);
 

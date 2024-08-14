@@ -1,5 +1,7 @@
 <?php
 
+require_once("templateController.php");
+
 session_start();
 
 function getConnection(): mysqli{
