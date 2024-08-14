@@ -1,27 +1,25 @@
 <?php 
+
+require_once("./lib/global.php");
 require_once("header.php");
 require_once("footer.php");
-
-session_start();
 
 $header = '';
 $footer = buildFooter();
 
 if (!isset($_SESSION['loggedUser'])) {
-    header("Location:login.php?error=" . urlencode("Devi essere loggato per effettuare una prenotazione"));
+    $errorMessage = "Devi essere loggato per effettuare una prenotazione";
+    $_SESSION['errors'] = $errorMessage;
+    header("Location:login.php");
     exit();
 }
 
-$productId = $_GET['product_id'];
+$productId = $_POST['product_id'];
+unset($_POST['product_id']);
 
 if (isset($_SESSION['errors'])) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
     unset($_SESSION['errors']);
-} else {
-    $errorMessage = '';
-    if (isset($_GET['state']))
-        $message = '<p>' . htmlspecialchars($_GET['state']) . '</p>';
-        else $message = '';
 }
 
 $header = buildHeader();

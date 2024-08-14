@@ -38,9 +38,16 @@
             if (!checkProductAvalaibility($productId)) {
                 $error = 'Prodotto non disponibile!';
                 $_SESSION['errors'] = $error;
-                header("Location: ../index.php");
+                $_POST['product_id'] = $productId;
+                header("Location: ../prenotazioneRitiro.php");
                 exit();
-            }   else {
+            }   elseif (!checkWithdrawDate($productId , $withdrawDate)) {
+                    $errorMessage = "La data di ritiro deve essere posteriore all'uscita del prodotto!";
+                    $_SESSION['errors'] = $errorMessage;
+                    $_POST['product_id'] = $productId;
+                    header("Location: ../prenotazioneRitiro.php");
+                    exit();
+                }   else {
                     $reservationTimestamp = $withdrawDate . ' ' . $withdrawTime;
                     $userEmail = $_SESSION['loggedUser'];
                     try {
@@ -69,17 +76,33 @@
     }
     
     function checkProductAvalaibility(string $productId) : bool {
-        global $connection;
+        $connection = getConnection();
         $checkQuery = "SELECT * 
                        from Products
-                       where id = $productId ";
+                       where id = '$productId' ";
         $result = $connection->query($checkQuery);
         if ($result->num_rows > 0)  {
-            $record = $result -> fetch(MYSQLI_ASSOC);
-            if ($record['status'] == 'avalaible') 
+            $record = $result->fetch_assoc();
+            if ($record['status'] == 'available') {
                 return true;
+            }
         }
-            return false;
+        return false;
+    }
+
+    function checkWithdrawDate(string $productId , string $date): bool {
+        $connection = getConnection();
+        $checkQuery = "SELECT * 
+                       from Products
+                       where id = '$productId' ";
+        $result = $connection->query($checkQuery);
+        if ($result->num_rows > 0)  {
+            $record = $result->fetch_assoc();
+            if ($record['release_date'] <= $date) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function sanitizeString(string $var) : string

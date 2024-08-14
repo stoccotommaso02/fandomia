@@ -5,7 +5,6 @@ controlli, che di visualizzazione dei relativi messaggi  */
 require_once('global.php');
 
 $user = $password = $confirmPassword = $errors = '';
-$connection = getConnection();
 
 if (isset($_POST['usermail'])) {
     $user = sanitizeString($_POST['usermail']);
@@ -15,25 +14,31 @@ if (isset($_POST['usermail'])) {
     if ($user == '' || $password == '' || $confirmPassword == '')
         $errors = 'Alcuni campi mancanti!';
     else {
-        if (!checkUserAvalaibility($user)) {
-            $errors = 'Username non disponibile!';
-            header("Location: ../signup.php?errors=" . urlencode($errors));
-            exit();
-        } elseif ( $password !== $confirmPassword) {
+        if ( $password !== $confirmPassword ) {
             $errors = 'Attenzione, le due password non coincidono!';
-            header("Location: ../signup.php?errors=" . urlencode($errors));
+            $_SESSION['errors'] = $errors;
+            header("Location: ../signup.php");
             exit();
         }
-            else {
+        elseif (!checkUserAvalaibility($user)) {
+            $errors = 'Username non disponibile!';
+            $_SESSION['errors'] = $errors;
+            header("Location: ../signup.php");
+            exit();
+        }   else {
+                $connection = getConnection();
                 $insertionQuery = "INSERT into Users
                                    values('$user','$password')";
                 $result = $connection -> query($insertionQuery);
                 if ($result) {
                     $message = "La registrazione è andata a buon fine!";
-                    header("Location: ../login.php?state=" . urlencode($message));
+                    $_SESSION['state'] = $message;
+                    header("Location: ../login.php" );
+                    exit();
                 } else {
                     $errors = "Registrazione non andata a buon fine";
-                    header("Location: ../signup.php?errors=" . urlencode($errors));
+                    $_SESSION['errors'] = $errors;
+                    header("Location: ../signup.php");
                     exit();
                 }
             }
@@ -41,7 +46,7 @@ if (isset($_POST['usermail'])) {
 }
 
 function checkUserAvalaibility(string $username) : bool {
-    global $connection;
+    $connection = getConnection();
     $user = sanitizeString($username);
     $checkQuery = "SELECT * 
                    from Users

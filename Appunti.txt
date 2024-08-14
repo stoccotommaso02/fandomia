@@ -6,7 +6,15 @@ Appunti delle cose da fare :
 - Gestire meglio la creazione degli URL;
 - Gestire meglio la creazione dell'header;
 - Studiare una migliore soluzione per gli errori in fase di
-  login/registrazione/prenotazione;
+  login/registrazione/prenotazione (in particolare trattarli in maniera consistente);
+  le tipologie di errori da gestire sono : 
+  ° problemi di connessione al DB;
+  ° mi connetto al db, ma ho problemi a trovare un determinato record (per es. errore
+    "utente non trovato" diverso da "error:500");
+  ° errori di formato degli input;
+  ° errori logici degli input stessi;
+  ° solo alla fine dei controlli posso essere sicuro che vada tutto bene! 
+  
 - Fare encryption / decryption delle password degli utenti;
 
 
@@ -31,4 +39,4 @@ Dubbi :
   (utente loggato/qualsiasi)?
 
 Possibili soluzioni:
-- Per trasmettere errori/messaggi dal server al browser, usare $_SESSION[];
+- Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];

@@ -1,8 +1,10 @@
 <?php 
 
 require_once("./lib/global.php");
+require_once("./lib/DBController.php");
 require_once("./header.php");
 require_once("./footer.php");
+
 //Servono :
 //-una funzione/classe per compilare il template della card di ogni prodotto;
 //-una funzione/classe per compilare ogni section presente in homePage;
@@ -23,9 +25,17 @@ $saleSection = str_replace('{{listaProdotti}}',$saleItems,$saleSection);
 
 $header = buildHeader();
 $footer = buildFooter();
+$state = '';
+
+if (isset($_SESSION['state'])) {
+    global $state;
+    $state = "<p>" . $_SESSION['state'] . "</p>";
+    unset($_SESSION['state']);
+}
 
 $homePageTemplate = file_get_contents("./templates/index.html");
 $homePageTemplate = str_replace('{{header}}',$header,$homePageTemplate);
+$homePageTemplate = str_replace('{{state}}',$state,$homePageTemplate);
 $homePageTemplate = str_replace('{{footer}}',$footer,$homePageTemplate);
 $homePageTemplate = str_replace('{{latestItems}}',$latestSection,$homePageTemplate);
 $homePageTemplate = str_replace('{{nextItems}}',$nextItems,$homePageTemplate);
@@ -35,19 +45,20 @@ echo($homePageTemplate);
 
 function getLatestItems() : string {
     //implementazione;
+    $connection =new DBconnection();
+    $connection -> setConnection();
     $latestItems = '<ul>';
-    $connection = getConnection();
     $query = "SELECT *
               from Products
               where release_date < CURDATE()
               order by release_date DESC
               limit 3 ";
-    $result = $connection->query($query);
+    $rows = $connection->queryDB($query);
    
-    if($result->num_rows > 0) {
-        // ciclo dei record restituiti dalla query
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-
+    if(!empty($rows)) {
+        // ciclo dei record restituiti dalla query     
+        foreach ($rows  as $row) {
+            
             $latestItemTemplate = file_get_contents("./templates/card.html");
     
             $latestItemTemplate=str_replace('{{titolo}}',$row['name'],$latestItemTemplate);
@@ -65,22 +76,25 @@ function getLatestItems() : string {
         else {
         $latestItems = "il DB è vuoto";
     }
+    
     return $latestItems;
+    
 }
 
 function getNextItems() : string {
     //implementazione 
+    $connection =new DBconnection();
+    $connection -> setConnection();
     $nextItems = '';
-    $connection = getConnection();
     $query = "SELECT *
               from Products
               where release_date > CURDATE()
               order by release_date ASC
               limit 3 ";
-    $result = $connection->query($query);
-    if($result->num_rows > 0) {
+    $rows = $connection->queryDB($query);
+    if (!empty($rows)) {
         // ciclo dei record restituiti dalla query
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+        foreach ($rows as $row) {
 
             $nextItemTemplate=file_get_contents("./templates/card.html");
     

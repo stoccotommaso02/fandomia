@@ -17,6 +17,7 @@ if (!isset($_SESSION['loggedUser'])) {
 
 if (isset($_SESSION['message'])) {
     $reservationList = "<p>" . $_SESSION['message'] . "</p>";
+    unset($_SESSION['message']);
 }
 
 $reservationTemplate = file_get_contents("./templates/areaPersonale.html");
@@ -34,15 +35,17 @@ $connection = getConnection();
 $user = $_SESSION['loggedUser'];
 
 $query = "SELECT * 
-          from Reservation
-           where username = '$user'";
+          from Reservation join Products
+               on (Reservation.product_id = Products.id)
+          where username = '$user'
+          order by reservation_time";
 $result = $connection -> query($query);
 if ($result->num_rows > 0) {
     $reservationList = "<ul>";
     $records = $result -> fetch_all(MYSQLI_ASSOC);
     foreach ($records as $record)
         $reservationList .= "<li><dt>Prodotto: </dt><dd>" . $record['name'] ."</dd>" .
-                                "<dt>Timestamp di ritiro: </dt><dd>" . $record['reservation_time'] . "</dd>" .
+                                "<dt>Data di ritiro: </dt><dd>" . $record['reservation_time'] . "</dd>" .
                             "</li>";
     $reservationList .= "</ul>";
 } elseif ($result->num_rows == 0) {
