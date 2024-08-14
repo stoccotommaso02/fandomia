@@ -16,7 +16,7 @@ Appunti delle cose da fare :
   ° solo alla fine dei controlli posso essere sicuro che vada tutto bene! 
   
 - Fare encryption / decryption delle password degli utenti;
-
+- Arricchire la pagina dei risultati in seguito ad una ricerca;
 
 Osservazioni:
 - I controlli logici legati alle varie business logic sono compito dei vari controller
@@ -37,6 +37,7 @@ Dubbi :
 - Come si creano URL di più livelli?
 - Come gestire le differenti azioni dell' header a seconda dello stato dell'utente 
   (utente loggato/qualsiasi)?
+- Come effettuare la ricerca di un prodotto? Ci sta mettere dei filtri nella pagina dei risultati?
 
 Possibili soluzioni:
 - Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];
