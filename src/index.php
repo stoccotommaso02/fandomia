@@ -63,26 +63,7 @@ function getLatestItems() : string {
     }
 
     $latestItems .= "</ul>";
-}
-   /* if(!empty($rows)) {
-        // ciclo dei record restituiti dalla query     
-        foreach ($rows  as $row) {
-            
-            $latestItemTemplate = file_get_contents("./templates/card.html");
-    
-            $latestItemTemplate=str_replace('{{titolo}}',$row['name'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{prezzo}}',$row['price'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{disponibilità}}',$row['status'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{genere}}',$row['product_type'],$latestItemTemplate);
-            $latestItemTemplate = str_replace('{{productId}}',$row['id'],$latestItemTemplate);
-
-            $latestItems .= $latestItemTemplate . "</ul>";
-        }
-     } */
-      /* Da aggiungere caso in cui Server non funziona e non 
-       non sono reperiti i prodotti dal DB */
-        else {
+}   else {
         $latestItems = "il DB è vuoto";
     }
     
