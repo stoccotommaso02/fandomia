@@ -12,14 +12,10 @@
     <dt>Disponibilità</dt><dd>{{status}}</dd>
     <dt>Data di uscita</dt><dd>{{release_date}}</dd>
     <dt>Genere</dt><dd>{{product_type}}</dd>
-    <dt>JaroWinkler similarity</dt><dd>{{similarity}}</dd>
+    <dt>Sconto:</dt><dd>{{sale_percentage}}</dd>
 </dl>
 </div>
 <div class="item-actions">
-    <form action="wishList.php" method="POST">
-        <input type="hidden" name="product_id" value="{{productId}}">
-        <button type="submit" name="submit">Aggiungi alla wish-list</button>
-    </form>
     <form action="prenotazioneRitiro.php?id={{id}}" method="POST">
         <input type="hidden" name="product_id" value="{{id}}">
         <button type="submit" name="submit">Prenota il ritiro</button>

@@ -85,15 +85,8 @@ function getNextItems() : string {
     if (!empty($rows)) {
         // ciclo dei record restituiti dalla query
         foreach ($rows as $row) {
-
-            $nextItemTemplate=file_get_contents("./templates/card.html");
-    
-            $nextItemTemplate=str_replace('{{titolo}}',$row['name'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{prezzo}}',$row['price'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{disponibilità}}',$row['status'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{genere}}',$row['product_type'],$nextItemTemplate);
-            $nextItemTemplate = str_replace('{{productId}}',$row['id'],$nextItemTemplate);
+            $nextItemTemplate = new Template();
+            $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
      } else {
@@ -123,6 +116,24 @@ foreach($jsonEncoded as $libro) {
     $listaLibri .= $libroTemplate;
 }  */
     $saleItems = '';
+    $connection =new DBconnection();
+    $connection -> setConnection();
+    $query = "SELECT *
+              from Products
+              where sale_percentage != 0
+              order by sale_percentage DESC
+              limit 3 ";
+    $rows = $connection->queryDB($query);
+    if (!empty($rows)) {
+        // ciclo dei record restituiti dalla query
+        foreach ($rows as $row) {
+            $saleItemTemplate = new Template();
+            $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
+            $saleItems .= $saleItemTemplate;
+        }
+     } else {
+        $saleItems = "il DB è vuoto";
+    }
     return $saleItems;
 };
 

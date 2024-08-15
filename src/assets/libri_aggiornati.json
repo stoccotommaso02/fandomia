@@ -8,7 +8,7 @@
         "genere": "Biografia",
         "numero di pagine": 141,
         "data di uscita": "2019-10-12",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 120,
@@ -19,7 +19,7 @@
         "genere": "Biografia",
         "numero di pagine": 902,
         "data di uscita": "2023-09-06",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 121,
@@ -30,7 +30,7 @@
         "genere": "Avventura",
         "numero di pagine": 323,
         "data di uscita": "2022-08-26",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 122,
@@ -41,7 +41,7 @@
         "genere": "Fantasy",
         "numero di pagine": 733,
         "data di uscita": "2022-02-24",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 123,
@@ -52,7 +52,7 @@
         "genere": "Avventura",
         "numero di pagine": 250,
         "data di uscita": "2025-04-04",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 124,
@@ -63,7 +63,7 @@
         "genere": "Horror",
         "numero di pagine": 583,
         "data di uscita": "2024-04-10",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 125,
@@ -74,7 +74,7 @@
         "genere": "Avventura",
         "numero di pagine": 755,
         "data di uscita": "2016-06-22",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 126,
@@ -85,7 +85,7 @@
         "genere": "Saggistica",
         "numero di pagine": 986,
         "data di uscita": "2024-08-13",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 127,
@@ -96,7 +96,7 @@
         "genere": "Fantascienza",
         "numero di pagine": 195,
         "data di uscita": "2025-01-16",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 128,
@@ -107,7 +107,7 @@
         "genere": "Fantascienza",
         "numero di pagine": 726,
         "data di uscita": "2017-03-01",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 129,
@@ -118,7 +118,7 @@
         "genere": "Romanzo",
         "numero di pagine": 847,
         "data di uscita": "2018-04-13",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 130,
@@ -129,7 +129,7 @@
         "genere": "Romanzo",
         "numero di pagine": 681,
         "data di uscita": "2020-09-12",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 131,
@@ -140,7 +140,7 @@
         "genere": "Thriller",
         "numero di pagine": 558,
         "data di uscita": "2019-03-26",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 132,
@@ -151,7 +151,7 @@
         "genere": "Thriller",
         "numero di pagine": 601,
         "data di uscita": "2017-02-09",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 133,
@@ -162,7 +162,7 @@
         "genere": "Fantasy",
         "numero di pagine": 660,
         "data di uscita": "2021-04-10",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 134,
@@ -173,7 +173,7 @@
         "genere": "Romanzo",
         "numero di pagine": 918,
         "data di uscita": "2017-10-07",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 135,
@@ -184,7 +184,7 @@
         "genere": "Biografia",
         "numero di pagine": 424,
         "data di uscita": "2021-11-10",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 136,
@@ -195,7 +195,7 @@
         "genere": "Giallo",
         "numero di pagine": 133,
         "data di uscita": "2020-07-30",
-        "disponibilità": false
+        "disponibilità": "not available"
     },
     {
         "id": 137,
@@ -206,7 +206,7 @@
         "genere": "Giallo",
         "numero di pagine": 997,
         "data di uscita": "2019-01-17",
-        "disponibilità": true
+        "disponibilità": "available"
     },
     {
         "id": 138,
@@ -217,6 +217,6 @@
         "genere": "Thriller",
         "numero di pagine": 799,
         "data di uscita": "2017-05-17",
-        "disponibilità": false
+        "disponibilità": "not available"
     }
 ]
