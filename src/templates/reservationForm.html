@@ -14,7 +14,7 @@
               <li><span aria-current="page" lang="en">Prenotazione ritiro</span></li>
             </ul>
         </nav>
-        <form id="reservationForm" action="./lib/reservationController.php?productId={{productId}}" method="post"> 
+        <form id="reservationForm" action="./lib/reservationController.php?product_id={{product_id}}" method="post"> 
             {{errors}}
             <label for="withdrawDate">Scegli il giorno:</label>
             <input type="date" id="withdrawDate" name="data_ritiro" required>

@@ -1,14 +1,17 @@
 <?php
 
+require_once("./lib/global.php");
+require_once("./lib/templateController.php");
 require_once("header.php");
 require_once("footer.php");
 
-$headerTemplate = buildHeader();
-$footerTemplate = buildFooter();
+$header = buildHeader();
+$footer = buildFooter();
 
-$areaPersonaleTemplate = file_get_contents("./templates/areaPersonale.html");
-$areaPersonaleTemplate = str_replace('{{header}}',$headerTemplate,$areaPersonaleTemplate);
-$areaPersonaleTemplate = str_replace('{{footer}}',$footerTemplate,$areaPersonaleTemplate);
+$areaPersonaleTemplate = new Template();
+$areaPersonaleTemplate = $areaPersonaleTemplate -> render("areaPersonale.html",array("header" => $header,
+                                                                                     "area_personale" => "Info Account",
+                                                                                     "footer" => $footer));
 
 echo($areaPersonaleTemplate);
 ?>

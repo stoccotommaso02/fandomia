@@ -16,9 +16,18 @@
 </dl>
 </div>
 <div class="item-actions">
+<<<<<<< HEAD
     <form action="prenotazioneRitiro.php?id={{id}}" method="POST">
+=======
+    <form action="prenotazioneRitiro.php" method="get">
+>>>>>>> productPage
         <input type="hidden" name="product_id" value="{{id}}">
-        <button type="submit" name="submit">Prenota il ritiro</button>
+        <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
+    </form>
+    <form action="productPage.php" method="get">
+        <input type="hidden" name="product_id" value="{{id}}">
+        <input type="hidden" name="product_type" value="{{product_type}}">
+        <button type="submit" name="submit" value="visualizzazione_prodotto" >Visualizza prodotto</button>
     </form>
 </div>
 </div>

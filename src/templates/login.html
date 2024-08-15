@@ -14,6 +14,7 @@
               <li><span aria-current="page" lang="en">Login</span></li>
             </ul>
         </nav>
+        <main>
         {{state}}
         <form id="loginForm" action="./lib/loginController.php" method="post"> 
             {{errors}}
@@ -26,6 +27,7 @@
             <button type="submit">Accedi</button>
             <a href="signup.php">Non sei già registrato?</a>
         </form>  
+        </main>
     {{footer}}
     </body>
 </html>

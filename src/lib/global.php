@@ -21,3 +21,13 @@ function renderTemplate($template, $data = []) {
   $content = ob_get_contents();
   echo $content;
 }
+
+function sanitizeString(string $var) : string
+{
+$var = strip_tags($var);
+$var = htmlentities($var);
+$var = stripslashes($var);
+return $var;
+}
+
+?>
