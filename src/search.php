@@ -24,12 +24,4 @@ $searchTemplate = $searchTemplate -> render('searchResult.html',array("header" =
                  
 echo ($searchTemplate);
 
-function sanitizeString(string $input) : string
-{
-$input = strip_tags($input);
-$input = htmlentities($input);
-$input = stripslashes($input);
-return $input;
-}
-
 ?>

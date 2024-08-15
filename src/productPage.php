@@ -1,8 +1,8 @@
 <?php 
 
 require_once("./lib/global.php");
-require_once("./header.php");
-require_once("./footer.php");
+require_once("header.php");
+require_once("footer.php");
 
 $header = buildHeader();
 $footer = buildFooter();
@@ -32,14 +32,7 @@ if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
             $productTable = "Music";
             break;
     }
-    $jsonBooks = file_get_contents("./assets/libri.json");
-   $jsonBooks = json_decode($jsonBooks,JSON_OBJECT_AS_ARRAY);
-   $booksList = '';
-   foreach ($jsonBooks as $jasonBook) {
-        $booksList .= $jasonBook['id'];
-    }
-    echo($booksList);
-    exit();
+    
     try {
         $productQuery = "SELECT *
         FROM Products join $productTable on Products.id  = $productTable.id
