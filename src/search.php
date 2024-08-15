@@ -7,8 +7,8 @@ require_once("header.php");
 require_once("footer.php");
 
 $searchParam = '';
-if (isset($_POST['search'])) {
-    $searchParam = $_POST['search'];
+if (isset($_POST['search']) && $_POST['search'] != null ) {
+    $searchParam = sanitizeString($_POST['search']);
     unset($_POST['search']);
 }
 
@@ -23,5 +23,13 @@ $searchTemplate = $searchTemplate -> render('searchResult.html',array("header" =
                                                                       "searchList" => $searchResult));
                  
 echo ($searchTemplate);
+
+function sanitizeString(string $input) : string
+{
+$input = strip_tags($input);
+$input = htmlentities($input);
+$input = stripslashes($input);
+return $input;
+}
 
 ?>
