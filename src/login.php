@@ -9,7 +9,7 @@ $header = '';
 $footer = buildFooter();
 $errorMessage = $state = '';
 
-if (session_start() && isset($_SESSION['loggedUser'])) {
+if (isset($_SESSION['loggedUser']) && $_SESSION['loggedUser'] != null ) {
     header("Location :areaPersonale.php");
 }
 

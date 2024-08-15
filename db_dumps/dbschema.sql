@@ -75,11 +75,13 @@ CREATE TABLE Categories (
 );
 
 CREATE TABLE Reservation (
+  id UNSIGNED INT AUTO_INCREMENT NOT NULL,
   product_id INT UNSIGNED NOT NULL,
   username VARCHAR(25) NOT NULL,
-  reservation_time TIMESTAMP NOT NULL,
+  reservation_date TIMESTAMP NOT NULL,
+  reservation_time CHAR(11) NOT NULL,
   notes VARCHAR(140),
-  PRIMARY KEY (product_id,username,reservation_time),
+  PRIMARY KEY(id),
   FOREIGN KEY(product_id) REFERENCES Products(id),
   FOREIGN KEY(username) REFERENCES Users(username)
 );

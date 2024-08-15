@@ -16,7 +16,6 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 $productId = $_POST['product_id'];
-unset($_POST['product_id']);
 
 if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
     $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
