@@ -10,34 +10,44 @@
 </head>
 
 <body>
-    <header><h1> Nome Prodotto Fandomia</h1>
-    </header>
+    {{header}}
     <main>
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul>
+              <li><a href="index.php" lang="en">Home</a></li>
+              <li><a href="videoGame.php" lang="en">Videogames</a></li>
+              <li><span aria-current="page" lang="en">{{name}}</span></li>
+            </ul>
+        </nav>
         <section class="Dettagli Prodotto">
-        <h2>Product Details</h2>
+        <h2>Dettagli del prodotto</h2>
             <dl id="ProductName-details">
-                <dt>Product Name</dt>
+                <dt>{{name}}</dt>
                 <dd>
                     <img src="" alt="nome e descrizione prodotto">
-                    <h3>Details</h3>
+                    <h3>Dettagli</h3>
                     <dl class="details">
+                        <dt class="example-genre">Tipologia:</dt>
+                        <dd>{{product_type}}</p</dd>
                         <dt class="example-genre">Genere:</dt>
-                        <dd> musicale, del libro, del videogioco ecc...</p</dd>
+                        <dd>{{genre}}</p</dd>
+                        <dt class="example-genre">Disponibilità:</dt>
+                        <dd>{{status}}</p</dd>
                         <dt>Data uscita:</dt>
-                        <dd><time datetime="aaaa-mm-gg">aaaa-mm-gg</time></dd>
+                        <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
                         <dt class="price(?)">Prezzo:</dt>
-                        <dd>$ XXX</dd>
-                        <dt class="description"> Descrizione:</dt>
-                        <dd>Descrizione prodotto, con parole chiave</dd>
+                        <dd>{{price}}</dd>
+                        <dt class="description">Sviluppato da:</dt>
+                        <dd>{{developer}}</dd>
                     </dl>
                 </dd>
             </dl>
         </section>
-        <section class="buttons">
-            <button class="add-to-wishlist">Aggiungi alla Lista Desideri</button>
-            <button class="add-to-book">Prenota</button>
-        </section>
-        <section class="rating">Non so se abbia senso qui, magari in un'altra sezione?</section>
+        <form action="prenotazioneRitiro.php" method="get">
+            <input type="hidden" name="product_id" value="{{id}}">
+            <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
+        </form>
     </main>
+    {{footer}}
 </body>
 </html>
