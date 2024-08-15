@@ -2,41 +2,29 @@
 
 require_once("./global.php");
 
-if (isset($_POST['userEmail']))
- {
+if (isset($_POST['userEmail'])) {
  $user = sanitizeString($_POST['userEmail']);
  $pass = sanitizeString($_POST['password']);
+
  if ($user == "" || $pass == "") {
- $error = "Non sono stati compilati tutti i campi!";
- header("Location: ../login.php?error=" . urlencode($error));
- exit();
-}
- else
- {
+     $error = "Non sono stati compilati tutti i campi!";
+     $_SESSION['errors'] = $error;
+     header("Location: ../login.php");
+     exit();
+} else  {
  $result = queryMySQL("SELECT username,password FROM Users
  WHERE username='$user' AND password='$pass'");
- if ($result->num_rows == 0)
- {
- $error = "Credenziali non corrette.";
- header("Location: ../login.php?error=" . urlencode($error));
- exit();
+ if ($result->num_rows == 0)  {
+   $error = "Credenziali non corrette";
+   $_SESSION['errors'] = $error;
+   header("Location: ../login.php");
+   exit();
+ } else  {
+   $_SESSION['loggedUser'] = $user;
+   header("Location: ../index.php");
+  }
  }
- else
- {
- session_start();
- $_SESSION['loggedUser'] = $user;
- header("Location: ../index.php");
- }
- }
- }
-
- function sanitizeString(string $var) : string
- {
- $var = strip_tags($var);
- $var = htmlentities($var);
- $var = stripslashes($var);
- return $var;
- }
+}
 
  function queryMySql(string $query) {
     $connection = getConnection();

@@ -1,28 +1,36 @@
 <?php 
-require_once("header.php");
-require_once("footer.php");
+
+require_once("./lib/global.php");
+require_once("./lib/templateController.php");
+require_once("./header.php");
+require_once("./footer.php");
 
 $header = '';
 $footer = buildFooter();
+$errorMessage = $state = '';
 
-if (isset($_GET['error'])) {
-    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_GET['error']) . '</p>';
-} else {
-    $errorMessage = '';
-    if (isset($_GET['state']))
-        $message = '<p>' . htmlspecialchars($_GET['state']) . '</p>';
-        else $message = '';
+if (isset($_SESSION['loggedUser']) && $_SESSION['loggedUser'] != null ) {
+    header("Location :areaPersonale.php");
 }
-if (session_start() && isset($_SESSION['loggedUser']))
-   { $header = $_SESSION['loggedUser'];}
-else 
-    {$header = buildHeader();}
 
-$loginTemplate = file_get_contents("./templates/login.html");
-$loginTemplate = str_replace('{{header}}',$header,$loginTemplate);
-$loginTemplate = str_replace('{{footer}}',$footer,$loginTemplate);
-$loginTemplate = str_replace('{{errors}}',$errorMessage,$loginTemplate);
-$loginTemplate = str_replace('{{Registration confirmed}}',$message,$loginTemplate);
+if (isset($_SESSION['errors'])) {
+    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
+    unset($_SESSION['errors']);
+} else {
+    if (isset($_SESSION['state']))  {
+        $state = '<p>' . htmlspecialchars($_SESSION['state']) . '</p>';
+        unset($_SESSION['state']);
+    }
+       
+}
+
+$header = buildHeader();
+$loginTemplate = new Template();
+$loginTemplate = $loginTemplate->render("login.html",array('header' => $header,
+                                                           'footer' => $footer,
+                                                           'errors' => $errorMessage,
+                                                           'state' => $state
+)); 
 
 echo($loginTemplate);
 

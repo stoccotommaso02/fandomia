@@ -1,0 +1,52 @@
+Appunti delle cose da fare :
+- dividere per classi le differenti responsabilità :
+  ° una classe che si occupi solo della connessione;
+  ° una classe che crei i template;
+  ° una classe che si occupi della sanificazione dei dati;
+- Gestire meglio la creazione degli URL;
+- Gestire meglio la creazione dell'header;
+- Studiare una migliore soluzione per gli errori in fase di
+  login/registrazione/prenotazione (in particolare trattarli in maniera consistente);
+  le tipologie di errori da gestire sono : 
+  ° problemi di connessione al DB;
+  ° mi connetto al db, ma ho problemi a trovare un determinato record (per es. errore
+    "utente non trovato" diverso da "error:500");
+  ° errori di formato degli input;
+  ° errori logici degli input stessi;
+  ° solo alla fine dei controlli posso essere sicuro che vada tutto bene! 
+  
+- Fare encryption / decryption delle password degli utenti;
+- Arricchire la pagina dei risultati in seguito ad una ricerca;
+
+Osservazioni:
+- I controlli logici legati alle varie business logic sono compito dei vari controller
+  (il reservationController , sanificati i dati,  controllerà lui, tramite apposite 
+  funzioni, se la data di ritiro è compatibile con la data di uscita/disponibilità
+  del determinato prodotto);
+
+Dubbi : 
+- Come fare la classe di sanificazione dei dati? Tramite uno switch?
+  Quanti sono i possibili controlli ? Quante le possibili tipologie di dati inseriti 
+  (dati di registrazione, login, prenotazione)?
+- Cosa accomuna tutti i template (costruzione header, footer, dati dinamici)?
+- Quali metodi deve rendere disponibile la classe DB (creazione connessione,
+  query, visualizzazione errori di connessione/query, verifica effettica connessione,
+  chiusura della stessa)?
+- Nella reservationList, si potrebbero visualizzare le prenotazioni sotto forma tabellare
+  in modo da avere un esempio di tabella accessibile? 
+- Come si creano URL di più livelli?
+- Come gestire le differenti azioni dell' header a seconda dello stato dell'utente 
+  (utente loggato/qualsiasi)?
+- Come effettuare la ricerca di un prodotto? Ci sta mettere dei filtri nella pagina dei risultati?
+
+Possibili soluzioni:
+- Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];
+
+Programma del giorno 15/08/2024 : 
+- Encryption password;
+- Migliorare/codificare ove necessario gestione eccezioni/errori;
+- Considerare tutti i casi in cui possono avvenire errori;
+- Migliorare la sanificazione dei dati (?);
+- Sistemare il bottone di richiesta prenotazione;
+- Aggiungere in DB nuovi prodotti per finire la logica della homePage;
+- Aggiungere un'immagine (?);

@@ -1,5 +1,9 @@
 <?php
 
+require_once("templateController.php");
+
+session_start();
+
 function getConnection(): mysqli{
   $url = "fandomiadb";
   $user = "testuser";
@@ -17,3 +21,13 @@ function renderTemplate($template, $data = []) {
   $content = ob_get_contents();
   echo $content;
 }
+
+function sanitizeString(string $var) : string
+{
+$var = strip_tags($var);
+$var = htmlentities($var);
+$var = stripslashes($var);
+return $var;
+}
+
+?>

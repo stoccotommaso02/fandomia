@@ -1,13 +1,16 @@
 <?php 
 
-session_start();
+require_once("./lib/global.php");
 
-if (isset($_SESSION['loggedUser'])) {
-    unset($_SESSION['loggedUser']);
-} else {
-    echo "<div class='main'><br>" .
-"You cannot log out because you are not logged in";
+if (destroySession()) {
+    session_start();
+    $_SESSION['state'] = "Logout effettuato con successo!";
+    header("Location: index.php");
+    exit();
 }
 
-header("Location: index.php");
+function destroySession() : bool {
+    $_SESSION = array();
+    return session_destroy();
+}
 ?>

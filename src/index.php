@@ -1,8 +1,11 @@
 <?php 
 
 require_once("./lib/global.php");
+require_once("./lib/DBController.php");
+require_once("./lib/templateController.php");
 require_once("./header.php");
 require_once("./footer.php");
+
 //Servono :
 //-una funzione/classe per compilare il template della card di ogni prodotto;
 //-una funzione/classe per compilare ogni section presente in homePage;
@@ -23,68 +26,67 @@ $saleSection = str_replace('{{listaProdotti}}',$saleItems,$saleSection);
 
 $header = buildHeader();
 $footer = buildFooter();
+$state = '';
 
-$homePageTemplate = file_get_contents("./templates/index.html");
-$homePageTemplate = str_replace('{{header}}',$header,$homePageTemplate);
-$homePageTemplate = str_replace('{{footer}}',$footer,$homePageTemplate);
-$homePageTemplate = str_replace('{{latestItems}}',$latestSection,$homePageTemplate);
-$homePageTemplate = str_replace('{{nextItems}}',$nextItems,$homePageTemplate);
-$homePageTemplate = str_replace('{{saleItems}}',$saleSection,$homePageTemplate);
+if (isset($_SESSION['state'])) {
+    global $state;
+    $state = "<p>" . $_SESSION['state'] . "</p>";
+    unset($_SESSION['state']);
+}
+
+$homePageTemplate = new Template();
+$homePageTemplate = $homePageTemplate->render("index.html",array("header" => $header,
+                                                                 "state" => $state,
+                                                                 "latestItems" => $latestSection,
+                                                                 "nextItems" => $nextItems,
+                                                                 "saleItems" => $saleItems,
+                                                                 "footer" => $footer));
 
 echo($homePageTemplate);
 
 function getLatestItems() : string {
     //implementazione;
-    $latestItems = '';
-    $connection = getConnection();
+    $connection =new DBconnection();
+    $connection -> setConnection();
+    $latestItems = '<ul>';
     $query = "SELECT *
               from Products
               where release_date < CURDATE()
               order by release_date DESC
               limit 3 ";
-    $result = $connection->query($query);
-    if($result->num_rows > 0) {
-        // ciclo dei record restituiti dalla query
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
+    $rows = $connection->queryDB($query);
+    if (!empty($rows)) {
+    foreach ($rows as $row) {
+    $latestItemTemplate = new Template();
+    $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
+    $latestItems .= $latestItemTemplate;
+    }
 
-            $latestItemTemplate=file_get_contents("./templates/card.html");
-    
-            $latestItemTemplate=str_replace('{{titolo}}',$row['name'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{prezzo}}',$row['price'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{disponibilità}}',$row['status'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$latestItemTemplate);
-            $latestItemTemplate=str_replace('{{genere}}',$row['product_type'],$latestItemTemplate);
-            $latestItemTemplate = str_replace('{{productId}}',$row['id'],$latestItemTemplate);
-            $latestItems .= $latestItemTemplate;
-        }
-     } else {
+    $latestItems .= "</ul>";
+}   else {
         $latestItems = "il DB è vuoto";
     }
+    
     return $latestItems;
+    
 }
 
 function getNextItems() : string {
     //implementazione 
+    $connection =new DBconnection();
+    $connection -> setConnection();
     $nextItems = '';
-    $connection = getConnection();
     $query = "SELECT *
               from Products
               where release_date > CURDATE()
               order by release_date ASC
               limit 3 ";
-    $result = $connection->query($query);
-    if($result->num_rows > 0) {
+    $rows = $connection->queryDB($query);
+    if (!empty($rows)) {
         // ciclo dei record restituiti dalla query
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-
-            $nextItemTemplate=file_get_contents("./templates/card.html");
-    
-            $nextItemTemplate=str_replace('{{titolo}}',$row['name'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{prezzo}}',$row['price'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{disponibilità}}',$row['status'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{releaseDate}}',$row['release_date'],$nextItemTemplate);
-            $nextItemTemplate=str_replace('{{genere}}',$row['product_type'],$nextItemTemplate);
-            $nextItemTemplate = str_replace('{{productId}}',$row['id'],$nextItemTemplate);
+        foreach ($rows as $row) {
+            $nextItemTemplate = new Template();
+            $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
      } else {
@@ -114,6 +116,24 @@ foreach($jsonEncoded as $libro) {
     $listaLibri .= $libroTemplate;
 }  */
     $saleItems = '';
+    $connection =new DBconnection();
+    $connection -> setConnection();
+    $query = "SELECT *
+              from Products
+              where sale_percentage != 0
+              order by sale_percentage DESC
+              limit 3 ";
+    $rows = $connection->queryDB($query);
+    if (!empty($rows)) {
+        // ciclo dei record restituiti dalla query
+        foreach ($rows as $row) {
+            $saleItemTemplate = new Template();
+            $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
+            $saleItems .= $saleItemTemplate;
+        }
+     } else {
+        $saleItems = "il DB è vuoto";
+    }
     return $saleItems;
 };
 

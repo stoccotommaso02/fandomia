@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="nome prodotto,nome prodotto+autore,negozio ecc.. qualche altra roba">
+    <meta name="description" content="pagina riguardante prodotto xyz del negozio Fandomia">
+    <title>ProductName</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    {{header}}
+    <main>
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ul>
+              <li><a href="index.php" lang="en">Home</a></li>
+              <li><a href="videoGame.php" lang="en">Videogames</a></li>
+              <li><span aria-current="page" lang="en">{{name}}</span></li>
+            </ul>
+        </nav>
+        <section class="Dettagli Prodotto">
+        <h2>Dettagli del prodotto</h2>
+            <dl id="ProductName-details">
+                <dt>{{name}}</dt>
+                <dd>
+                    <img src="" alt="nome e descrizione prodotto">
+                    <h3>Dettagli</h3>
+                    <dl class="details">
+                        <dt class="example-genre">Tipologia:</dt>
+                        <dd>{{product_type}}</p</dd>
+                        <dt class="example-genre">Genere:</dt>
+                        <dd>{{genre}}</p</dd>
+                        <dt class="example-genre">Disponibilità:</dt>
+                        <dd>{{status}}</p</dd>
+                        <dt>Data uscita:</dt>
+                        <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
+                        <dt class="price(?)">Prezzo:</dt>
+                        <dd>{{price}}</dd>
+                        <dt class="description">Sviluppato da:</dt>
+                        <dd>{{developer}}</dd>
+                    </dl>
+                </dd>
+            </dl>
+        </section>
+        <form action="prenotazioneRitiro.php" method="get">
+            <input type="hidden" name="product_id" value="{{id}}">
+            <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
+        </form>
+    </main>
+    {{footer}}
+</body>
+</html>
