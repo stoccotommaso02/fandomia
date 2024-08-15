@@ -41,3 +41,12 @@ Dubbi :
 
 Possibili soluzioni:
 - Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];
+
+Programma del giorno 15/08/2024 : 
+- Encryption password;
+- Migliorare/codificare ove necessario gestione eccezioni/errori;
+- Considerare tutti i casi in cui possono avvenire errori;
+- Migliorare la sanificazione dei dati (?);
+- Sistemare il bottone di richiesta prenotazione;
+- Aggiungere in DB nuovi prodotti per finire la logica della homePage;
+- Aggiungere un'immagine (?);

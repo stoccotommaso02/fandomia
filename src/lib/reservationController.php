@@ -15,7 +15,7 @@
 
     require_once('global.php');
 
-    $productId = $withdrawDate = $withdrawTime = $notes = $errors = '';
+    $product_id = $withdrawDate = $withdrawTime = $notes = $errors = '';
     $connection = getConnection();
 
     if(!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] == null ) {
@@ -23,8 +23,8 @@
         header("Location: ../login.php");
         exit();
     }
-    if (isset($_GET['productId'])) {
-        $productId = sanitizeString($_GET['productId']);
+    if (isset($_GET['product_id'])) {
+        $product_id = sanitizeString($_GET['product_id']);
         $withdrawDate = sanitizeString($_POST['data_ritiro']);
         $withdrawTime = sanitizeString($_POST['fascia_oraria']);
         $notes = sanitizeString($_POST['notes']);
@@ -32,27 +32,24 @@
         if ($withdrawDate == '' || $withdrawTime == '') {
             $error = 'Alcuni campi mancanti!';
             $_SESSION['errors'] = $error;
-            $_POST['product_id'] = $productId;
-            header("Location: ../prenotazioneRitiro.php");
+            header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
             exit();
         }
         else {
-            if (!checkProductAvalaibility($productId)) {
+            if (!checkProductAvalaibility($product_id)) {
                 $error = 'Prodotto non disponibile!';
                 $_SESSION['errors'] = $error;
-                $_POST['product_id'] = $productId;
-                header("Location: ../prenotazioneRitiro.php");
+                header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
                 exit();
             }   else { 
-                    $withdrawCheck = checkWithdrawDate($productId , $withdrawDate);
+                    $withdrawCheck = checkWithdrawDate($product_id , $withdrawDate);
                     if (!$withdrawCheck['avalaibility']) {
                 /* Nell'errorMessage posso indicare esplicitamente la data dalla quale il prodotto
                 sarà disponibile */
 
                         $errorMessage = "La data di ritiro deve essere posteriore al " . $withdrawCheck['product_release_date'];
                         $_SESSION['errors'] = $errorMessage;
-                        $_POST['product_id'] = $productId;
-                        header("Location: ../prenotazioneRitiro.php");
+                        header("Location: ../prenotazioneRitiro.php?error=" . urlencode("DataAnteriore") . "&product_id=" . urlencode($product_id));
                         exit();
                 }   else {
                         $reservationDate = $withdrawDate;
@@ -61,7 +58,7 @@
                         try {
                             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                             $insertionQuery = "INSERT into Reservation(product_id,username,reservation_date,reservation_time,notes)
-                                               values('$productId','$userEmail','$reservationDate','$reservationTime','$notes')";
+                                               values('$product_id','$userEmail','$reservationDate','$reservationTime','$notes')";
                             $result = $connection -> query($insertionQuery);
                         }
                         catch (Exception $e) {
@@ -76,7 +73,7 @@
                         } else {
                             $error = "Prenotazione non andata a buon fine";
                             $_SESSION['errors'] = $error;
-                            header("Location: ../prenotazioneRitiro.php?productId=" . $productId);
+                            header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id);
                             exit();
                         }
                 }
@@ -84,11 +81,11 @@
         }
     }
     
-    function checkProductAvalaibility(string $productId) : bool {
+    function checkProductAvalaibility(string $product_id) : bool {
         $connection = getConnection();
         $checkQuery = "SELECT * 
                        from Products
-                       where id = '$productId' ";
+                       where id = '$product_id' ";
         $result = $connection->query($checkQuery);
         if ($result->num_rows > 0)  {
             $record = $result->fetch_assoc();
@@ -99,12 +96,12 @@
         return false;
     }
 
-    function checkWithdrawDate(string $productId , string $date): array {
+    function checkWithdrawDate(string $product_id , string $date): array {
         $withdrawCheck = array();
         $connection = getConnection();
         $checkQuery = "SELECT * 
                        from Products
-                       where id = '$productId' ";
+                       where id = '$product_id' ";
         $result = $connection->query($checkQuery);
         if ($result->num_rows > 0)  {
             $record = $result->fetch_assoc();
@@ -118,13 +115,5 @@
             }
         }
     }
-
-    function sanitizeString(string $var) : string
-    {
-    $var = strip_tags($var);
-    $var = htmlentities($var);
-    $var = stripslashes($var);
-    return $var;
-    }
-   
+    
 ?>

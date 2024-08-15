@@ -2,8 +2,8 @@
 
 require_once("./lib/global.php");
 require_once("./lib/templateController.php");
-require_once("header.php");
-require_once("footer.php");
+require_once("./header.php");
+require_once("./footer.php");
 
 $header = '';
 $footer = buildFooter();

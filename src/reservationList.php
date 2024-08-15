@@ -24,6 +24,7 @@ $reservationList .= retrieveReservationList();
 
 $reservationTemplate = new Template();
 $reservationTemplate = $reservationTemplate->render("areaPersonale.html",array('header' => $headerTemplate,
+                                                                               'area_personale' => "Lista prenotazioni",
                                                                                'contenutoAreaPersonale' => $reservationList,
                                                                                'footer' => $footerTemplate));
 
