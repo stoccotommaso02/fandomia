@@ -38,12 +38,11 @@ if (!empty($rows)) {
     $saleItems = "il DB è vuoto";
 }
 
-$total_products_sql = "SELECT COUNT(*) as total_products FROM Products";
+$total_products_sql = "SELECT COUNT(*) as total_products FROM Products where sale_percentage != 0";
 $connection -> setConnection();
 $total_products_result = $connection->queryDB($total_products_sql);
-$total_products = $total_products_result[0]['total_products'] / $products_per_page;
-// Calcola il numero totale di pagine
-$total_pages = ceil($total_products / $products_per_page);
+$total_pages = $total_products_result[0]['total_products'] / $products_per_page;
+$total_pages = ceil($total_pages);
 
 // Visualizza i link di paginazione
 $pagination_links =  "<div class='pagination'>";
