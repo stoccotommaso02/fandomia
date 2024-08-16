@@ -21,7 +21,11 @@ if (isset($_POST['userEmail'])) {
    exit();
  } else  {
    $_SESSION['loggedUser'] = $user;
+   if(isset($_POST['redirect_url']) && $_POST['redirect_url'] != null)   {
+    header("Location:../prenotazioneRitiro.php?product_id=" . $_POST['redirect_url']);
+   }  else  {
    header("Location: ../index.php");
+   }
   }
  }
 }

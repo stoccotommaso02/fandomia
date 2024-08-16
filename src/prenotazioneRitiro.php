@@ -11,7 +11,7 @@ $errorMessage = '';
 if (!isset($_SESSION['loggedUser'])) {
     $errorMessage = "Devi essere loggato per effettuare una prenotazione";
     $_SESSION['errors'] = $errorMessage;
-    header("Location:login.php");
+    header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
     exit();
 }
 if (!isset($_GET['product_id']) || $_GET['product_id'] == null) {

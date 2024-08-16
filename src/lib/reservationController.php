@@ -20,7 +20,7 @@
 
     if(!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] == null ) {
         $_SESSION['errors'] = "Effettuare il login per visualizzare la lista delle prenotazioni";
-        header("Location: ../login.php");
+        header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
         exit();
     }
     if (isset($_GET['product_id'])) {
