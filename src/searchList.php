@@ -28,6 +28,18 @@ function searchList(string $searchParam) : string {
                            'release_date' => $result['release_date'],
                            'product_type' => $result['product_type'],
                            'similarity' => $similarity];
+            /*Un punteggio di similarità uguale a 1 , equivale ad aver trovato
+              una perfetta corrispondenza, e quindi fermo il ciclo*/
+            if ($similarity == 1)   {
+                $searchResult .= "<ul>";
+                
+                $searchItemTemplate = new Template();
+                $searchItemTemplate = $searchItemTemplate->render("card.html",end($products));
+                $searchResult .= $searchItemTemplate;
+                
+                $searchResult .= "</ul>";
+                return $searchResult;
+                        }
         }
 
         // Ordina i risultati in base alla somiglianza (decrescente)
