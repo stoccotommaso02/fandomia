@@ -75,8 +75,9 @@ if ($result->num_rows > 0) {
 
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
-                                                                 "products_list" => $products_list,
-                                                                 "footer" => $footer));
+                                                                                     "category" => $_GET['category'],
+                                                                                     "products_list" => $products_list,
+                                                                                     "footer" => $footer));
 
 echo($products_page_template);
 
