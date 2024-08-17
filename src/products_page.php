@@ -8,6 +8,7 @@ require_once("footer.php");
 
 $header = buildHeader();
 $footer = buildFooter();
+
 // Query base
 $sql = "SELECT * FROM Products ";
 
@@ -15,16 +16,18 @@ $sql = "SELECT * FROM Products ";
 $params = [];
 $types = ""; // Stringa per i tipi di dato (es. "ssi" per stringa, stringa, intero)
 
-// Filtro per categoria (es. electronics, books, clothing)
 if (isset($_GET['category'])) {
     $sql .= "WHERE product_type = ?";
     $types .= "s"; // Tipo stringa per categoria
     $params[] = $_GET['category'];
-    }  
+    }  else {
+        header("Location:index.php");
+        exit();
+    }
 
 
 // Filtro per prezzo
-if (isset($_GET['price']) && !empty($_GET['price'])) {
+/*if (isset($_GET['price']) && !empty($_GET['price'])) {
     $price_conditions = [];
     foreach ($_GET['price'] as $price_filter) {
         if ($price_filter == 'under-50') {
@@ -42,17 +45,19 @@ if (isset($_GET['price']) && !empty($_GET['price'])) {
             $params[] = 100;
         }
     }
-}
+}*/
 
 $extra_filters = '';
 $genre_table = '';
+$products = '';
 $category = $_GET['category'];
 switch($category) {
     case "comic":
         $genre_table = "Comics";
+        $products = "Fumetti";
         break;
     case "videogame":
-        $genre_table = "Videogames";
+        $genre_table = $products = "Videogames";
         $extra_filters = '<fieldset>
                             <legend>Consolle:</legend>
                             <label><input type="checkbox" name="platform" value="Playstation"> Playstation</label><br>
@@ -63,9 +68,11 @@ switch($category) {
         break;
     case "book":
         $genre_table = "Books";
+        $products = "Libri";
         break;
     case "music":
         $genre_table = "Music";
+        $products = "Musica";
         $extra_filters = '<fieldset>
                             <legend>Formato:</legend>
                             <label><input type="checkbox" name="format" value="cd"> CD</label><br>
@@ -104,6 +111,7 @@ if ($result->num_rows > 0) {
      $products_list .= "Nessun prodotto trovato per i filtri selezionati";
 }
 
+//Query per recuperare i generi della particolare tipologia di prodotto
 $connection -> setConnection();
 $query = "SELECT DISTINCT genre from $genre_table";
 $result = $connection -> queryDB($query);
@@ -119,6 +127,7 @@ if (!empty($result)) {
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
                                                                                      "category" => $_GET['category'],
+                                                                                     "products" => $products,
                                                                                      "genre_list" => $genre_list,
                                                                                      "extra_filters" => $extra_filters,
                                                                                      "products_list" => $products_list,

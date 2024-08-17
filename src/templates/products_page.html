@@ -3,6 +3,13 @@
     <head></head>
     <body>
         {{header}}
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <p>Ti trovi in :</p>
+              <ul>
+                <li><a href="index.php" lang="en">Home</a></li>
+                <li><span aria-current="page">{{products}}</span></li>
+              </ul>
+            </nav>
         <main>
             <aside>
                 <h3>Filtri:</h3>
