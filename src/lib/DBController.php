@@ -19,7 +19,15 @@ class DBconnection {
             return true;
     }
         return false;
-}
+}   
+
+    function prepare(string $query)  {
+       if($this -> isConnected)   {
+           return  $this->connection -> prepare($query);
+       }    else  {
+        return false;
+       }
+    }
 
     function getConnection() : mysqli {
         return $this -> connection;

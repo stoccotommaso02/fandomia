@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {{header}}
+        <main>
+            <aside>
+                <h3>Filtri:</h3>
+                <form action="product_page.php" method="get">
+                <!-- Esempio di filtro per la categoria -->
+                <label><input type="checkbox" name="category" value="videogame"> Videogame</label><br>
+                <label><input type="checkbox" name="category" value="book"> Libri</label><br>
+                <label><input type="checkbox" name="category" value="comic"> Fumetti</label><br>
+                
+                <!-- Esempio di filtro per il prezzo -->
+                <label><input type="checkbox" name="price" value="under-50"> Sotto 50€</label><br>
+                <label><input type="checkbox" name="price" value="50-100"> Tra 50€ e 100€</label><br>
+                <label><input type="checkbox" name="price" value="over-100"> Sopra 100€</label><br>
+                
+                <!-- Altri filtri possono essere aggiunti qui -->
+                
+                <button type="submit">Applica filtri</button>
+                </form>
+            </aside>
+            {{products_list}}
+        </main>
+        {{footer}}
+    </body>
+</html>
