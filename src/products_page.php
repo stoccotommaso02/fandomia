@@ -44,6 +44,37 @@ if (isset($_GET['price']) && !empty($_GET['price'])) {
     }
 }
 
+$extra_filters = '';
+$genre_table = '';
+$category = $_GET['category'];
+switch($category) {
+    case "comic":
+        $genre_table = "Comics";
+        break;
+    case "videogame":
+        $genre_table = "Videogames";
+        $extra_filters = '<fieldset>
+                            <legend>Consolle:</legend>
+                            <label><input type="checkbox" name="platform" value="Playstation"> Playstation</label><br>
+                            <label><input type="checkbox" name="platform" value="Nintento"> Nintendp</label><br>
+                            <label><input type="checkbox" name="platform" value="PC"> PC</label><br>
+                            <label><input type="checkbox" name="platform" value="Xbox"> Xbox</label><br>
+                          </fieldset>';
+        break;
+    case "book":
+        $genre_table = "Books";
+        break;
+    case "music":
+        $genre_table = "Music";
+        $extra_filters = '<fieldset>
+                            <legend>Formato:</legend>
+                            <label><input type="checkbox" name="format" value="cd"> CD</label><br>
+                            <label><input type="checkbox" name="format" value="other"> Formato misterioso</label><br>
+                            <label><input type="checkbox" name="format" value="vinyl"> Vinile</label><br>
+                          </fieldset>';
+        break;
+}
+
 // Prepara la query
 $connection = new DBconnection();
 $connection -> setConnection();
@@ -73,9 +104,23 @@ if ($result->num_rows > 0) {
      $products_list .= "Nessun prodotto trovato per i filtri selezionati";
 }
 
+$connection -> setConnection();
+$query = "SELECT DISTINCT genre from $genre_table";
+$result = $connection -> queryDB($query);
+$genre_list = '';
+// Verifica se ci sono prodotti che corrispondono ai filtri
+if (!empty($result)) {
+    // Mostra i prodotti filtrati
+    foreach ($result as $row) {
+            $genre_list .= '<label><input type="checkbox" name="genre" value="' . $row['genre'] . '">' . $row['genre'] . "</label><br>";
+        }
+}   
+
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
                                                                                      "category" => $_GET['category'],
+                                                                                     "genre_list" => $genre_list,
+                                                                                     "extra_filters" => $extra_filters,
                                                                                      "products_list" => $products_list,
                                                                                      "footer" => $footer));
 

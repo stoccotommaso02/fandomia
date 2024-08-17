@@ -9,10 +9,6 @@
                 <form action="products_page.php" method="get">
                 <!-- Esempio di filtro per la categoria -->
                 <input type="hidden" name="category" value="{{category}}">
-                <label><input type="checkbox" name="category" value="videogame"> Videogame</label><br>
-                <label><input type="checkbox" name="category" value="book"> Libri</label><br>
-                <label><input type="checkbox" name="category" value="comic"> Fumetti</label><br>
-                
                 <!-- Esempio di filtro per il prezzo -->
                 <fieldset>
                 <legend>Fascia di prezzo:</legend>
@@ -29,10 +25,9 @@
                 </fieldset>
                 <fieldset>
                     <legend>Genere:</legend>
-                    <label><input type="checkbox" name="genre" value="Fantasy"> Fantasy</label><br>
-                    <label><input type="checkbox" name="genre" value="Crime"> Crime</label><br>
-                    <label><input type="checkbox" name="genre" value="Fantascienza"> Fantascienza</label><br>
-                </fieldset>
+                        {{genre_list}}
+                    </fieldset>
+                {{extra_filters}}
                 <button type="submit">Applica filtri</button>
                 </form>
             </aside>
