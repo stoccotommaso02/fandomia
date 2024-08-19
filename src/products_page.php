@@ -27,7 +27,25 @@ if (isset($_GET['category'])) {
 
 
 // Filtro per prezzo
-/*if (isset($_GET['price']) && !empty($_GET['price'])) {
+if (!empty($_GET['price'])) {
+    $prices = $_GET['price'];
+    foreach ($prices as $price) {
+    list($min, $max) = explode('-', $_GET['price']);
+    $sql .= " AND (price >= ? AND price <= ?)";
+    $types .= "ii"; // Tipo intero per prezzo minimo e massimo
+    $params[] = $min;
+    $params[] = $max;
+    $sql .= " AND (" . implode(" OR ", $price_conditions) . ")";
+}
+
+if (isset($_GET['sale_percentage'])) {
+    list($min, $max) = explode('-', $_GET['sale_percentage']);
+    $sql .= " AND (sale_percentage BETWEEN ? AND ?)";
+    $types .= "ii"; // Tipo intero per prezzo minimo e massimo
+    $params[] = $min;
+    $params[] = $max;
+}
+    /*
     $price_conditions = [];
     foreach ($_GET['price'] as $price_filter) {
         if ($price_filter == 'under-50') {
@@ -85,12 +103,12 @@ switch($category) {
 // Prepara la query
 $connection = new DBconnection();
 $connection -> setConnection();
-echo($sql);
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $stmt = $connection->prepare($sql);
 // Bind dei parametri se esistono
 if (!empty($params)) {
-    $stmt->bind_param($types,$params[0]);
+    $stmt->bind_param($types,...$params);
 }
 
 // Esegui la query
@@ -108,7 +126,7 @@ if ($result->num_rows > 0) {
         }
     $products_list .= '</ul>';
 } else {
-     $products_list .= "Nessun prodotto trovato per i filtri selezionati";
+     $products_list .= "Nessun prodotto corrispondente filtri selezionati";
 }
 
 //Query per recuperare i generi della particolare tipologia di prodotto
@@ -132,7 +150,6 @@ $products_page_template = $products_page_template->render("products_page.html",a
                                                                                      "extra_filters" => $extra_filters,
                                                                                      "products_list" => $products_list,
                                                                                      "footer" => $footer));
-
 echo($products_page_template);
 
 $stmt->close();

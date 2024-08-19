@@ -50,3 +50,12 @@ Programma del giorno 15/08/2024 :
 - Sistemare il bottone di richiesta prenotazione;
 - Aggiungere in DB nuovi prodotti per finire la logica della homePage;
 - Aggiungere un'immagine (?);
+
+Appunti per CSS : 
+- Gli elementi principali a cui doversi dedicare (cioè che avranno 
+  un "loro" css) sono principalmente : 
+  ° La lista di prodotti;
+  ° form di login/registrazione;
+  ° form dei filtri;
+  ° header;
+  ° la pagina del singolo prodotto;
