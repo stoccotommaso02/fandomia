@@ -25,46 +25,31 @@ if (isset($_GET['category'])) {
         exit();
     }
 
+if(!empty($_GET['price'])){
 
-// Filtro per prezzo
-if (!empty($_GET['price'])) {
     $prices = $_GET['price'];
-    foreach ($prices as $price) {
-    list($min, $max) = explode('-', $_GET['price']);
-    $sql .= " AND (price >= ? AND price <= ?)";
-    $types .= "ii"; // Tipo intero per prezzo minimo e massimo
-    $params[] = $min;
-    $params[] = $max;
-    $sql .= " AND (" . implode(" OR ", $price_conditions) . ")";
+    $prices_conditions = array();
+
+    foreach($prices as $price_filter) {
+        list($min, $max) = explode('-', $price_filter);
+        $prices_conditions[] = "price BETWEEN ? and ?";
+        $types .= "ii"; 
+        $params[] = $min;
+        $params[] = $max;
+    }
+    if (!empty($prices_conditions)) {
+        $sql .= " AND (" . implode(" OR ", $prices_conditions) . ")";
+    }
 }
 
 if (isset($_GET['sale_percentage'])) {
     list($min, $max) = explode('-', $_GET['sale_percentage']);
     $sql .= " AND (sale_percentage BETWEEN ? AND ?)";
-    $types .= "ii"; // Tipo intero per prezzo minimo e massimo
+    $types .= "ii"; 
     $params[] = $min;
     $params[] = $max;
 }
-    /*
-    $price_conditions = [];
-    foreach ($_GET['price'] as $price_filter) {
-        if ($price_filter == 'under-50') {
-            $sql .= " AND price < ?";
-            $types .= "i"; // Tipo intero per prezzo
-            $params[] = 50;
-        } elseif ($price_filter == '50-100') {
-            $sql .= " AND (price >= ? AND price <= ?)";
-            $types .= "ii"; // Tipo intero per prezzo minimo e massimo
-            $params[] = 50;
-            $params[] = 100;
-        } elseif ($price_filter == 'over-100') {
-            $sql .= " AND price > ?";
-            $types .= "i";
-            $params[] = 100;
-        }
-    }
-}*/
-
+ 
 $extra_filters = '';
 $genre_table = '';
 $products = '';

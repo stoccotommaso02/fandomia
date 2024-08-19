@@ -6,12 +6,6 @@ require_once("./lib/templateController.php");
 require_once("./header.php");
 require_once("./footer.php");
 
-//Servono :
-//-una funzione/classe per compilare il template della card di ogni prodotto;
-//-una funzione/classe per compilare ogni section presente in homePage;
-//-una classe che compila l'header;
-//-una classe che compila il footer;
-//-una classe per dis/connettersi al DB;
 $latestItems = getLatestItems();
 $latestSection = file_get_contents("./templates/section.html");
 $latestSection = str_replace('{{listaProdotti}}',$latestItems,$latestSection);

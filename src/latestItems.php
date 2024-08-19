@@ -59,15 +59,9 @@ for ($i = 1; $i <= $total_pages; $i++) {
 
 $latest_item_template = new Template();
 $latest_item_template = $latest_item_template->render("latestItems.html",array("header" => $header,
-<<<<<<< HEAD
-                                                                            "latest_items_list" => $latestItems,
-                                                                            "pagination_links" => $pagination_links,
-                                                                            "footer" => $footer));
-=======
                                                                                "latest_items_list" => $latestItems,
                                                                                "pagination_links" => $pagination_links,
                                                                                "footer" => $footer));
->>>>>>> product_page_refactor
 
 echo($latest_item_template);
 
