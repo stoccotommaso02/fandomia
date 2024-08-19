@@ -18,7 +18,7 @@ $latestSection = str_replace('{{listaProdotti}}',$latestItems,$latestSection);
 
 $nextItems = getNextItems();
 $nextSection = file_get_contents("./templates/section.html");
-$nextSection = str_replace('{{nextItems}}',$nextItems,$nextSection);
+$nextSection = str_replace('{{listaProdotti}}',$nextItems,$nextSection);
 
 $saleItems = getSaleItems();
 $saleSection = file_get_contents("./templates/section.html");
@@ -38,8 +38,8 @@ $homePageTemplate = new Template();
 $homePageTemplate = $homePageTemplate->render("index.html",array("header" => $header,
                                                                  "state" => $state,
                                                                  "latestItems" => $latestSection,
-                                                                 "nextItems" => $nextItems,
-                                                                 "saleItems" => $saleItems,
+                                                                 "nextItems" => $nextSection,
+                                                                 "saleItems" => $saleSection,
                                                                  "footer" => $footer));
 
 echo($homePageTemplate);
@@ -48,10 +48,11 @@ function getLatestItems() : string {
     //implementazione;
     $connection =new DBconnection();
     $connection -> setConnection();
-    $latestItems = '<ul>';
+    $latestItems = '';
     $query = "SELECT *
               from Products
               where release_date < CURDATE()
+                    and sale_percentage = 0
               order by release_date DESC
               limit 3 ";
     $rows = $connection->queryDB($query);
@@ -61,8 +62,6 @@ function getLatestItems() : string {
     $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
     $latestItems .= $latestItemTemplate;
     }
-
-    $latestItems .= "</ul>";
 }   else {
         $latestItems = "il DB è vuoto";
     }
@@ -79,6 +78,7 @@ function getNextItems() : string {
     $query = "SELECT *
               from Products
               where release_date > CURDATE()
+                    and sale_percentage = 0
               order by release_date ASC
               limit 3 ";
     $rows = $connection->queryDB($query);

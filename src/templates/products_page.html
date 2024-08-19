@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {{header}}
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <p>Ti trovi in :</p>
+              <ul>
+                <li><a href="index.php" lang="en">Home</a></li>
+                <li><span aria-current="page">{{products}}</span></li>
+              </ul>
+            </nav>
+        <main>
+            <aside>
+                <h3>Filtri:</h3>
+                <form action="products_page.php" method="get">
+                <!-- Esempio di filtro per la categoria -->
+                <input type="hidden" name="category" value="{{category}}">
+                <!-- Esempio di filtro per il prezzo -->
+                <fieldset>
+                <legend>Fascia di prezzo:</legend>
+                <label><input type="checkbox" name="price[]" value="10-20"> 10 - 20€</label><br>
+                <label><input type="checkbox" name="price[]" value="20-30"> 20 - 30€</label><br>
+                <label><input type="checkbox" name="price[]" value="30-40"> 30 - 40€</label><br>
+                </fieldset>
+                <!-- Altri filtri possono essere aggiunti qui -->
+                <fieldset>
+                    <legend>Sconto</legend>
+                    <label><input type="checkbox" name="sale_percentage" value="0-10"> 0 - 10%</label><br>
+                    <label><input type="checkbox" name="sale_percentage" value="10-20"> 10% - 20%</label><br>
+                    <label><input type="checkbox" name="sale_percentage" value="20-30"> 20% - 30%</label><br>
+                    <label><input type="checkbox" name="sale_percentage" value="30-40"> 30% - 40%</label><br>
+                    <label><input type="checkbox" name="sale_percentage" value="40-50"> 40% - 50%</label><br>
+                </fieldset>
+                <fieldset>
+                    <legend>Genere:</legend>
+                        {{genre_list}}
+                    </fieldset>
+                {{extra_filters}}
+                <button type="submit">Applica filtri</button>
+                </form>
+            </aside>
+            {{products_list}}
+        </main>
+        {{footer}}
+    </body>
+</html>

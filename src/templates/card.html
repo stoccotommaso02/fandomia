@@ -1,4 +1,4 @@
-<li>
+<li class="card">
 <div>
 {{name}}
 <div class="item-row">
@@ -7,12 +7,11 @@
     </div>
     <div class="item-info">
 <dl>
-    <dt>Prezzo</dt>
+    <dt>Prezzo:</dt>
     <dd id="prezzo">{{price}} &euro;</dd> 
-    <dt>Disponibilità</dt><dd>{{status}}</dd>
-    <dt>Data di uscita</dt><dd>{{release_date}}</dd>
-    <dt>Genere</dt><dd>{{product_type}}</dd>
-    <dt>Sconto:</dt><dd>{{sale_percentage}}</dd>
+    <dt>Disponibilità:</dt><dd>{{status}}</dd>
+    <dt>Data di uscita:</dt><dd>{{release_date}}</dd>
+    <dt>Genere:</dt><dd>{{product_type}}</dd>
 </dl>
 </div>
 <div class="item-actions">
@@ -20,7 +19,7 @@
         <input type="hidden" name="product_id" value="{{id}}">
         <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
     </form>
-    <form action="productPage.php" method="get">
+    <form action="productPage.php" method="post">
         <input type="hidden" name="product_id" value="{{id}}">
         <input type="hidden" name="product_type" value="{{product_type}}">
         <button type="submit" name="submit" value="visualizzazione_prodotto" >Visualizza</button>

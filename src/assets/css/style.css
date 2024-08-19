@@ -1,0 +1,89 @@
+/* Body */
+/* Header */
+/* Main*/
+/* Footer */
+/* Homepage_sections */
+/* Products_list */
+/* Products_filter */
+/* Card */
+/* Login_form */
+/* Registration_form */
+/* Single_product_page */
+
+html {
+    height : 100%;
+}
+
+body {
+    height : 100vh;
+    display : flex;
+    flex-direction : column;
+}
+
+header > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+nav.breadcrumb  {
+     display: flex;
+    }
+
+nav.breadcrumb ul li {
+    display: inline;
+    list-style-type: none;
+}
+    
+nav.breadcrumb li:not(:first-child)::before { 
+    content: "> ";
+}
+
+#menu > ul {
+    display : flex;
+    direction: row;
+    justify-content: start;
+}
+
+#menu  ul li {
+    list-style: none;
+    margin-right : 1.8em; 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main h2 {
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    width : 90%;
+}
+
+section > ul {
+    display : flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+section ul li {
+    list-style: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border : solid black 1px;
+}
+
+dl {
+    display : grid;
+    grid-template-columns: repeat(2, 1fr);
+}

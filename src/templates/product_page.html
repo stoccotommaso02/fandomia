@@ -15,7 +15,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb">
             <ul>
               <li><a href="index.php" lang="en">Home</a></li>
-              <li><a href="videoGame.php" lang="en">Videogames</a></li>
+              <li><a href="products_page.php?category={{category}}" lang="en">{{product_type}}</a></li>
               <li><span aria-current="page" lang="en">{{name}}</span></li>
             </ul>
         </nav>
@@ -37,8 +37,7 @@
                         <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
                         <dt class="price(?)">Prezzo:</dt>
                         <dd>{{price}}</dd>
-                        <dt class="description">Sviluppato da:</dt>
-                        <dd>{{developer}}</dd>
+                        {{extra_infos}}
                     </dl>
                 </dd>
             </dl>
