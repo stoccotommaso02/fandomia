@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Fandomia - Prenotazione</title>
-        <meta name="keywords" content="prenotazione, fandomia">
-        <meta name="viewport" content="width=device-width" />
+        <meta name="keywords" content="prenotazione, fandomia,fumetti,videogiochi,libri,musica">
+        <meta name="viewport" content="width=device-width" >
     </head>
     <body>
         {{header}}
@@ -14,6 +14,8 @@
               <li><span aria-current="page" lang="en">Prenotazione ritiro</span></li>
             </ul>
         </nav>
+        <p> Il tuo ordine:</p>
+        {{reserved_product}}
         <form id="reservationForm" action="./lib/reservationController.php?product_id={{product_id}}" method="post"> 
             {{errors}}
             <label for="withdrawDate">Scegli il giorno:</label>
