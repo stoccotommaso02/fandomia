@@ -1,0 +1,187 @@
+/* Stile di base per il main */
+main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    margin-bottom: 20px;
+}
+
+.breadcrumb ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.breadcrumb li {
+    margin-right: 5px;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+    color: #0056b3;
+}
+
+.breadcrumb span {
+    color: #6c757d;
+}
+
+/* Sezione dettagli prodotto */
+section.Dettagli {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+section.Dettagli h2  {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#ProductName_details {
+	display:flex;
+  	flex-direction:column;
+ 	align-items :center;
+}
+
+#ProductName_details h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+dl.details {
+	display:flex;
+    width: 320px;
+    flex-wrap:wrap;
+}
+
+.details dt {
+    width : 120px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #007bff;
+    text-align: left;
+    margin-left: 10px;
+    color: #333;
+}
+
+.details dd {
+    width : 150px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+/* Stile per il pulsante di prenotazione */
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004494;
+}
+
+/* Responsive */
+@media (max-width: 760px) {
+    main {
+        padding: 15px;
+    }
+
+    .breadcrumb ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .breadcrumb li {
+        margin-bottom: 5px;
+    }
+
+    section.Dettagli {
+        padding: 15px;
+    }
+
+    #ProductName-details dt {
+        font-size: 1.1em;
+    }
+
+    .details dt {
+        font-size: 1em;
+    }
+    
+    button {
+        width: 100%;
+        font-size: 1.2em;
+        padding: 15px;
+    }
+}
+/*
+@media (min-width: 760px) {
+    section.Dettagli {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #ProductName-details {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #ProductName-details dt {
+        flex: 1;
+    }
+
+    #ProductName-details dd {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .details dt, .details dd {
+        width: 48%;
+    }
+
+    button {
+        max-width: 220px;
+        margin: 0 auto;
+    }
+}
+*/

@@ -9,8 +9,41 @@ require_once("footer.php");
 $header = buildHeader();
 $footer = buildFooter();
 
-// Query base
-$sql = "SELECT * FROM Products ";
+$genre_table = '';
+$extra_filters = '';
+$products = '';
+$category = $_GET['category'];
+switch($category) {
+    case "comic":
+        $genre_table = "Comics";
+        $products = "Fumetti";
+        break;
+    case "videogame":
+        $genre_table = $products = "Videogames";
+        $extra_filters = '<fieldset>
+                            <legend>Consolle:</legend>
+                            <label><input type="checkbox" name="platform[]" value="Playstation"> Playstation</label><br>
+                            <label><input type="checkbox" name="platform[]" value="Nintendo"> Nintendo</label><br>
+                            <label><input type="checkbox" name="platform[]" value="Pc"> PC</label><br>
+                            <label><input type="checkbox" name="platform[]" value="Xbox"> Xbox</label><br>
+                          </fieldset>';
+        break;
+    case "book":
+        $genre_table = "Books";
+        $products = "Libri";
+        break;
+    case "music":
+        $genre_table = "Music";
+        $products = "Musica";
+        $extra_filters = '<fieldset>
+                            <legend>Formato:</legend>
+                            <label><input type="radio" name="format" value="cd"> CD</label><br>
+                            <label><input type="radio" name="format" value="other"> Formato misterioso</label><br>
+                            <label><input type="radio" name="format" value="vinyl"> Vinile</label><br>
+                          </fieldset>';
+        break;
+}
+$sql = "SELECT * FROM Products join $genre_table on Products.id = {$genre_table}.id ";
 
 // Array per contenere i valori dei parametri da bindare
 $params = [];
@@ -24,7 +57,7 @@ if (isset($_GET['category'])) {
         header("Location:index.php");
         exit();
     }
-
+/* si possono selezionare al momento più prezzi*/
 if(!empty($_GET['price'])){
 
     $prices = $_GET['price'];
@@ -41,7 +74,7 @@ if(!empty($_GET['price'])){
         $sql .= " AND (" . implode(" OR ", $prices_conditions) . ")";
     }
 }
-
+/* lo sconto al momento dovrebbe essere un radiobox*/
 if (isset($_GET['sale_percentage'])) {
     list($min, $max) = explode('-', $_GET['sale_percentage']);
     $sql .= " AND (sale_percentage BETWEEN ? AND ?)";
@@ -49,60 +82,32 @@ if (isset($_GET['sale_percentage'])) {
     $params[] = $min;
     $params[] = $max;
 }
- 
-$extra_filters = '';
-$genre_table = '';
-$products = '';
-$category = $_GET['category'];
-switch($category) {
-    case "comic":
-        $genre_table = "Comics";
-        $products = "Fumetti";
-        break;
-    case "videogame":
-        $genre_table = $products = "Videogames";
-        $extra_filters = '<fieldset>
-                            <legend>Consolle:</legend>
-                            <label><input type="checkbox" name="platform" value="Playstation"> Playstation</label><br>
-                            <label><input type="checkbox" name="platform" value="Nintento"> Nintendp</label><br>
-                            <label><input type="checkbox" name="platform" value="PC"> PC</label><br>
-                            <label><input type="checkbox" name="platform" value="Xbox"> Xbox</label><br>
-                          </fieldset>';
-        break;
-    case "book":
-        $genre_table = "Books";
-        $products = "Libri";
-        break;
-    case "music":
-        $genre_table = "Music";
-        $products = "Musica";
-        $extra_filters = '<fieldset>
-                            <legend>Formato:</legend>
-                            <label><input type="checkbox" name="format" value="cd"> CD</label><br>
-                            <label><input type="checkbox" name="format" value="other"> Formato misterioso</label><br>
-                            <label><input type="checkbox" name="format" value="vinyl"> Vinile</label><br>
-                          </fieldset>';
-        break;
+/* Il genre deve essere un radiobox */
+if(isset($_GET['genre'])) {
+
+    $genre_checked = $_GET['genre'];
+    $types .= "s"; // Tipo intero per prezzo minimo e massimo
+    $params[] = $genre_checked;
+    $sql .= " AND genre = ?";
 }
 
 // Prepara la query
 $connection = new DBconnection();
 $connection -> setConnection();
-
+echo($sql);
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $stmt = $connection->prepare($sql);
 // Bind dei parametri se esistono
 if (!empty($params)) {
     $stmt->bind_param($types,...$params);
 }
-
 // Esegui la query
 $stmt->execute();
 $result = $stmt->get_result();
 $products_list = '';
 // Verifica se ci sono prodotti che corrispondono ai filtri
 if ($result->num_rows > 0) {
-    $products_list .= '<ul>';
+    $products_list .= '<ul class="products_list">';
     // Mostra i prodotti filtrati
     foreach ($result as $row) {
         $product_template = new Template();
@@ -123,7 +128,7 @@ $genre_list = '';
 if (!empty($result)) {
     // Mostra i prodotti filtrati
     foreach ($result as $row) {
-            $genre_list .= '<label><input type="checkbox" name="genre" value="' . $row['genre'] . '">' . $row['genre'] . "</label><br>";
+            $genre_list .= '<label><input type="radio" name="genre" value="' . $row['genre'] . '">' . $row['genre'] . "</label><br>";
         }
 }   
 

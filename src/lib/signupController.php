@@ -57,12 +57,4 @@ function checkUserAvalaibility(string $username) : bool {
         else return false;
 }
 
-function sanitizeString(string $var) : string
-{
-$var = strip_tags($var);
-$var = htmlentities($var);
-$var = stripslashes($var);
-return $var;
-}
-
 ?>
