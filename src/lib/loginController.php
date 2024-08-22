@@ -6,6 +6,7 @@ if (isset($_POST['userEmail'])) {
  $user = sanitizeString($_POST['userEmail']);
  $pass = sanitizeString($_POST['password']);
 
+ 
  if ($user == "" || $pass == "") {
      $error = "Non sono stati compilati tutti i campi!";
      $_SESSION['errors'] = $error;
