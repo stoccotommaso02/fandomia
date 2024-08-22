@@ -6,8 +6,6 @@ require_once("./lib/DbController.php");
 require_once("header.php");
 require_once("footer.php");
 
-$header = '';
-$footer = buildFooter();
 $errorMessage = '';
 if (!isset($_SESSION['loggedUser'])) {
     $errorMessage = "Devi essere loggato per effettuare una prenotazione";
@@ -32,11 +30,7 @@ try{
             echo("Database problem : " . $e->getMessage());
             exit();
         }
-        if (!empty($results)) {
-          foreach($results as $record)  {
-            $productTemplate = new Template();
-          }
-    }
+        
     if (!empty($results)) {
         // ciclo dei record restituiti dalla query
         foreach ($results as $row) {
@@ -44,7 +38,7 @@ try{
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
         }
      } else {
-        $reservedProduct = "Non riusciamo a trovare il tuo prodotto!";
+        $errorMessage = "Spiacenti,il prodotto non è al momento presente!";
     }
 
 
@@ -54,11 +48,15 @@ if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
 }
 
 $header = buildHeader();
+$footer = buildFooter();
+
+$minDate = date('Y-m-d', strtotime('+1 day'));
 
 $reservationTemplate = new Template();
 $reservationTemplate =  $reservationTemplate->render("reservationForm.html",array('header' => $header,
                                                                                   'product_id' => $productId,
                                                                                   'reserved_product' => $reservedProduct,
+                                                                                  'min_date' => $minDate,
                                                                                   'footer' => $footer,
                                                                                   'errors' => $errorMessage));
 

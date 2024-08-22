@@ -19,7 +19,7 @@
         <form id="reservationForm" action="./lib/reservationController.php?product_id={{product_id}}" method="post"> 
             {{errors}}
             <label for="withdrawDate">Scegli il giorno:</label>
-            <input type="date" id="withdrawDate" name="data_ritiro" required>
+            <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} required>
             <label for="withdrawTime">Orario di ritiro:</label>
             <select id="withdrawTime" name="fascia_oraria" required>
               <option value="">--Seleziona una fascia oraria--</option>
