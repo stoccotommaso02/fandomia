@@ -1,5 +1,4 @@
 <li class="card">
-<div>
 <h2>{{name}}</h2>
 <div class="item-row">
     <div class="item-image">
@@ -14,6 +13,7 @@
     <dt>Genere:</dt><dd>{{product_type}}</dd>
     <dt>Data di ritiro:</dt><dd>{{reservation_date}}</dd>
     <dt>Fascia oraria di ritiro:</dt><dd>{{reservation_time}}</dd>
+    <dt>Note:</dt><dd><p>{{notes}}</p></dd>
 </dl>
 </div>
 <div class="item-actions">
@@ -25,7 +25,6 @@
         <input type="hidden" name="reservation_id" value="{{id}}">
         <button type="submit" name="submit" value="modifica_prenotazione" >Modifica prenotazione</button>
     </form>
-</div>
 </div>
 </div>
 </li>
