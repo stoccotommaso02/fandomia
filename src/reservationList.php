@@ -36,7 +36,7 @@ $connection = getConnection();
 
 $user = $_SESSION['loggedUser'];
 
-$query = "SELECT * 
+$query = "SELECT * , Reservation.id as reservation_id
           from Reservation join Products
                on (Reservation.product_id = Products.id)
           where username = '$user'
@@ -45,11 +45,11 @@ $result = $connection -> query($query);
 if ($result->num_rows > 0) {
     $reservationList = "<ul>";
     $records = $result -> fetch_all(MYSQLI_ASSOC);
-    foreach ($records as $record)
-        $reservationList .= "<li><dt>Prodotto: </dt><dd>" . $record['name'] ."</dd>" .
-                                "<dt>Data di ritiro: </dt><dd>" . $record['reservation_date'] . "</dd>" .
-                                "<dt>Fascia oraria di ritiro: </dt><dd>" . $record['reservation_time'] . "</dd>" .
-                            "</li>";
+    foreach ($records as $record) {
+        $reservation_card_template = new Template();
+        $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
+        $reservationList .= $reservation_card_template;
+    }
     $reservationList .= "</ul>";
 } elseif ($result->num_rows == 0) {
     $reservationList = "<p>Non è presente nessuna prenotazione!</p>";

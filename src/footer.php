@@ -1,7 +1,10 @@
 <?php 
 
 function buildFooter() : string {
-    return '';
+    
+    $footerTemplate = file_get_contents("./templates/footer.html");
+
+    return $footerTemplate;
 }
 
 ?>
