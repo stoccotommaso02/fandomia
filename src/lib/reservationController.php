@@ -81,6 +81,28 @@
         }
     }
     
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $reservation_id = sanitizeString($_POST['reservation_id']);
+        try {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $deletionQuery = "DELETE from Reservation where id = {$reservation_id}";
+            $result = $connection -> query($deletionQuery);
+        }
+        catch (Exception $e) {
+            echo("Database problem : " . $e->getMessage());
+            exit();
+        }
+        if ($result) {
+            $message = "La cancellazione è stata cancellata con successo!";
+            $_SESSION['message'] = $message;
+        } else {
+            $error = "Non è stato possibile cancellare la prenotazione";
+            $_SESSION['errors'] = $error;
+        }
+        header("Location: ../reservationList.php");
+        exit();
+    }
+
     function checkProductAvalaibility(string $product_id) : bool {
         $connection = getConnection();
         $checkQuery = "SELECT * 
