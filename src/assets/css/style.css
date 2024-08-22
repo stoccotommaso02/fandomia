@@ -316,6 +316,7 @@ section ul {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: underline;
 }
 
 .item-actions button:hover {
