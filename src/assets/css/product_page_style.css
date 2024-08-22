@@ -1,24 +1,45 @@
+header > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0056b3;
+
+} /* serve? */
+*{
+    font-size: 1.035em;
+    line-height: 1.5em;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+}
+
 /* Stile di base per il main */
 main {
     padding: 20px;
     font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 /* Breadcrumb */
 .breadcrumb {
     margin-bottom: 20px;
+    display: flex;
 }
 
 .breadcrumb ul {
+    display: inline;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
     flex-wrap: wrap;
 }
 
 .breadcrumb li {
     margin-right: 5px;
+}
+
+nav.breadcrumb li:not(:first-child)::before { 
+    content: "> ";
 }
 
 .breadcrumb a {
@@ -37,21 +58,30 @@ main {
 
 /* Sezione dettagli prodotto */
 section.Dettagli {
-    display : flex;
-    flex-direction: column;
-    align-items: center;
+    display : grid;
+    /* flex-direction: column; */
+    /* align-items: left; se si fa con flex*/
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto;
+    max-width: 1200px;
+    min-height: 80vh; /*non supportato in IE6*/
+    margin: 50px auto;
+    /*overflow: scroll; /*non so se possa andare bene actually */
+    border-width: auto 4px;
+
 }
 
 section.Dettagli h2  {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
     color: #333;
+}
+
+.img{
+    background-image: url(); /*insert image path or url; la prof. Gaggi dice nelle slide che teoricamente è più opprtuno (?)*/
+    background-color: #badff8;
 }
 
 #ProductName_details {
@@ -70,7 +100,11 @@ dl.details {
 	display:flex;
     width: 320px;
     flex-wrap:wrap;
+
 }
+
+/*trovare una soluzione per alternare i colori della lista dl?*/
+
 
 .details dt {
     width : 120px;
@@ -90,7 +124,7 @@ dl.details {
 
 /* Stile per il pulsante di prenotazione */
 form {
-    text-align: center;
+    text-align: right;
     margin-top: 20px;
 }
 
