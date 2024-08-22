@@ -10,8 +10,37 @@
 /* Registration_form */
 /* Single_product_page */
 
+/* GLOBAL SETTINGS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --headerBackgroundColor: #013020;
+    --headerTextColor: #FFFFFF;
+    --accentColor: #F9690E;
+    --backgroundColor: #EEEEEE;
+    --textColor: #000000;
+    --linkColor: #0000EE;
+    --visitedLinkColor: #800080;
+    --fontFamily: "Roboto Condensed", sans-serif;
+}
+
+:link {
+    color: var(--linkColor);
+}
+
+:visited {
+    color: var(--visitedLinkColor);
+}
+
 html {
-    height : 100%;
+    margin: auto;
+    font-size: 100%;
+    line-height: 1.5em;
+    font-family: var(--fontFamily);
 }
 
 body {
@@ -20,39 +49,153 @@ body {
     flex-direction : column;
 }
 
+header {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+}
+
+@supports (position: sticky) {
+    header {
+        position: sticky;
+    }
+}
+
 header > div {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-
+    justify-content: space-around;  
+    padding: 10px 10px 20px 10px;       
 }
 
-nav.breadcrumb  {
-     display: flex;
-    }
+header search {
+    flex-grow: 0.8;
+}
 
-nav.breadcrumb ul li {
-    display: inline;
-    list-style-type: none;
+header search form {
+    display: flex;
+    position: static;
 }
-    
-nav.breadcrumb li:not(:first-child)::before { 
-    content: "> ";
+
+header search form input {
+    flex-grow: 3;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
 }
+
+header search form button {
+    flex-grow: 0;
+    width: 8%;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    text-transform: capitalize;
+    letter-spacing: 0.1em;
+    background-color:var(--accentColor);
+    border: none;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+#wishList {
+    font-size: x-large;
+    padding: 0.5em 1em;
+}
+
+#loginForm {
+    font-size: x-large;
+    padding: 0.5em 1em;
+}
+
+#areaPersonale {
+    font-size: x-large;
+    padding: 0.5em 1em;
+}
+
 
 #menu > ul {
     display : flex;
     direction: row;
-    justify-content: start;
+    margin: 1em;
+    justify-content: space-around;
 }
 
-#menu  ul li {
+#menu ul li {
+    width: 100%;
+    text-align: center;
     list-style: none;
-    margin-right : 1.8em; 
 }
+
+#menu ul li a {
+    font-size: x-large;
+    width: 100%;
+    padding: 0.5em 1em;
+}
+
+header a:link {
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    text-decoration: underline;
+}
+
+header a:visited{
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: bottom;
+}
+
+header a:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+header a:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+/*
+BREADCRUMB
+*/
+nav.breadcrumb  {
+    display: flex;
+   }
+
+nav.breadcrumb ul li {
+   display: inline;
+   list-style-type: none;
+}
+
+.breadcrumb li:not(:first-child)::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-image: url('../images/breadcrumb-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+  }
+
+/*
+MAIN
+*/
 
 main {
+    background-color: var(--backgroundColor);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,135 +205,29 @@ main h2 {
     display: flex;
     justify-content: center;
 }
-/*
+
 section {
-    width : 90%;
+    padding: 20px;
+    margin: 10px;
+    border: 5px double rgba(1, 48, 32, .5);
+    border-radius: 15px;
 }
 
-section > ul {
-    display : flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+section:hover {
+    border: 5px double var(--accentColor);
 }
-
-section ul li {
-    list-style: none;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    border : solid black 1px;
-}
-
-.products_page {
-    display: flex;
-    flex-direction: row;
-}
-
-aside {
-    align-self: flex-start;
-}
-
-.products_list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap : 10px;
-}
-
-dl {
-    display : grid;
-    grid-template-columns: repeat(2, 1fr);
-} */
-
-/*------Form------*/
-/* Stile di base per il form, probabilmente
-   meglio se fosse un display:wrap */
-form {
-    max-width: 1000px;
-    display : wrap;
-    flex-wrap : wrap;
-    margin: 0 auto; /* Centra il form nella pagina */
-    padding: 0px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Contenitore per label e input */
-.form-row {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-/* Stile per label */
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Stile per gli input */
-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-}
-
-/* Disposizione orizzontale per schermi più larghi */
-@media (min-width: 768px) {
-    .form-group {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    label {
-        margin-bottom: 0;
-        margin-right: 15px;
-        width: 150px;
-        text-align: right;
-    }
-
-    input, textarea, select {
-        flex: 1;
-    }
-}
-
-/* Pulsante di invio */
-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-/*-------Card-------*/
-/* Stile di base per la lista */
 
 section ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 1.5em;
     justify-content: space-around;
 }
 
-/* Stile di base per la card */
 .card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -198,7 +235,6 @@ section ul {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 200px;
-    margin: 15px;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -210,6 +246,9 @@ section ul {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* Stile di base per la card */
+
 
 /* Stile per il titolo del prodotto */
 .card h2 {
@@ -256,15 +295,13 @@ section ul {
 
 /* Stile per i pulsanti di azione */
 .item-actions {
-    display: wrap;
-
-    justify-content: space-between;
-    max-width: 150px;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
 }
 
 .item-actions form {
-    flex: 1;
+    /* flex: 1; */
     margin: 5px;
 }
 
@@ -274,7 +311,7 @@ section ul {
     font-size: 0.9em;
     font-weight: bold;
     color: #fff;
-    background-color: #007bff;
+    background-color: var(--headerBackgroundColor);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -282,7 +319,7 @@ section ul {
 }
 
 .item-actions button:hover {
-    background-color: #0056b3;
+    background-color: var(--accentColor);
 }
 
 .item-actions button:active {
@@ -309,8 +346,8 @@ section ul {
     }
 
     .card {
-        flex-basis: calc(33.33% - 30px);
-        max-width: none;
+        /* flex-basis: calc(33.33% - 30px); */
+        max-width: 30%;
     }
 }
 /*-------Fine card-------*/
