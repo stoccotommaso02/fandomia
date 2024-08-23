@@ -42,7 +42,7 @@ if (!(isset($_POST['usermail']) &&
                 $connection -> setConnection();
                 $insertionQuery = "INSERT into Users
                                    values('$user_email','$password')";
-                $result = $connection -> queryDB($insertionQuery);
+                $result = $connection -> alterQueryDB($insertionQuery);
                 if ($result) {
                     $message = "La registrazione è andata a buon fine!";
                     $_SESSION['state'] = $message;
@@ -64,11 +64,7 @@ function is_email_available(string $user_email) : bool {
                    from Users
                    where username = '$user_email' ";
     $result = $connection->queryDB($checkQuery);
-    if ($result)
-        return true;
-        else {
-            return false;
-        }
+    return count($result) == 0;
 }
 
 function validate_password(string $field)   {

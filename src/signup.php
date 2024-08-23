@@ -15,7 +15,6 @@ if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
     $errors_list = '<ul>';
     foreach($errors as $error){
-        echo($error);
         $errors_list .= '<li>'.$error.'</li>';
         }
         $errors_list .= '<ul>';

@@ -37,25 +37,23 @@ class DBconnection {
         return $this-> isConnected;
     }
     /* Da modificare con dei prepared statements, più sicuri rispetto alla SQL injection*/
-    function queryDB(string $query)   {
+    function queryDB(string $query) : array  {
         $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
         $result = array();
-            if(is_resource($queryResult))   {
                 if (mysqli_num_rows($queryResult) > 0 )  {
                 while( $row = mysqli_fetch_assoc($queryResult) )    {
                     array_push($result,$row);
-                    $queryResult ->free(); 
                 }
+            }   
+                $queryResult->free();
+                $this->destroyConnection();
+                return $result;
             }  
-            }
-            else if ($queryResult)  {
-                return true;
-                }   else {
-                    return false;
-                }
-            DBconnection::destroyConnection();
-            return $result;
     
+    function alterQueryDB(string $query) : bool {
+        $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
+        $this->destroyConnection();
+        return $queryResult;
     }
 
     function destroyConnection() : bool {
