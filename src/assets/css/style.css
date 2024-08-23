@@ -331,6 +331,7 @@ section ul {
     background-color: var(--headerBackgroundColor);
     color: var(--headerTextColor);
     max-width:100%;
+    margin-top: 10px;
 }
 
 .contact_info{

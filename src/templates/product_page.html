@@ -40,10 +40,12 @@
                     </dl>
             </dl>
         </section>
+        <div id="buttons">
         <form action="prenotazioneRitiro.php" method="get">
             <input type="hidden" name="product_id" value="{{id}}">
-            <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
+            <button type="submit" name="submit" id="book_button" value="richiesta_prenotazione" >Prenota</button>
         </form>
+        </div>
     </main>
     {{footer}}
 </body>
