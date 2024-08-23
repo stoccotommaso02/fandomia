@@ -50,10 +50,10 @@ body {
 }
 
 header {
-    z-index: 1;
+    /* z-index: 1;
     top: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     background-color: var(--headerBackgroundColor);
     color: var(--headerTextColor);
 }
@@ -325,6 +325,41 @@ section ul {
 
 .item-actions button:active {
     background-color: #004494;
+}
+
+.footer{
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+    max-width:100%;
+}
+
+.contact_info{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+
+.contact_info dd{
+    padding:5px;
+}
+
+.contact_info dd a{
+    color: #FFFFFF;
+    font-size: large;
+    width: 100%;
+    padding: 0.5em 1em;
+}
+
+.contact_info dd a:hover{
+    background-color: var(--accentColor);
+    color: var(--textColor);
+    text-transform: uppercase;
+}
+
+.signature{
+    font-size:large;
 }
 
 /* Punto di rottura per dispositivi mobili (max 760px) */

@@ -1,76 +1,14 @@
-header > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #0056b3;
-
-} /* serve? */
-*{
-    font-size: 1.035em;
-    line-height: 1.5em;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-}
-
-/* Stile di base per il main */
-main {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-}
-
-/* Breadcrumb */
-.breadcrumb {
-    margin-bottom: 20px;
-    display: flex;
-}
-
-.breadcrumb ul {
-    display: inline;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
-}
-
-.breadcrumb li {
-    margin-right: 5px;
-}
-
-nav.breadcrumb li:not(:first-child)::before { 
-    content: "> ";
-}
-
-.breadcrumb a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.breadcrumb a:hover {
-    color: #0056b3;
-}
-
-.breadcrumb span {
-    color: #6c757d;
-}
+@import "style.css";
 
 /* Sezione dettagli prodotto */
 section.Dettagli {
-    display : grid;
-    /* flex-direction: column; */
-    /* align-items: left; se si fa con flex*/
+    display : flex;
+    flex-direction: column;
+    align-items: left;
     background-color: #f8f9fa;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    min-height: 80vh; /*non supportato in IE6*/
-    margin: 50px auto;
-    /*overflow: scroll; /*non so se possa andare bene actually */
-    border-width: auto 4px;
-
+    margin: 1em;
+    width: 100%;
 }
 
 section.Dettagli h2  {
@@ -129,14 +67,17 @@ form {
 }
 
 button {
-    background-color: #007bff;
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
     color: #fff;
+    background-color: var(--headerBackgroundColor);
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: underline;
 }
 
 button:hover {
@@ -148,7 +89,7 @@ button:active {
 }
 
 /* Responsive */
-@media (max-width: 760px) {
+/* @media (max-width: 760px) {
     main {
         padding: 15px;
     }
@@ -179,7 +120,8 @@ button:active {
         font-size: 1.2em;
         padding: 15px;
     }
-}
+} */
+
 /*
 @media (min-width: 760px) {
     section.Dettagli {
