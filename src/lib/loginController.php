@@ -42,8 +42,15 @@ if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
    //Guardare commento a piè pagina
    if(isset($_POST['redirect_url']) && $_POST['redirect_url'] != null)   {
     header("Location:../prenotazioneRitiro.php?product_id=" . $_POST['redirect_url']);
-   }  else  {
+   }  else if (isset($_SESSION['previous_url']))  {
+    $previous_url = $_SESSION['previous_url'];
+    unset($_SESSION['previous_url']);
+    header("Location:../$previous_url");
+    exit();
+   }
+     else  {
    header("Location: ../index.php");
+   exit();
    }
   }
  }

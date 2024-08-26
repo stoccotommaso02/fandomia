@@ -11,6 +11,7 @@ $reservationList = '';
 if (!isset($_SESSION['loggedUser'])) {
     $error = "Devi prima loggarti per visualizzare la lista delle tue prenotazioni";
     $_SESSION['errors'] = $error;
+    $_SESSION['previous_url'] = "reservationList.php";
     header("Location: login.php");
     exit();
 }

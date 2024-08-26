@@ -105,6 +105,15 @@ if (!empty($params)) {
 $stmt->execute();
 $result = $stmt->get_result();
 $products_list = '';
+
+$products_per_page = 10; // Numero di prodotti per pagina
+
+// Ottieni la pagina corrente dal parametro GET, o usa la pagina 1 come predefinita
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// Calcola l'offset (da dove iniziare a prendere i prodotti)
+$offset = ($page - 1) * $products_per_page;
+
 // Verifica se ci sono prodotti che corrispondono ai filtri
 if ($result->num_rows > 0) {
     $products_list .= '<ul class="products_list">';
@@ -117,6 +126,20 @@ if ($result->num_rows > 0) {
     $products_list .= '</ul>';
 } else {
      $products_list .= "Nessun prodotto corrispondente filtri selezionati";
+}
+
+$total_products_result = $result -> num_rows;
+$total_pages = $total_products_result / $products_per_page;
+$total_pages = ceil($total_pages);
+
+// Visualizza i link di paginazione
+$pagination_links =  "<div class='pagination'>";
+for ($i = 1; $i <= $total_pages; $i++) {
+    if ($i == $page) {
+        $pagination_links .= "<strong>$i</strong> "; // Pagina corrente senza link
+    } else {
+        $pagination_links .= "<a href='products_page.php?page=$i&category=$category'>$i</a> "; // Altre pagine con link
+    }
 }
 
 //Query per recuperare i generi della particolare tipologia di prodotto
@@ -139,6 +162,7 @@ $products_page_template = $products_page_template->render("products_page.html",a
                                                                                      "genre_list" => $genre_list,
                                                                                      "extra_filters" => $extra_filters,
                                                                                      "products_list" => $products_list,
+                                                                                     "pagination_links" => $pagination_links,
                                                                                      "footer" => $footer));
 echo($products_page_template);
 

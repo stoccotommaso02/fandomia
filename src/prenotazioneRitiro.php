@@ -30,27 +30,37 @@ try{
             echo("Database problem : " . $e->getMessage());
             exit();
         }
-        
+    
+    $release_date = '';
+
     if (!empty($results)) {
         // ciclo dei record restituiti dalla query
         foreach ($results as $row) {
             $reservedProduct = new Template();
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
+            $release_date = $row['release_date'];
         }
      } else {
         $errorMessage = "Spiacenti,il prodotto non è al momento presente!";
     }
 
+    $errors_list = '';
 
-if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
-    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
-    unset($_SESSION['errors']);
-}
+    if (isset($_SESSION['errors'])) {
+        $errors = $_SESSION['errors'];
+        $errors_list = '<ul>';
+        foreach($errors as $error){
+            $errors_list .= '<li>'.$error.'</li>';
+            }
+            $errors_list .= '<ul>';
+        unset($_SESSION['errors']);
+    } 
 
 $header = buildHeader();
 $footer = buildFooter();
-
-$minDate = date('Y-m-d', strtotime('+1 day'));
+//Di default, l'utente può prenotare il ritiro a partire dalla data maggiore fra quella di uscita di un
+//prodotto e il giorno successivo alla data odierna
+$minDate = date('Y-m-d', strtotime('+1 day')) < $release_date ? $release_date : date('Y-m-d', strtotime('+1 day'));
 
 $reservationTemplate = new Template();
 $reservationTemplate =  $reservationTemplate->render("reservationForm.html",array('header' => $header,
@@ -58,7 +68,7 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
                                                                                   'reserved_product' => $reservedProduct,
                                                                                   'min_date' => $minDate,
                                                                                   'footer' => $footer,
-                                                                                  'errors' => $errorMessage));
+                                                                                  'errors' => $errors_list));
 
 echo($reservationTemplate);
 

@@ -1,52 +1,47 @@
 <?php 
 
     require_once('global.php');
+    require_once('DBController.php');
 
-    $product_id = $withdrawDate = $withdrawTime = $notes = $errors = '';
-    $connection = getConnection();
+    $product_id = $withdrawDate = $withdrawTime = $notes = '';
+    $errors = array();
 
     if(!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] == null ) {
-        $_SESSION['errors'] = "Effettuare il login per visualizzare la lista delle prenotazioni";
+        $_SESSION['errors'] = "Effettuare il login per effettuare una prenotazione";
         header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
         exit();
     }
-    if (isset($_GET['product_id'])) {
-        $product_id = sanitizeString($_GET['product_id']);
+    if (isset($_POST['product_id'])) {
+        $product_id = sanitizeString($_POST['product_id']);
         $withdrawDate = sanitizeString($_POST['data_ritiro']);
         $withdrawTime = sanitizeString($_POST['fascia_oraria']);
         $notes = sanitizeString($_POST['notes']);
-    
-        if ($withdrawDate == '' || $withdrawTime == '') {
-            $error = 'Alcuni campi mancanti!';
-            $_SESSION['errors'] = $error;
-            header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
-            exit();
-        }
-        else {
+
+        if(!empty(validate_withdraw_date($withdrawDate)))
+            $errors[] = validate_withdraw_date($withdrawDate);
+
+        if(!empty(validate_withdraw_time($withdrawTime)))
+            $errors[] = validate_withdraw_time($withdrawTime);
+
+        if ($notes && !empty(validate_notes($note)))
+            $errors[] = validate_notes($notes);
+
+        if (empty($errors)) {
             if (!checkProductAvalaibility($product_id)) {
-                $error = 'Prodotto non disponibile!';
-                $_SESSION['errors'] = $error;
+                $errors[] = 'Prodotto non disponibile!';
+                $_SESSION['errors'] = $errors;
                 header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
                 exit();
             }   else { 
-                    $withdrawCheck = checkWithdrawDate($product_id , $withdrawDate);
-                    if (!$withdrawCheck['avalaibility']) {
-                /* Nell'errorMessage posso indicare esplicitamente la data dalla quale il prodotto
-                sarà disponibile */
-
-                        $errorMessage = "La data di ritiro deve essere posteriore al " . $withdrawCheck['product_release_date'];
-                        $_SESSION['errors'] = $errorMessage;
-                        header("Location: ../prenotazioneRitiro.php?error=" . urlencode("DataAnteriore") . "&product_id=" . urlencode($product_id));
-                        exit();
-                }   else {
-                        $reservationDate = $withdrawDate;
-                        $reservationTime = $withdrawTime;
                         $userEmail = $_SESSION['loggedUser'];
                         try {
+                            $connection = new DBconnection;
+                            $connection -> setConnection();
+
                             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                             $insertionQuery = "INSERT into Reservation(product_id,username,reservation_date,reservation_time,notes)
-                                               values('$product_id','$userEmail','$reservationDate','$reservationTime','$notes')";
-                            $result = $connection -> query($insertionQuery);
+                                               values('$product_id','$userEmail','$withdrawDate','$withdrawTime','$notes')";
+                            $result = $connection -> alterQueryDB($insertionQuery);
                         }
                         catch (Exception $e) {
                             echo("Database problem : " . $e->getMessage());
@@ -66,30 +61,11 @@
                 }
             }   
         }
-    }
-    
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $reservation_id = sanitizeString($_POST['reservation_id']);
-        try {
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-            $deletionQuery = "DELETE from Reservation where id = {$reservation_id}";
-            $result = $connection -> query($deletionQuery);
-        }
-        catch (Exception $e) {
-            echo("Database problem : " . $e->getMessage());
-            exit();
-        }
-        if ($result) {
-            $message = "La cancellazione è stata cancellata con successo!";
-            $_SESSION['message'] = $message;
-        } else {
-            $error = "Non è stato possibile cancellare la prenotazione";
-            $_SESSION['errors'] = $error;
-        }
-        header("Location: ../reservationList.php");
-        exit();
-    }
 
+        $_SESSION['errors'] = $errors;
+        header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id );
+        exit();
+    
     function checkProductAvalaibility(string $product_id) : bool {
         $connection = getConnection();
         $checkQuery = "SELECT * 
@@ -125,4 +101,34 @@
         }
     }
     
-?>
+    function validate_withdraw_date(string $date) : string {
+        if ($date == "") {
+            return "Nessuna data inserita per il ritiro";
+        }   else if (!validateDate($date))  {
+            return "La data inserita non è valida";
+        }
+        return "";
+    }
+
+    function validate_withdraw_time(string $time_interval) : string {
+        if ($time_interval == "")   {
+            return "Nessuna fascia oraria indicata per il ritiro";
+        }   else if (!preg_match("/^\d{2}:\d{2}-\d{2}:\d{2}$/",$time_interval))   {
+            return "La fascia oraria indicata non è valida";
+        }
+        return "";
+    }
+    
+    function validate_notes(string $note) : string {
+        if (!preg_match("/^.{0,140}$/",$note))   {
+            return "Le note inserite non possono eccedere i 140 caratteri";
+        }
+        return "";
+    }
+
+    function validateDate($date, $format = 'Y-m-d')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
+}
+?> 
