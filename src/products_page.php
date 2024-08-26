@@ -94,7 +94,7 @@ if(isset($_GET['genre'])) {
 // Prepara la query
 $connection = new DBconnection();
 $connection -> setConnection();
-echo($sql);
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $stmt = $connection->prepare($sql);
 // Bind dei parametri se esistono

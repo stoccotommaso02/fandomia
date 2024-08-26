@@ -12,6 +12,22 @@
         exit();
     }
     if (isset($_POST['product_id'])) {
+
+        $product_id = sanitizeString($_POST['product_id']);
+        $withdrawDate = sanitizeString($_POST['data_ritiro']);
+        $withdrawTime = sanitizeString($_POST['fascia_oraria']);
+        $notes = sanitizeString($_POST['notes']);
+
+        if(!empty(validate_withdraw_date($withdrawDate)))
+            $errors[] = validate_withdraw_date($withdrawDate);
+
+        if(!empty(validate_withdraw_time($withdrawTime)))
+            $errors[] = validate_withdraw_time($withdrawTime);
+
+        if ($notes && !empty(validate_notes($notes)))
+            $errors[] = validate_notes($notes);
+
+        if (empty($errors)) {
         //Se c'è un numero di prenotazione nell'array POST, l'utente vuole modificare una
         //prenotazione già esistente
         if (isset($_POST['reservation_id']))   {
@@ -46,28 +62,14 @@
         }
         //Altrimenti se è presente solo il codice identificativo del prodotto,
         //l'utente sta tentando per la prima volta di effettuarne le prenotazione
-          else {
-        $product_id = sanitizeString($_POST['product_id']);
-        $withdrawDate = sanitizeString($_POST['data_ritiro']);
-        $withdrawTime = sanitizeString($_POST['fascia_oraria']);
-        $notes = sanitizeString($_POST['notes']);
-
-        if(!empty(validate_withdraw_date($withdrawDate)))
-            $errors[] = validate_withdraw_date($withdrawDate);
-
-        if(!empty(validate_withdraw_time($withdrawTime)))
-            $errors[] = validate_withdraw_time($withdrawTime);
-
-        if ($notes && !empty(validate_notes($note)))
-            $errors[] = validate_notes($notes);
-
-        if (empty($errors)) {
+        else if (isset($_POST['product_id']))   {
             if (!checkProductAvalaibility($product_id)) {
                 $errors[] = 'Prodotto non disponibile!';
                 $_SESSION['errors'] = $errors;
                 header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
                 exit();
-            }   else { 
+            }   else    {
+         
                         $userEmail = $_SESSION['loggedUser'];
                         try {
                             $connection = new DBconnection;
