@@ -3,7 +3,7 @@
 require_once("./lib/global.php");
 require_once("JaroWinkler.php");
 
-function searchList(string $searchParam) : string {
+function searchList(string $searchParam) : array {
     $connection = new DBconnection;
     $connection -> setConnection();
     
@@ -31,13 +31,7 @@ function searchList(string $searchParam) : string {
             /*Un punteggio di similarità uguale a 1 , equivale ad aver trovato
               una perfetta corrispondenza, e quindi fermo il ciclo*/
             if ($similarity == 1)   {
-                $searchResult .= "<ul>";
-                
-                $searchItemTemplate = new Template();
-                $searchItemTemplate = $searchItemTemplate->render("card.html",end($products));
-                $searchResult .= $searchItemTemplate;
-                
-                $searchResult .= "</ul>";
+                $searchResult = end($products);
                 return $searchResult;
                         }
         }
@@ -55,19 +49,7 @@ function searchList(string $searchParam) : string {
             }
         });
 
-        $searchResult .= "<ul>";
-        $count = 0;
-
-        foreach ($products as $product) {
-        if ( $count >= 10) {
-            break;
-        }
-        $searchItemTemplate = new Template();
-        $searchItemTemplate = $searchItemTemplate->render("card.html",$product);
-        $searchResult .= $searchItemTemplate;
-        $count ++;
-        }
-        $searchResult .= "</ul>";
+        $searchResult = $products;
     }
     return $searchResult;
 }
