@@ -5,6 +5,7 @@
         <title>Fandomia - Registrazione</title>
         <meta name="keywords" content="registrazione, fandomia, nuovo utente">
         <meta name="viewport" content="width=device-width" />
+        <script src="../assets/script.js"></script>
     </head>
     <body>
         {{header}}
@@ -14,19 +15,25 @@
                       <li><a href="index.php" lang="en">Home</a></li>
                       <li><span aria-current="page">Registrazione</span></li>
                     </ul>
-                  </nav>
+                  </nav> 
             <div class="container">
-            <form id="signUpForm" name="signUpForm" action="../lib/signupController.php" method="post">
+            <form id="signUpForm" name="signUpForm" action="../lib/signupController.php" method="post" novalidate>
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail"
-                placeholder="Inserisci la tua Email" required>
+                placeholder="Inserisci la tua Email">
+                <span id="emailError" class="error-message"></span>
+
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
-                placeholder="Inserisci la tua password" required />
+                placeholder="Inserisci la tua password" />
+                <span id="passwordError" class="error-message"></span>
+
                 <label for="confirmPwd">Conferma password</label>
                 <input type="password" id="confirmPwd" name="confirmPassword"
-                placeholder="Ripeti la password" required/>
+                placeholder="Ripeti la password"/>
+                <span id="confirmPasswordError" class="error-message"></span>
+
                 <button type="submit">Registrati!</button>
             </form>
             </div>
