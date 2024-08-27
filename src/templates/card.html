@@ -3,7 +3,7 @@
 <h2>{{name}}</h2>
 <div class="item-row">
     <div class="item-image">
-        <picture><img src="{{immagine}}" alt="" ></picture>
+        <picture><img src="assets/images/products/{{id}}.jpg" alt={{alt}} ></picture>
     </div>
     <div class="item-info">
 <dl>
@@ -19,10 +19,9 @@
         <input type="hidden" name="product_id" value="{{id}}">
         <button type="submit" name="submit" value="richiesta_prenotazione" >Prenota</button>
     </form>
-    <form action="productPage.php" method="post">
+    <form action="productPage.php" method="get">
         <input type="hidden" name="product_id" value="{{id}}">
-        <input type="hidden" name="product_type" value="{{product_type}}">
-        <button type="submit" name="submit" value="visualizzazione_prodotto" >Visualizza</button>
+        <button type="submit">Visualizza</button>
     </form>
 </div>
 </div>

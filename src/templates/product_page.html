@@ -6,7 +6,7 @@
     <meta name="keywords" content="nome prodotto,nome prodotto+autore,negozio ecc.. qualche altra roba">
     <meta name="description" content="pagina riguardante prodotto xyz del negozio Fandomia">
     <title>ProductName</title>
-    <link rel="stylesheet" href="../assets/css/product_page_style.css">
+    <link rel="stylesheet" href="../assets/css/productpage.css">
 </head>
 
 <body>
@@ -20,9 +20,11 @@
             </ul>
         </nav>
         <section class="Dettagli">
-        <h2>Dettagli del prodotto</h2>
+        <h2>{{name}}</h2>
             <dl id="ProductName-details">
-                    <img src="" class="img" alt="nome e descrizione prodotto">
+                    <div class="item-image">
+                        <picture><img src="assets/images/products/{{id}}.jpg" alt={{alt}} ></picture>
+                    </div>
                     <h3>Dettagli:</h3>
                     <dl class="details">
                         <dt>Titolo :</dt><dd>{{name}}</dd>
