@@ -1,6 +1,7 @@
 <?php 
 
 require_once("./lib/global.php");
+require_once("./lib/DBController.php");
 require_once("header.php");
 require_once("footer.php");
 
@@ -33,7 +34,8 @@ echo($reservationTemplate);
 
 function retrieveReservationList() : string {
 $reservationList = "";
-$connection = getConnection();
+$connection = new DBconnection;
+$connection ->  setConnection();
 
 $user = $_SESSION['loggedUser'];
 
@@ -42,18 +44,17 @@ $query = "SELECT * , Reservation.id as reservation_id , Reservation.notes
                on (Reservation.product_id = Products.id)
           where username = '$user'
           order by reservation_date";
-$result = $connection -> query($query);
-if ($result->num_rows > 0) {
+$result = $connection -> queryDB($query);
+if (count($result) > 0 ) {
     $reservationList = "<ul>";
-    $records = $result -> fetch_all(MYSQLI_ASSOC);
-    foreach ($records as $record) {
+    foreach ($result as $record) {
         echo($record['notes']);
         $reservation_card_template = new Template();
         $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
         $reservationList .= $reservation_card_template;
     }
     $reservationList .= "</ul>";
-} elseif ($result->num_rows == 0) {
+} elseif (count($result) == 0) {
     $reservationList = "<p>Non è presente nessuna prenotazione!</p>";
 }
 return $reservationList;
