@@ -51,14 +51,15 @@
             if ($result) {
                 $message = "La prenotazione è stata modificata con successo!";
                 $_SESSION['message'] = $message;
-                header("Location: ../reservationList.php");
-                exit();
             } else {
                 $error = "Modifica della prenotazione non andata a buon fine";
                 $_SESSION['errors'] = $error;
-                header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id);
-                exit();
             }
+        //Indipendentemente dal successo o meno del tentativo di modifica, l'utente viene re-indirizzato
+        //alla lista delle sue prenotazioni, ove visualizzerà la prenotazione modificata o potrà fare
+        //un nuovo tentativo di modifica    
+            header("Location: ../reservationList.php");
+            exit();
         }
         //Altrimenti se è presente solo il codice identificativo del prodotto,
         //l'utente sta tentando per la prima volta di effettuarne le prenotazione
@@ -128,9 +129,16 @@
             }
             header("Location: ../reservationList.php");
             exit();
-        } 
-    
-    function checkProductAvalaibility(string $product_id) : bool {
+        }
+        //Non è presente il codice del prodotto da prenotare, ne il codice identificativo di
+        //una prenotazione da cancellare, quindi probabilmente c'è stato un problema di reperimento di
+        //una risorsa; che ci stia reindirizzamento ad una pagina 404/505 ?
+           else  {
+
+            header("Location:../404.php");
+            exit();
+        }
+        function checkProductAvalaibility(string $product_id) : bool {
         $connection = getConnection();
         $checkQuery = "SELECT * 
                        from Products
