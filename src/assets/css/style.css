@@ -236,8 +236,10 @@ section ul {
     width: 100%;
     max-width: 200px;
     padding: 15px;
-    margin: 15px;
-    margin-bottom : 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
@@ -272,7 +274,6 @@ section ul {
 
 /* Stile per le informazioni del prodotto */
 .item-info dl {
-    width:220px;
     display: flex;
     flex-wrap: wrap;
     font-size: 0.9em;
@@ -281,14 +282,13 @@ section ul {
 }
 
 .item-info dt {
-    width: 100px;
+    width: 50%;
     font-weight: bold;
     margin-bottom: 5px;
-    margin-left: 5px;
 }
 
 .item-info dd {
-    width: 100px;
+    width: 50%;
     margin-bottom: 5px;
     margin-left: 0;
 }

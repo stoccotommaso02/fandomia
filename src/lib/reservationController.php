@@ -1,84 +1,65 @@
 <?php 
 
-    require_once('global.php');
-    require_once('DBController.php');
+/* Step logici:
+   - Controllare che l'utente abbia i grants per effettuare la prenotazione;
+   - Controllare la presenza degli input necessari;
+   - Fare la pulizia dei suddetti input;
+   - Fare i controlli logici sui suddetti input (ad es. non si può
+     prenotare il ritiro di un prodotto in una data antecedente al suo arrivo!);
+   - Salvare la prenotazione nel DB;
+   - Reindirizzare l'utente alla pagina che stava visualizzando precedentemente,
+     visualizzando un messaggio di conferma dell'avvenuta prenotazione;
+  Scenario alternativo:
+  - Visualizzare messaggio d'errore nel caso in cui la prenotazione non sia andata
+    a buon fine; */
 
-    $product_id = $withdrawDate = $withdrawTime = $notes = '';
-    $errors = array();
+    require_once('global.php');
+
+    $product_id = $withdrawDate = $withdrawTime = $notes = $errors = '';
+    $connection = getConnection();
 
     if(!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] == null ) {
-        $_SESSION['errors'] = "Effettuare il login per effettuare una prenotazione";
+        $_SESSION['errors'] = "Effettuare il login per visualizzare la lista delle prenotazioni";
         header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
         exit();
     }
-    if (isset($_POST['product_id'])) {
-
-        $product_id = sanitizeString($_POST['product_id']);
+    if (isset($_GET['product_id'])) {
+        $product_id = sanitizeString($_GET['product_id']);
         $withdrawDate = sanitizeString($_POST['data_ritiro']);
         $withdrawTime = sanitizeString($_POST['fascia_oraria']);
         $notes = sanitizeString($_POST['notes']);
-
-        if(!empty(validate_withdraw_date($withdrawDate)))
-            $errors[] = validate_withdraw_date($withdrawDate);
-
-        if(!empty(validate_withdraw_time($withdrawTime)))
-            $errors[] = validate_withdraw_time($withdrawTime);
-
-        if ($notes && !empty(validate_notes($notes)))
-            $errors[] = validate_notes($notes);
-
-        if (empty($errors)) {
-        //Se c'è un numero di prenotazione nell'array POST, l'utente vuole modificare una
-        //prenotazione già esistente
-        if (isset($_POST['reservation_id']))   {
-            $userEmail = $_SESSION['loggedUser'];
-            try {
-                $connection = new DBconnection;
-                $connection -> setConnection();
-
-                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                $updateQuery = "UPDATE Reservation
-                                SET reservation_date = '{$_POST['data_ritiro']}',
-                                    reservation_time = '{$_POST['fascia_oraria']}',
-                                    notes = '{$_POST['notes']}'
-                                WHERE Reservation.id = {$_POST['reservation_id']}" ;
-                $result = $connection -> alterQueryDB($updateQuery);
-            }
-            catch (Exception $e) {
-                echo("Database problem : " . $e->getMessage());
-                exit();
-            }
-            if ($result) {
-                $message = "La prenotazione è stata modificata con successo!";
-                $_SESSION['message'] = $message;
-                header("Location: ../reservationList.php");
-                exit();
-            } else {
-                $error = "Modifica della prenotazione non andata a buon fine";
-                $_SESSION['errors'] = $error;
-                header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id);
-                exit();
-            }
+    
+        if ($withdrawDate == '' || $withdrawTime == '') {
+            $error = 'Alcuni campi mancanti!';
+            $_SESSION['errors'] = $error;
+            header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
+            exit();
         }
-        //Altrimenti se è presente solo il codice identificativo del prodotto,
-        //l'utente sta tentando per la prima volta di effettuarne le prenotazione
-        else if (isset($_POST['product_id']))   {
+        else {
             if (!checkProductAvalaibility($product_id)) {
-                $errors[] = 'Prodotto non disponibile!';
-                $_SESSION['errors'] = $errors;
+                $error = 'Prodotto non disponibile!';
+                $_SESSION['errors'] = $error;
                 header("Location: ../prenotazioneRitiro.php?product_id=" . urlencode($product_id));
                 exit();
-            }   else    {
-         
+            }   else { 
+                    $withdrawCheck = checkWithdrawDate($product_id , $withdrawDate);
+                    if (!$withdrawCheck['avalaibility']) {
+                /* Nell'errorMessage posso indicare esplicitamente la data dalla quale il prodotto
+                sarà disponibile */
+
+                        $errorMessage = "La data di ritiro deve essere posteriore al " . $withdrawCheck['product_release_date'];
+                        $_SESSION['errors'] = $errorMessage;
+                        header("Location: ../prenotazioneRitiro.php?error=" . urlencode("DataAnteriore") . "&product_id=" . urlencode($product_id));
+                        exit();
+                }   else {
+                        $reservationDate = $withdrawDate;
+                        $reservationTime = $withdrawTime;
                         $userEmail = $_SESSION['loggedUser'];
                         try {
-                            $connection = new DBconnection;
-                            $connection -> setConnection();
-
                             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                             $insertionQuery = "INSERT into Reservation(product_id,username,reservation_date,reservation_time,notes)
-                                               values('$product_id','$userEmail','$withdrawDate','$withdrawTime','$notes')";
-                            $result = $connection -> alterQueryDB($insertionQuery);
+                                               values('$product_id','$userEmail','$reservationDate','$reservationTime','$notes')";
+                            $result = $connection -> query($insertionQuery);
                         }
                         catch (Exception $e) {
                             echo("Database problem : " . $e->getMessage());
@@ -97,39 +78,31 @@
                         }
                 }
             }   
-        
-
-        $_SESSION['errors'] = $errors;
-        header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id );
-        exit(); 
         }
     }
-    //Se non è presente il codice identificativo del prodotto e il valore del campo submit è la stringa :"cancella_prenotazione",
-    // l'utente sta provando ad eliminare una prenotazione
-       else    if ($_POST['submit'] == 'cancella_prenotazione') {
-            $reservation_id = sanitizeString($_POST['reservation_id']);
-            $connection = new DBconnection;
-            try {
-                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                $deletionQuery = "DELETE from Reservation where id = {$reservation_id}";
-                $connection ->setConnection();
-                $result = $connection -> alterQueryDB($deletionQuery);
-            }
-            catch (Exception $e) {
-                echo("Database problem : " . $e->getMessage());
-                exit();
-            }
-            if ($result) {
-                $message = "La prenotazione è stata cancellata con successo!";
-                $_SESSION['message'] = $message;
-            } else {
-                $error = "Non è stato possibile cancellare la prenotazione";
-                $_SESSION['errors'] = $error;
-            }
-            header("Location: ../reservationList.php");
-            exit();
-        } 
     
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $reservation_id = sanitizeString($_POST['reservation_id']);
+        try {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $deletionQuery = "DELETE from Reservation where id = {$reservation_id}";
+            $result = $connection -> query($deletionQuery);
+        }
+        catch (Exception $e) {
+            echo("Database problem : " . $e->getMessage());
+            exit();
+        }
+        if ($result) {
+            $message = "La cancellazione è stata cancellata con successo!";
+            $_SESSION['message'] = $message;
+        } else {
+            $error = "Non è stato possibile cancellare la prenotazione";
+            $_SESSION['errors'] = $error;
+        }
+        header("Location: ../reservationList.php");
+        exit();
+    }
+
     function checkProductAvalaibility(string $product_id) : bool {
         $connection = getConnection();
         $checkQuery = "SELECT * 
@@ -165,34 +138,4 @@
         }
     }
     
-    function validate_withdraw_date(string $date) : string {
-        if ($date == "") {
-            return "Nessuna data inserita per il ritiro";
-        }   else if (!validateDate($date))  {
-            return "La data inserita non è valida";
-        }
-        return "";
-    }
-
-    function validate_withdraw_time(string $time_interval) : string {
-        if ($time_interval == "")   {
-            return "Nessuna fascia oraria indicata per il ritiro";
-        }   else if (!preg_match("/^\d{2}:\d{2}-\d{2}:\d{2}$/",$time_interval))   {
-            return "La fascia oraria indicata non è valida";
-        }
-        return "";
-    }
-    
-    function validate_notes(string $note) : string {
-        if (!preg_match("/^.{0,140}$/",$note))   {
-            return "Le note inserite non possono eccedere i 140 caratteri";
-        }
-        return "";
-    }
-
-    function validateDate($date, $format = 'Y-m-d')
-{
-    $d = DateTime::createFromFormat($format, $date);
-    return $d && $d->format($format) == $date;
-}
-?> 
+?>

@@ -37,24 +37,17 @@ class DBconnection {
         return $this-> isConnected;
     }
     /* Da modificare con dei prepared statements, più sicuri rispetto alla SQL injection*/
-    /* metodo per effettuare query di Selezione ,le quali restituiscono un oggetto mysqli_result*/
     function queryDB(string $query) : array  {
         $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
         $result = array();
-                if (mysqli_num_rows($queryResult) > 0 )  {
-                while( $row = mysqli_fetch_assoc($queryResult) )    {
+            if(mysqli_num_rows($queryResult) !=0 )  {
+                while( $row = mysqli_fetch_assoc($queryResult) ){
                     array_push($result,$row);
                 }
+                $queryResult ->free(); 
+                DBconnection::destroyConnection();
             }   
-                $queryResult->free();
-                $this->destroyConnection();
-                return $result;
-            }  
-    /* metodo per effettuare query di operazioni CRUD; di default, mysqli restituisce un booleano*/
-    function alterQueryDB(string $query) : bool {
-        $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
-        $this->destroyConnection();
-        return $queryResult;
+            return $result;
     }
 
     function destroyConnection() : bool {
