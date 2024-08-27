@@ -28,16 +28,11 @@ Dubbi :
 - Come fare la classe di sanificazione dei dati? Tramite uno switch?
   Quanti sono i possibili controlli ? Quante le possibili tipologie di dati inseriti 
   (dati di registrazione, login, prenotazione)?
-- Cosa accomuna tutti i template (costruzione header, footer, dati dinamici)?
-- Quali metodi deve rendere disponibile la classe DB (creazione connessione,
-  query, visualizzazione errori di connessione/query, verifica effettica connessione,
-  chiusura della stessa)?
-- Nella reservationList, si potrebbero visualizzare le prenotazioni sotto forma tabellare
-  in modo da avere un esempio di tabella accessibile? 
+- Come gestire la paginazione di una lista di prodotti filtrati?Come "salvo" i filtri eventualmente
+  applicati in precedenza?
 - Come si creano URL di più livelli?
 - Come gestire le differenti azioni dell' header a seconda dello stato dell'utente 
   (utente loggato/qualsiasi)?
-- Come effettuare la ricerca di un prodotto? Ci sta mettere dei filtri nella pagina dei risultati?
 
 Possibili soluzioni:
 - Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];

@@ -1,8 +1,22 @@
 <?php
 
 require_once("./global.php");
+require_once("./DBController.php");
 
-if (isset($_POST['userEmail'])) {
+if(isset($_SESSION['loggedUser'])) {
+  $error = "Per un nuovo login,effettuare prima il logout!";
+  $_SESSION['errors'] = $error;
+  header("Location: ../index.php");
+  exit();
+}
+
+if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
+  $error = "Non sono stati compilati tutti i campi!";
+  $_SESSION['errors'] = $error;
+  header("Location: ../login.php");
+  exit();
+}
+
  $user = sanitizeString($_POST['userEmail']);
  $pass = sanitizeString($_POST['password']);
 
@@ -12,29 +26,35 @@ if (isset($_POST['userEmail'])) {
      header("Location: ../login.php");
      exit();
 } else  {
- $result = queryMySQL("SELECT username,password FROM Users
- WHERE username='$user' AND password='$pass'");
- if ($result->num_rows == 0)  {
+ $connection = new DBconnection;
+ $connection -> setConnection();
+ $result = $connection -> queryDB("SELECT username,password 
+                                   FROM Users
+                                   WHERE username='$user' AND password='$pass'");
+ if (empty($result))  {
    $error = "Credenziali non corrette";
    $_SESSION['errors'] = $error;
    header("Location: ../login.php");
    exit();
  } else  {
    $_SESSION['loggedUser'] = $user;
+   //Da migliorare la redirection, farla per qualsiasi pagina precedente?
+   //Guardare commento a piè pagina
    if(isset($_POST['redirect_url']) && $_POST['redirect_url'] != null)   {
     header("Location:../prenotazioneRitiro.php?product_id=" . $_POST['redirect_url']);
-   }  else  {
+   }  else if (isset($_SESSION['previous_url']))  {
+    $previous_url = $_SESSION['previous_url'];
+    unset($_SESSION['previous_url']);
+    header("Location:../$previous_url");
+    exit();
+   }
+     else  {
    header("Location: ../index.php");
+   exit();
    }
   }
  }
-}
 
- function queryMySql(string $query) {
-    $connection = getConnection();
-    $result = $connection->query($query);
-    return $result;
- }
 /* La prof in classe ha detto che sarebbe bene, quando ci si logga/registra, essere reindirizzato
 non di default alla homePage, ma alla pagina in cui si era prima; decidere se farlo! Il modo che ho trovato è che
 venga salvato $_SESSION['last_page'] = $_SERVER['REQUEST_URI'] e poi :

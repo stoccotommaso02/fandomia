@@ -11,6 +11,7 @@ $reservationList = '';
 if (!isset($_SESSION['loggedUser'])) {
     $error = "Devi prima loggarti per visualizzare la lista delle tue prenotazioni";
     $_SESSION['errors'] = $error;
+    $_SESSION['previous_url'] = "reservationList.php";
     header("Location: login.php");
     exit();
 }
@@ -23,7 +24,7 @@ if (isset($_SESSION['message'])) {
 $reservationList .= retrieveReservationList();
 
 $reservationTemplate = new Template();
-$reservationTemplate = $reservationTemplate->render("areaPersonale.html",array('header' => $headerTemplate,
+$reservationTemplate = $reservationTemplate->render("reservation_list.html",array('header' => $headerTemplate,
                                                                                'area_personale' => "Lista prenotazioni",
                                                                                'contenutoAreaPersonale' => $reservationList,
                                                                                'footer' => $footerTemplate));
@@ -36,7 +37,7 @@ $connection = getConnection();
 
 $user = $_SESSION['loggedUser'];
 
-$query = "SELECT * , Reservation.id as reservation_id
+$query = "SELECT * , Reservation.id as reservation_id , Reservation.notes
           from Reservation join Products
                on (Reservation.product_id = Products.id)
           where username = '$user'
@@ -46,6 +47,7 @@ if ($result->num_rows > 0) {
     $reservationList = "<ul>";
     $records = $result -> fetch_all(MYSQLI_ASSOC);
     foreach ($records as $record) {
+        echo($record['notes']);
         $reservation_card_template = new Template();
         $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
         $reservationList .= $reservation_card_template;
