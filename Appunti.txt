@@ -1,9 +1,8 @@
 Appunti delle cose da fare :
-- dividere per classi le differenti responsabilità :
-  ° una classe che si occupi solo della connessione;
-  ° una classe che crei i template;
-  ° una classe che si occupi della sanificazione dei dati;
-- Gestire meglio la creazione degli URL;
+- Arricchire il form di prenotazione?
+ ° Aggiungere metodo di pagamento e/o quantità da ordinare;
+- Arrichire il form di registrazione?
+ ° Aggiungere nome,cognome, carta di debito, data di nascita ?
 - Gestire meglio la creazione dell'header;
 - Studiare una migliore soluzione per gli errori in fase di
   login/registrazione/prenotazione (in particolare trattarli in maniera consistente);
@@ -28,23 +27,16 @@ Dubbi :
 - Come fare la classe di sanificazione dei dati? Tramite uno switch?
   Quanti sono i possibili controlli ? Quante le possibili tipologie di dati inseriti 
   (dati di registrazione, login, prenotazione)?
-- Come gestire la paginazione di una lista di prodotti filtrati?Come "salvo" i filtri eventualmente
-  applicati in precedenza?
-- Come si creano URL di più livelli?
 - Come gestire le differenti azioni dell' header a seconda dello stato dell'utente 
   (utente loggato/qualsiasi)?
 
-Possibili soluzioni:
-- Per trasmettere errori/messaggi dal server al browser, usare $_SESSION['errors'];
+
 
 Programma del giorno 15/08/2024 : 
-- Encryption password;
 - Migliorare/codificare ove necessario gestione eccezioni/errori;
 - Considerare tutti i casi in cui possono avvenire errori;
 - Migliorare la sanificazione dei dati (?);
 - Sistemare il bottone di richiesta prenotazione;
-- Aggiungere in DB nuovi prodotti per finire la logica della homePage;
-- Aggiungere un'immagine (?);
 
 Appunti per CSS : 
 - Gli elementi principali a cui doversi dedicare (cioè che avranno 
