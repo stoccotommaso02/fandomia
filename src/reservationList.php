@@ -12,7 +12,6 @@ $reservationList = '';
 if (!isset($_SESSION['loggedUser'])) {
     $error = "Devi prima loggarti per visualizzare la lista delle tue prenotazioni";
     $_SESSION['errors'] = $error;
-    $_SESSION['previous_url'] = "reservationList.php";
     header("Location: login.php");
     exit();
 }
@@ -25,7 +24,7 @@ if (isset($_SESSION['message'])) {
 $reservationList .= retrieveReservationList();
 
 $reservationTemplate = new Template();
-$reservationTemplate = $reservationTemplate->render("reservation_list.html",array('header' => $headerTemplate,
+$reservationTemplate = $reservationTemplate->render("areaPersonale.html",array('header' => $headerTemplate,
                                                                                'area_personale' => "Lista prenotazioni",
                                                                                'contenutoAreaPersonale' => $reservationList,
                                                                                'footer' => $footerTemplate));
@@ -39,7 +38,7 @@ $connection ->  setConnection();
 
 $user = $_SESSION['loggedUser'];
 
-$query = "SELECT * , Reservation.id as reservation_id , Reservation.notes
+$query = "SELECT * , Reservation.id as reservation_id
           from Reservation join Products
                on (Reservation.product_id = Products.id)
           where username = '$user'

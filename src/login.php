@@ -23,7 +23,7 @@ if (isset($_SESSION['errors'])) {
     }
        
 }
-if (isset($_SESSION['url'])) echo($_SESSION['url']);
+
 $header = buildHeader();
 
 $redirect_url=$_GET['redirect_url'] ? $_GET['redirect_url'] : '';

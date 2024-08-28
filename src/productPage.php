@@ -8,17 +8,33 @@ require_once("footer.php");
 $header = buildHeader();
 $footer = buildFooter();
 
-if (!isset($_POST['product_id']) || $_POST['product_id'] == null ) {
+if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
     header("Location: index.php");
     exit();
 } else {
-    $product_id = sanitizeString($_POST['product_id']); 
-    $product_type = sanitizeString($_POST['product_type']);
-
-    $productTable = "";
-
+    $product_id = sanitizeString($_GET['product_id']);
     $connection = new DBconnection();
     $connection -> setConnection();
+
+    try {
+    $result = $connection->queryDB("SELECT *
+    FROM Products
+    WHERE id = $product_id");
+    }
+    catch(Exception $e){
+        echo("Database problem: " . $e->getMessage());
+        exit();
+    }
+
+    if(count($result) != 1){
+        header("Location: 404.php");
+        exit();
+    }
+
+    $row = $result[0];
+    $product_type = $row["product_type"];
+    $productTable = "";
+    $category = $product_type;
 
     switch ($product_type)  {
         case "book":
@@ -40,6 +56,9 @@ if (!isset($_POST['product_id']) || $_POST['product_id'] == null ) {
     }
     
     try {
+        $connection = new DBconnection();
+        $connection->setConnection();
+
         $productQuery = "SELECT *
         FROM Products join $productTable on Products.id  = $productTable.id
         WHERE Products.id = $product_id";
@@ -47,6 +66,8 @@ if (!isset($_POST['product_id']) || $_POST['product_id'] == null ) {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $results = $connection -> queryDB($productQuery);
         }  catch (Exception $e) {
+            echo("$product_type");
+            echo("$productTable");
             echo("Database problem : " . $e->getMessage());
             exit();
         }
@@ -75,6 +96,7 @@ foreach ($record as $key => $value) {
                                                                                     "status" => $record['status'],
                                                                                     "release_date" => $record['release_date'],
                                                                                     "price" => $record['price'],
+                                                                                    "category" => $category,
                                                                                     "footer" => $footer));
             echo($productTemplate);
           }

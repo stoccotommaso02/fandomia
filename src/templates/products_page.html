@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="fandomia,fumetti,videogiochi,Padova,libri,musica">
         <title>Fandomia</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/productlist.css">
         <link rel="stylesheet" href="assets/css/print.css" media="print">
     </head>
     <body>
         {{header}}
         <nav aria-label="breadcrumb" class="breadcrumb">
-            <p>Ti trovi in :</p>
+            <p>Ti trovi in: </p>
               <ul>
                 <li><a href="index.php" lang="en">Home</a></li>
                 <li><span aria-current="page">{{products}}</span></li>
@@ -19,8 +19,6 @@
             </nav>
         <main class="products_page">
             {{products_list}}
-            {{pagination_links}}
-            <a href="#top">Torna all'inizio</a>
         </main>
         {{footer}}
     </body>

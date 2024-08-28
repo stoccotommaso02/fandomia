@@ -9,21 +9,16 @@ di registrazione; useremo poi un signUpController che si occupa
 di gestire i dati submittati dal form */
 $header = buildHeader();
 $footer = buildFooter();
-$errors_list = '';
+$errorMessage = '';
 
 if (isset($_SESSION['errors'])) {
-    $errors = $_SESSION['errors'];
-    $errors_list = '<ul>';
-    foreach($errors as $error){
-        $errors_list .= '<li>'.$error.'</li>';
-        }
-        $errors_list .= '<ul>';
+    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
     unset($_SESSION['errors']);
 } 
 
 $signUpForm = new Template();
 $signUpForm = $signUpForm -> render('signup.html',array("header" => $header,
-                                                        "errors" => $errors_list,
+                                                        "errors" => $errorMessage,
                                                         "footer" => $footer));
 
 echo($signUpForm);

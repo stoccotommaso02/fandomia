@@ -1,57 +1,25 @@
-/* Stile di base per il main */
-main {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
+@import "style.css";
 
-/* Breadcrumb */
-.breadcrumb {
-    margin-bottom: 20px;
-}
-
-.breadcrumb ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.breadcrumb li {
-    margin-right: 5px;
-}
-
-.breadcrumb a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.breadcrumb a:hover {
-    color: #0056b3;
-}
-
-.breadcrumb span {
-    color: #6c757d;
-}
 
 /* Sezione dettagli prodotto */
 section.Dettagli {
     display : flex;
-    flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
+    flex-direction: column;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto;
+    margin: 1em;
+    max-width: 90%;
 }
 
 section.Dettagli h2  {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
     color: #333;
+}
+
+.img{
+    background-image: url(); /*insert image path or url; la prof. Gaggi dice nelle slide che teoricamente è più opprtuno (?)*/
+    background-color: #badff8;
 }
 
 #ProductName_details {
@@ -68,12 +36,16 @@ section.Dettagli h2  {
 
 dl.details {
 	display:flex;
-    width: 320px;
+    flex-direction: column;
+    width: auto;
     flex-wrap:wrap;
+
 }
 
+/*trovare una soluzione per alternare i colori della lista dl?*/
+
+
 .details dt {
-    width : 120px;
     font-weight: bold;
     font-size: 1.2em;
     color: #007bff;
@@ -83,38 +55,47 @@ dl.details {
 }
 
 .details dd {
-    width : 150px;
     margin-left: 30px;
     margin-bottom: 10px;
 }
 
 /* Stile per il pulsante di prenotazione */
 form {
-    text-align: center;
+    text-align: right;
     margin-top: 20px;
 }
 
-button {
-    background-color: #007bff;
+#buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#book_button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
     color: #fff;
+    background-color: var(--headerBackgroundColor);
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: underline;
 }
 
-button:hover {
-    background-color: #0056b3;
+#book_button:hover {
+    background-color: var(--accentColor);
 }
 
-button:active {
+#book_button:active {
     background-color: #004494;
 }
 
+
 /* Responsive */
-@media (max-width: 760px) {
+/* @media (max-width: 760px) {
     main {
         padding: 15px;
     }
@@ -145,7 +126,8 @@ button:active {
         font-size: 1.2em;
         padding: 15px;
     }
-}
+} */
+
 /*
 @media (min-width: 760px) {
     section.Dettagli {

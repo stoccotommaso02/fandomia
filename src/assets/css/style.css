@@ -10,119 +10,88 @@
 /* Registration_form */
 /* Single_product_page */
 
+/*///////////////////
+// GLOBAL SETTINGS //
+///////////////////*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --headerBackgroundColor: #013020;
+    --headerTextColor: #FFFFFF;
+    --accentColor: #F9690E;
+    --backgroundColor: #EEEEEE;
+    --textColor: #000000;
+    --linkColor: #0000EE;
+    --visitedLinkColor: #800080;
+    --fontFamily: "Roboto Condensed", sans-serif;
+}
+
+:link {
+    color: var(--linkColor);
+}
+
+:visited {
+    color: var(--visitedLinkColor);
+}
+
 html {
-    height : 100%;
+    margin: auto;
+    font-size: 100%;
+    line-height: 1.5em;
+    font-family: var(--fontFamily);
 }
 
 body {
-    height : 100vh;
+    height : 100%;
     display : flex;
     flex-direction : column;
+    min-height: 100vh;
+}
+
+/*////////////////////
+////    HEADER    ////
+////////////////////*/
+
+header {
+    z-index: 1;
+    top: 0;
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+}
+
+@supports (position: sticky) {
+    header {
+        position: sticky;
+    }
+}
+
+.logo_icon_wrapper img{
+    width: 80px;
 }
 
 header > div {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-
+    justify-content: space-around;  
+    padding: 10px 10px 20px 10px;       
 }
 
-nav.breadcrumb  {
-     display: flex;
-    }
-
-nav.breadcrumb ul li {
-    display: inline;
-    list-style-type: none;
-}
-    
-nav.breadcrumb li:not(:first-child)::before { 
-    content: "> ";
+header search {
+    flex-grow: 0.8;
 }
 
-#menu > ul {
-    display : flex;
-    direction: row;
-    justify-content: start;
-}
-
-#menu  ul li {
-    list-style: none;
-    margin-right : 1.8em; 
-}
-
-main {
+header search form {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: static;
 }
 
-
-/*
-section {
-    width : 90%;
-}
-
-section > ul {
-    display : flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-section ul li {
-    list-style: none;
-}
-
-.card {
-    display: flex;
-    flex-direction: column;
-    border : solid black 1px;
-}
-
-.products_page {
-    display: flex;
-    flex-direction: row;
-}
-
-aside {
-    align-self: flex-start;
-}
-
-.products_list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap : 10px;
-}
-
-dl {
-    display : grid;
-    grid-template-columns: repeat(2, 1fr);
-} */
-
-/*------Form------*/
-/* Stile di base per il form, probabilmente
-   meglio se fosse un display:wrap */
-form {
-    max-width: 1000px;
-    display : wrap;
-    flex-wrap : wrap;
-    margin: 0 auto; /* Centra il form nella pagina */
-    padding: 0px;
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Stile per label */
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Stile per gli input */
-input {
+header search form input {
+    flex-grow: 3;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -130,178 +99,195 @@ input {
     width: 100%;
 }
 
-/* Disposizione orizzontale per schermi più larghi */
-@media (min-width: 768px) {
-    .form-group {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    label {
-        margin-bottom: 0;
-        margin-right: 15px;
-        width: 150px;
-        text-align: right;
-    }
-
-    input, textarea, select {
-        flex: 1;
-    }
-}
-
-/* Pulsante di invio */
-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
+header search form button {
+    flex-grow: 0;
+    width: 8%;
     font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
+    font-weight: 500;
+    color: black;
+    text-transform: capitalize;
+    letter-spacing: 0.1em;
+    background-color:var(--accentColor);
     border: none;
     border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
+    min-width: 100px;
 }
 
-form button:hover {
-    background-color: #0056b3;
+#wishList {
+    font-size: x-large;
+    padding: 0.5em 1em;
 }
 
-/*-------Card-------*/
-/* Stile di base per la lista */
-
-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
+#loginForm {
+    font-size: x-large;
+    padding: 0.5em 1em;
 }
 
-/* Stile di base per la card */
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+#areaPersonale {
+    font-size: x-large;
+    padding: 0.5em 1em;
+}
+
+
+#menu > ul {
+    display : flex;
+    direction: row;
+    margin: 1em;
+    justify-content: space-around;
+}
+
+#menu ul li {
     width: 100%;
-    max-width: 300px;
-    margin: 15px;
-    margin-bottom : 15px;
-    padding: 0px;
+    text-align: center;
+    list-style: none;
+}
+
+#menu ul li a {
+    font-size: x-large;
+    width: 100%;
+    padding: 0.5em 1em;
+}
+
+header a:link {
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    text-decoration: underline;
+}
+
+header a:visited{
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: bottom;
+}
+
+header a:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+header a:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+/*////////////////////
+////  BREADCRUMB  ////
+////////////////////*/ 
+
+nav.breadcrumb  {
+    padding: 0.5em;
+    display: flex;
+    background-color: var(--backgroundColor);
+   }
+
+nav.breadcrumb ul li {
+   display: inline;
+   list-style-type: none;
+   font-weight: bold;
+}
+
+.breadcrumb li:not(:first-child)::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-image: url('../images/breadcrumb-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+  }
+
+/*////////////////////
+////     MAIN     ////
+////////////////////*/ 
+
+main {
+    flex: 1;
+    background-color: var(--backgroundColor);
+    padding-bottom: 1em;
+}
+
+main > * {
+    max-width: 1400px;
+}
+
+/*////////////////////
+////    FOOTER    ////
+////////////////////*/ 
+
+footer{
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+    max-width:100%;
+    /*margin-top: 10px; */
+    padding-top: 1em;
+}
+
+.contact_info{
     display: flex;
     flex-direction: column;
-    align-items : center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Stile per il titolo del prodotto */
-.card h2 {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #333;
-}
-
-/* Stile per l'immagine del prodotto */
-.item-image picture {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-}
-
-.item-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-/* Stile per le informazioni del prodotto */
-.item-info dl {
-    width:220px;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    color: #555;
-}
-
-.item-info dt {
-    width: 100px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-
-.item-info dd {
-    width: 100px;
-    margin-bottom: 5px;
-    margin-left: 0;
-}
-
-/* Stile per i pulsanti di azione */
-.item-actions {
-    display: wrap;
-
-    justify-content: space-between;
-    max-width: 150px;
-
-}
-
-.item-actions form {
-    flex: 1;
-    margin: 5px;
-}
-
-.item-actions button {
-    width: 100%;
     padding: 10px;
-    font-size: 0.9em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    align-items: center;
+    gap: 1em;
 }
 
-.item-actions button:hover {
-    background-color: #0056b3;
+.contact_info dd {
+    display: inline;
 }
 
-.item-actions button:active {
-    background-color: #004494;
+.contact_info dd a{
+    color: #FFFFFF;
+    font-size: large;
+    width: 100%;
+    padding: 0.5em 1em;
+    transition: color 0.3 ease;
 }
 
-/* Punto di rottura per dispositivi mobili (max 760px) */
+.contact_info a::before {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+}
+
+.contact_info a[href*="facebook.com"]::before {
+    background-image: url("../images/facebook.png");
+}
+
+.contact_info a[href*="x.com"]::before {
+    background-image: url("../images/x.png");
+}
+
+.contact_info a[href*="instagram.com"]::before {
+    background-image: url("../images/instagram.png");
+}
+
+.contact_info a::hover::before {
+    filter: brightness(0.8);
+}
+
+
+.contact_info dd a:hover{
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+.signature{
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+
 @media (max-width: 760px) {
-    ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .card {
-        width: 90%;
-        max-width: 100%;
-    }
+    header
 }
-
-/* Punto di rottura per schermi desktop (min 760px) */
-@media (min-width: 760px) {
-    ul {
-        justify-content: flex-start;
-    }
-
-    .card {
-        flex-basis: calc(33.33% - 30px);
-        max-width: none;
-    }
-}
-/*-------Fine card-------*/
