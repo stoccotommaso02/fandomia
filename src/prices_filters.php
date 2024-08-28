@@ -38,4 +38,3 @@ $prices = array("1-2","2-3");
     print_r($types);
     print_r($params);
 
-?>

@@ -54,4 +54,3 @@ function searchList(string $searchParam) : array {
     return $searchResult;
 }
 
-?>

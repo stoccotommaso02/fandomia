@@ -59,4 +59,4 @@ function jaro($str1, $str2) {
         (($matches / $str1_len) + ($matches / $str2_len) + (($matches - $transpositions / 2) / $matches)) / 3.0
     );
 }
-?>
+

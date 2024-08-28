@@ -13,4 +13,3 @@ function destroySession() : bool {
     $_SESSION = array();
     return session_destroy();
 }
-?>

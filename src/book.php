@@ -18,4 +18,3 @@ foreach($jsonBooks as $jsonBook) {
         exit();
     }
 }
-?>

@@ -62,4 +62,3 @@ $next_items_template = $next_items_template->render("nextItems.html",array("head
 
 echo($next_items_template);
 
-?>

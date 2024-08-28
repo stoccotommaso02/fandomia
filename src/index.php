@@ -112,4 +112,3 @@ function getSaleItems() : string {
     return $saleItems;
 };
 
-?>

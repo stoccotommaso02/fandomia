@@ -62,4 +62,3 @@ $sale_items_template = $sale_items_template->render("saleItems.html",array("head
 
 echo($sale_items_template);
 
-?>

@@ -85,4 +85,3 @@ $searchTemplate = $searchTemplate -> render('searchResult.html',array("header" =
                  
 echo ($searchTemplate);
 
-?>

@@ -145,4 +145,3 @@ $products_page_template = $products_page_template->render("products_page.html",a
                                                                                      "products_list" => $products_list,
                                                                                      "footer" => $footer));
 echo($products_page_template);
-?>

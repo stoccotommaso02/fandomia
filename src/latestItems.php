@@ -65,4 +65,3 @@ $latest_item_template = $latest_item_template->render("latestItems.html",array("
 
 echo($latest_item_template);
 
-?>

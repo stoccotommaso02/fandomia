@@ -38,4 +38,3 @@ $loginTemplate = $loginTemplate->render("login.html",array('header' => $header,
 
 echo($loginTemplate);
 
-?>

@@ -15,4 +15,3 @@ function buildHeader() : string {
     return $headerTemplate;
 }
 
-?>

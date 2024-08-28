@@ -103,4 +103,3 @@ foreach ($record as $key => $value) {
         }  
 }
 
-?>

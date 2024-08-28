@@ -62,4 +62,3 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
 
 echo($reservationTemplate);
 
-?>

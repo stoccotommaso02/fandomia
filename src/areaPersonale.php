@@ -14,4 +14,3 @@ $areaPersonaleTemplate = $areaPersonaleTemplate -> render("areaPersonale.html",a
                                                                                      "footer" => $footer));
 
 echo($areaPersonaleTemplate);
-?>

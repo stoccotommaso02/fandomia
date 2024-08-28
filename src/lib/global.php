@@ -29,5 +29,3 @@ $var = htmlentities($var);
 $var = stripslashes($var);
 return $var;
 }
-
-?>
