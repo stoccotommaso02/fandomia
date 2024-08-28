@@ -30,13 +30,12 @@ Dubbi :
 - Come gestire le differenti azioni dell' header a seconda dello stato dell'utente 
   (utente loggato/qualsiasi)?
 
-
-
-Programma del giorno 15/08/2024 : 
-- Migliorare/codificare ove necessario gestione eccezioni/errori;
-- Considerare tutti i casi in cui possono avvenire errori;
-- Migliorare la sanificazione dei dati (?);
-- Sistemare il bottone di richiesta prenotazione;
+Appunti per Accessibilità:
+- Microformati;
+- Link;
+- AccessKey;
+- Form (tabindex e AccessKey);
+- Wai-Aria;
 
 Appunti per CSS : 
 - Gli elementi principali a cui doversi dedicare (cioè che avranno 
