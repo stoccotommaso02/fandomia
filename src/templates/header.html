@@ -14,13 +14,15 @@
             <a href="../reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>
             <div>{{areaPersonale}}</div>
     </div>
-<nav id="menu">
-    <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="products_page.php?category=book">Libri</a></li>
-        <li><a href="products_page.php?category=music">Musica</a></li>
-        <li><a href="products_page.php?category=comic">Fumetti</a></li>
-        <li><a href="products_page.php?category=videogame">Videogiochi</a></li>
-    </ul>
-</nav>
+    <nav id="menu">
+        <ul id="menuList">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="products_page.php?category=book">Libri</a></li>
+            <li><a href="products_page.php?category=music">Musica</a></li>
+            <li><a href="products_page.php?category=comic">Fumetti</a></li>
+            <li><a href="products_page.php?category=videogame">Videogiochi</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu"></button>
+    </nav>
 </header>
+<script src="../assets/script/hamburgerMenu.js"></script>

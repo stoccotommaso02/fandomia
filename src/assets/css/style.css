@@ -71,6 +71,7 @@ header {
 
 .logo_icon_wrapper img{
     width: 80px;
+    padding: 0em 1em;
 }
 
 header > div {
@@ -152,16 +153,13 @@ header a:link {
     color: var(--headerTextColor);
     text-decoration: None;
     font-weight: bold;
-    text-transform: uppercase;
     vertical-align: bottom;
-    text-decoration: underline;
 }
 
 header a:visited{
     color: var(--headerTextColor);
     text-decoration: None;
     font-weight: bold;
-    text-transform: uppercase;
     vertical-align: bottom;
 }
 
@@ -285,4 +283,66 @@ footer{
 .signature{
     text-align: center;
     padding-bottom: 1em;
+}
+
+
+/*/////////////////////
+//// REGOLE MOBILE ////
+/////////////////////*/
+
+.hamburger {
+    display: none;
+}
+
+
+
+/*  Header  */
+
+@media screen and (max-width: 760px) {
+    header > div {
+        flex-wrap: wrap;
+    }
+
+    #reservation, #areaPersonale, #loginForm {
+        flex: 1 1 50%;
+        margin-top: 1em;
+    }
+
+    #menu ul li:not(:first-child) {
+        margin-top: 2em;
+    }
+
+/*//////////////////////////*/
+
+    #menuList {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: padding 0.5s ease-out, max-height 0.5s ease-out;
+    }
+
+    #menuList.active{
+        max-height: 500px;
+        padding: 10px 0;
+    }
+
+    .hamburger {
+        background-color: #013020;
+        margin: 0 auto 1em auto;
+        display: block;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        height: 40px;
+        width: 40px;
+        background-image: url("../images/hamburger.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .hamburger.active {
+        background-image: url("../images/close.svg");
+    }
 }

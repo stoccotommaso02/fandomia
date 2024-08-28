@@ -6,23 +6,14 @@
     justify-content: center;
 }
 
-/* .aside{
-    display: flex;
-    flex-direction: column;
-    padding: 1em 1.5em 1em 1em;
-    background-color: var(--backgroundColor);
-} */
-
 .products_list{
-    /* display: flex;
-    flex-direction: column; */
     flex: 1;
     display: grid;
     grid-template: auto / auto auto auto auto;
     gap: 1em;
     padding: 20px;
     margin: 10px;
-    border: 5px double rgba(1, 48, 32, .5);
+    border: 5px double var(--headerBackgroundColor);
     border-radius: 15px;
     background-color: var(--backgroundColor);
 }
