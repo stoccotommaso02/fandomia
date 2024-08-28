@@ -40,8 +40,9 @@ if (!(isset($_POST['usermail']) &&
     if  (empty($errors))  {
                 $connection = new DBconnection;
                 $connection -> setConnection();
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
                 $insertionQuery = "INSERT into Users
-                                   values('$user_email','$password')";
+                                   values('$user_email','$hashed_password')";
                 $result = $connection -> alterQueryDB($insertionQuery);
                 if ($result) {
                     $message = "La registrazione è andata a buon fine!";

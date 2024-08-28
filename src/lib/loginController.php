@@ -18,9 +18,9 @@ if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
 }
 
  $user = sanitizeString($_POST['userEmail']);
- $pass = sanitizeString($_POST['password']);
+ $password = sanitizeString($_POST['password']);
 
- if ($user == "" || $pass == "") {
+ if ($user == "" || $password == "") {
      $error = "Non sono stati compilati tutti i campi!";
      $_SESSION['errors'] = $error;
      header("Location: ../login.php");
@@ -28,10 +28,10 @@ if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
 } else  {
  $connection = new DBconnection;
  $connection -> setConnection();
- $result = $connection -> queryDB("SELECT username,password 
+ $result = $connection -> queryDB("SELECT username,password as hashed_password
                                    FROM Users
-                                   WHERE username='$user' AND password='$pass'");
- if (empty($result))  {
+                                   WHERE username='$user' ");
+ if (empty($result) || !password_verify($password , $result[0]['hashed_password']))  {
    $error = "Credenziali non corrette";
    $_SESSION['errors'] = $error;
    header("Location: ../login.php");
