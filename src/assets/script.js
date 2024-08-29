@@ -9,11 +9,28 @@ function showError(field, message) {
     field.parentNode.insertBefore(errorDiv, field.nextSibling);
 }
 
+function checkRequired(field) {
+    if (field === '') {
+        return false; // Field is empty
+    }
+    return true;
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+// Clear messages
+function clearErrors() {
+    document.querySelectorAll(".error").forEach(el => el.textContent = '');
+    document.querySelectorAll(".error").forEach(el => el.classList.remove('active'));
+}
+
 //input validation for search bar form
 document.addEventListener("DOMContentLoaded", function() {
-    searchForm = document.getElementById("searchForm");
-    searchInput = document.getElementById("search");
-    searchError = document.getElementById("searchError");
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("search");
 
     if (searchForm) {  // Check if the form exists
         searchForm.onsubmit = function(event) {
@@ -37,24 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 });
-
-function checkRequired(field) {
-    if (field === '') {
-        return false; // Field is empty
-    }
-    return true;
-}
-
-function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
-
-// Clear messages
-function clearErrors() {
-    document.querySelectorAll(".error").forEach(el => el.textContent = '');
-    document.querySelectorAll(".error").forEach(el => el.classList.remove('active'));
-}
 
 document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
@@ -122,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Password validation
         const password = passwordInput.value;
-        if (password.length < 8 || password === "") {
+        if (password.length < 8 || !checkRequired(password)) {
             showError(passwordInput,"Password deve essere almeno di 8 caratter");
             valid = false;
         } else if (password.length > 16) {
@@ -156,9 +155,8 @@ document.addEventListener("DOMContentLoaded", function() {
             clearErrors();
             const date = withdrawDate.value;
             const time = withdrawTime.value;
-            if(date === '' || time === ''){
-                document.getElementById("errorMessage").textContent = "inserire sia la data che l'ora del ritiro";
-                document.getElementById("errorMessage").classList.add('active');
+            if(!checkRequired(date) || checkRequired(time)){
+                showError(reservationForm, "inserire sia la data che l'ora del ritiro");
                 valid = false;
             }
 
