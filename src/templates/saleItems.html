@@ -3,7 +3,14 @@
     <head></head>
     <body>
         {{header}}
-        <main>
+        <nav aria-label="Percorso" class="breadcrumb">
+            <p>Ti trovi in: </p>
+              <ul>
+                <li><a href="index.php" lang="en">Home</a></li>
+                <li><a href="saleItems.php" aria-current="page">Promozioni</a></li>
+              </ul>
+        </nav>
+        <main id="content">
             {{sale_items_list}}
             {{pagination_links}}
             <a href="#top">Torna all'inizio</a>

@@ -56,9 +56,9 @@ for ($i = 1; $i <= $total_pages; $i++) {
 
 $next_items_template = new Template();
 $next_items_template = $next_items_template->render("nextItems.html",array("header" => $header,
-                                                                            "next_items_list" => $nextItems,
-                                                                            "pagination_links" => $pagination_links,
-                                                                            "footer" => $footer));
+                                                                           "next_items_list" => $nextItems,
+                                                                           "pagination_links" => $pagination_links,
+                                                                           "footer" => $footer));
 
 echo($next_items_template);
 

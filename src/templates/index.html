@@ -13,14 +13,14 @@
     </head>
     <body>
         {{header}}
-        <nav aria-label="breadcrumb" class="breadcrumb">
+        <nav aria-label="Percorso" class="breadcrumb">
           <p>Ti trovi in: </p>
             <ul>
-              <li><span aria-current="page">Home</span></li>
+              <li><a href="index.php" lang="en" aria-current="page">Home</a></li>
             </ul>
-          </nav>
+        </nav>
         {{state}}
-        <main>
+        <main id="content">
             <div class="sezioneCard">
               <h2> Ultimi arrivi </h2>
               {{latestItems}}

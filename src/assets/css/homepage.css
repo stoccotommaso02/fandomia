@@ -151,8 +151,41 @@ section ul {
   }
   
   .card {
-      width: 90%;
-      max-width: 100%;
+      margin: 20px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: flex-start;
+  }
+
+  .item-row {
+    display: flex;
+    width: 100%;
+  }
+
+  .item-image {
+    flex: 0 0 150px;
+    margin-right: 20px;
+  }
+
+  .item-image img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .item-info {
+    display: felx;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .item-actions {
+    margin-top: 20px;
+  }
+
+  
+  .item-actions {
+    margin-top: 10px;
   }
 }
 

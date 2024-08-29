@@ -129,8 +129,7 @@ header search form button {
     padding: 0.5em 1em;
 }
 
-
-#menu > ul {
+#menu ul {
     display : flex;
     direction: row;
     margin: 1em;
@@ -308,28 +307,26 @@ footer{
         margin-top: 1em;
     }
 
-    #menu ul li:not(:first-child) {
+    #menuList li:not(:first-child) {
         margin-top: 2em;
     }
 
-/*//////////////////////////*/
-
     #menuList {
+        transform-origin: 0 0;
         display: flex;
         flex-direction: column;
         padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: padding 0.5s ease-out, max-height 0.5s ease-out;
+        transition: transform 0.5s ease-out;
+        transform: scaleY(0%);
+        /*transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; */
     }
 
-    #menuList.active{
-        max-height: 500px;
-        padding: 10px 0;
+    #menu {
+        height: auto;
     }
 
-    .hamburger {
-        background-color: #013020;
+    #openmenu {
+        background-color: none;
         margin: 0 auto 1em auto;
         display: block;
         align-items: center;
@@ -342,7 +339,42 @@ footer{
         background-repeat: no-repeat;
     }
 
-    .hamburger.active {
+    #openmenu + div {
+        transition: max-height 0.5s ease-out;
+    }
+
+    #openmenu[aria-expanded='true'] + div {
+        max-height: 500px;
+    }
+
+    #openmenu[aria-expanded='false'] + div {
+        max-height: 0;
+    }
+    
+    #openmenu[aria-expanded='true'] + div > #menuList{
+        transform: scaleY(100%);
+        padding-bottom: 0.5em;
+    }
+
+    #openmenu[aria-expanded='true'] {
+        display: None;
+    }
+
+    #closemenu {
+        background-color: none;
+        margin: 0 auto 1em auto;
+        display: none;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        height: 40px;
+        width: 40px;
         background-image: url("../images/close.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #openmenu[aria-expanded='true'] + div #closemenu {
+        display:block;
     }
 }

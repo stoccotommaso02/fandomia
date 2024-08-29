@@ -5,8 +5,8 @@ function buildHeader() : string {
 
     $headerTemplate = file_get_contents("./templates/header.html");
     if (isset($_SESSION['loggedUser'])) {
-        $areaPersonale = '<a href="areaPersonale.php" id="areaPersonale">Area personale</a>';
-        $headerTemplate = str_replace('{{areaPersonale}}',$areaPersonale,$headerTemplate);
+        $logout = '<a href="logout.php">Logout</a>';
+        $headerTemplate = str_replace('{{areaPersonale}}',$logout,$headerTemplate);
     } else {
         $login='<a href="login.php" id="loginForm">Login</a>';
         $headerTemplate = str_replace('{{areaPersonale}}',$login,$headerTemplate);

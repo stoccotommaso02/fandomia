@@ -1,28 +1,35 @@
 <header>
+    <nav aria-label="Aiuti alla navigazione">
+        <a class="navigationHelp" href="#content">Salta al contenuto</a>
+    </nav>
     <div>
-    <div class="logo_icon_wrapper">
-        <div class="logo">
-            <img src="assets/images/fandomia-logo.png">
+        <div class="logo_icon_wrapper">
+            <div class="logo">
+                <img src="assets/images/fandomia-logo.png">
+            </div>
         </div>
-    </div>
         <search>
             <form action="search.php" method="post">
-              <input type="search" placeholder="Cerca il titolo di un prodotto" id="search" name="search" />
-              <button type="submit">Cerca</button>
+                <input type="search" placeholder="Cerca il titolo di un prodotto" id="search" name="search" />
+                <button type="submit">Cerca</button>
             </form>
         </search>
-            <a href="../reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>
-            <div>{{areaPersonale}}</div>
+        <a href="../reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>
+        <div>{{areaPersonale}}</div>
     </div>
-    <nav id="menu">
-        <ul id="menuList">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="products_page.php?category=book">Libri</a></li>
-            <li><a href="products_page.php?category=music">Musica</a></li>
-            <li><a href="products_page.php?category=comic">Fumetti</a></li>
-            <li><a href="products_page.php?category=videogame">Videogiochi</a></li>
-        </ul>
-        <button class="hamburger" id="hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Menu"></button>
+    <nav id="menu" aria-label="Menu principale">
+        <a class="navigationHelp" href="#content">Salta al contenuto</a>
+        <button class="hamburger" id="openmenu" aria-controls="menuList" aria-expanded="false" aria-labelled-by="menu"></button>
+        <div id="collapsable">
+            <button class="hamburger" id="closemenu" aria-label="Chiudi menu"></button>
+            <ul id="menuList">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="products_page.php?category=book">Libri</a></li>
+                <li><a href="products_page.php?category=music">Musica</a></li>
+                <li><a href="products_page.php?category=comic">Fumetti</a></li>
+                <li><a href="products_page.php?category=videogame">Videogiochi</a></li>
+            </ul>
+        </div>
     </nav>
 </header>
 <script src="../assets/script/hamburgerMenu.js"></script>

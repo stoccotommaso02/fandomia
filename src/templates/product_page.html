@@ -11,13 +11,13 @@
 
 <body>
     {{header}}
-    <main>
-        <nav aria-label="breadcrumb" class="breadcrumb">
+    <main id="content">
+        <nav aria-label="Percorso" class="breadcrumb">
             <p>Ti trovi in: </p>
             <ul>
               <li><a href="index.php" lang="en">Home</a></li>
               <li><a href="products_page.php?category={{category}}" lang="en">{{product_type}}</a></li>
-              <li><span aria-current="page" lang="en">{{name}}</span></li>
+              <li><a href="{{current_url}}" aria-current="page">{{name}}</a></li>
             </ul>
         </nav>
         <section class="Dettagli">
@@ -46,7 +46,7 @@
         <div id="buttons">
         <form action="prenotazioneRitiro.php" method="get">
             <input type="hidden" name="product_id" value="{{id}}">
-            <button type="submit" name="submit" id="book_button" value="richiesta_prenotazione" >Prenota</button>
+            <button type="submit" id="book_button">Prenota</button>
         </form>
         </div>
     </main>

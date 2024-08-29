@@ -19,7 +19,7 @@ if (!isset($_GET['product_id']) || $_GET['product_id'] == null) {
 }
 
 $productId = sanitizeString($_GET['product_id']);
-
+$product_typename = $product_name = $product_type = "";
 $connection =new DBconnection();
 $connection -> setConnection();
 try{
@@ -34,6 +34,8 @@ try{
     if (!empty($results)) {
         // ciclo dei record restituiti dalla query
         foreach ($results as $row) {
+            $product_name = $row["name"];
+            $product_type = $row["product_type"];
             $reservedProduct = new Template();
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
         }
@@ -47,6 +49,21 @@ if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
     unset($_SESSION['errors']);
 }
 
+switch ($product_type)  {
+    case "book":
+        $product_typename = "Libri";
+        break;
+    case "comic":
+        $product_typename = "Fumetti";
+        break;
+    case "videogame":
+        $product_typename = "Videogiochi";
+        break;
+    case "music":
+        $product_typename = "Musica";
+        break;
+}
+
 $header = buildHeader();
 $footer = buildFooter();
 
@@ -55,6 +72,9 @@ $minDate = date('Y-m-d', strtotime('+1 day'));
 $reservationTemplate = new Template();
 $reservationTemplate =  $reservationTemplate->render("reservationForm.html",array('header' => $header,
                                                                                   'product_id' => $productId,
+                                                                                  'product_type' => $product_type,
+                                                                                  'product_name' => $product_name,
+                                                                                  'product_typename' => $product_typename,
                                                                                   'reserved_product' => $reservedProduct,
                                                                                   'min_date' => $minDate,
                                                                                   'footer' => $footer,

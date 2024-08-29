@@ -10,14 +10,14 @@
     </head>
     <body>
         {{header}}
-        <nav aria-label="breadcrumb" class="breadcrumb">
+        <nav aria-label="Percorso" class="breadcrumb">
             <p>Ti trovi in: </p>
               <ul>
                 <li><a href="index.php" lang="en">Home</a></li>
-                <li><span aria-current="page">{{products}}</span></li>
+                <li><a href="{{current_url}}" aria-current="page">{{products}}</a></li>
               </ul>
             </nav>
-        <main class="products_page">
+        <main class="products_page" id="content">
             {{products_list}}
         </main>
         {{footer}}

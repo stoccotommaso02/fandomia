@@ -24,7 +24,8 @@ if (isset($_SESSION['message'])) {
 $reservationList .= retrieveReservationList();
 
 $reservationTemplate = new Template();
-$reservationTemplate = $reservationTemplate->render("areaPersonale.html",array('header' => $headerTemplate,
+$reservationTemplate = $reservationTemplate->render("areaPersonale.html",array("current_url" => $_SERVER['REQUEST_URI'],
+                                                                               'header' => $headerTemplate,
                                                                                'area_personale' => "Lista prenotazioni",
                                                                                'contenutoAreaPersonale' => $reservationList,
                                                                                'footer' => $footerTemplate));

@@ -56,9 +56,9 @@ for ($i = 1; $i <= $total_pages; $i++) {
 
 $sale_items_template = new Template();
 $sale_items_template = $sale_items_template->render("saleItems.html",array("header" => $header,
-                                                                            "sale_items_list" => $saleItems,
-                                                                            "pagination_links" => $pagination_links,
-                                                                            "footer" => $footer));
+                                                                           "sale_items_list" => $saleItems,
+                                                                           "pagination_links" => $pagination_links,
+                                                                           "footer" => $footer));
 
 echo($sale_items_template);
 

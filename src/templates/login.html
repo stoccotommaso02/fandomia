@@ -10,14 +10,14 @@
     </head>
     <body>
         {{header}}
-        <nav aria-label="breadcrumb" class="breadcrumb">
+        <nav aria-label="Percorso" class="breadcrumb">
             <p>Ti trovi in: </p>
             <ul>
               <li><a href="index.php" lang="en">Home</a></li>
-              <li><span aria-current="page" lang="en">Login</span></li>
+              <li><a href="login.php" aria-current="page" lang="en">Login</a></li>
             </ul>
         </nav>
-        <main>
+        <main id="content">
         {{state}}
         <form id="loginForm" action="./lib/loginController.php" method="post"> 
             {{errors}}

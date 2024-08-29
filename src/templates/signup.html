@@ -8,14 +8,14 @@
     </head>
     <body>
         {{header}}
-        <main>
-                <nav aria-label="breadcrumb" class="breadcrumb">
-                    <p>Ti trovi in: </p>
-                    <ul>
-                      <li><a href="index.php" lang="en">Home</a></li>
-                      <li><span aria-current="page">Registrazione</span></li>
-                    </ul>
-                  </nav>
+        <nav aria-label="Percorso" class="breadcrumb">
+            <p>Ti trovi in: </p>
+            <ul>
+                <li><a href="index.php" lang="en">Home</a></li>
+                <li><a href="signup.php" aria-current="page">Registrazione</a></li>
+            </ul>
+        </nav>
+        <main id="content">
             <div class="container">
             <form id="signUpForm" name="signUpForm" action="../lib/signupController.php" method="post">
                 {{errors}}
@@ -28,7 +28,7 @@
                 <label for="confirmPwd">Conferma password</label>
                 <input type="password" id="confirmPwd" name="confirmPassword"
                 placeholder="Ripeti la password" required/>
-                <button type="submit">Registrati!</button>
+                <button type="submit">Registrati</button>
             </form>
             </div>
         </main>
