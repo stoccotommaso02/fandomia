@@ -21,18 +21,18 @@
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail"
-                placeholder="Inserisci la tua Email">
-                <span id="emailError" class="error-message"></span>
+                placeholder="Inserisci la tua Email" required>
+                
 
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
-                placeholder="Inserisci la tua password" />
-                <span id="passwordError" class="error-message"></span>
+                placeholder="Inserisci la tua password" required>
+                
 
                 <label for="confirmPwd">Conferma password</label>
                 <input type="password" id="confirmPwd" name="confirmPassword"
-                placeholder="Ripeti la password"/>
-                <span id="confirmPasswordError" class="error-message"></span>
+                placeholder="Ripeti la password" required>
+                
 
                 <button type="submit">Registrati!</button>
             </form>

@@ -1,3 +1,14 @@
+function showError(field, message) {
+    // Create a new div element to hold the error message
+    let errorDiv = document.createElement('div');
+    // Add a class name to the error div for styling
+    errorDiv.className = 'error';
+    // Set the error message text
+    errorDiv.innerText = message;
+    // Insert the error message after the field
+    field.parentNode.insertBefore(errorDiv, field.nextSibling);
+}
+
 //input validation for search bar form
 document.addEventListener("DOMContentLoaded", function() {
     searchForm = document.getElementById("searchForm");
@@ -6,29 +17,80 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (searchForm) {  // Check if the form exists
         searchForm.onsubmit = function(event) {
-            let searchValue = searchInput.value.trim();
-            let errorMessage = "";  
-
+            let searchValue = searchInput.value.trim(); 
+            let valid = true;
+            clearErrors();
 
             //input check
             if (searchValue === "") {
-                errorMessage = "Per favore, inserisci un termine di ricerca.";
+                showError(searchForm,"Per favore, inserisci un termine di ricerca.");
+                valid = false;
             } else if (searchValue.length < 3) {
-                
-                errorMessage = "Il termine di ricerca deve contenere almeno 3 caratteri.";
+                showError(searchForm,"Il termine di ricerca deve contenere almeno 3 caratteri.");
+                valid = false;
             } else if (/[;<>|]/.test(searchValue)) {
-                
-                errorMessage = "Il termine di ricerca contiene caratteri non validi: ; < > |";
+                showError(searchForm,"Il termine di ricerca contiene caratteri non validi: ; < > |");
+                valid = false;
             }
 
-            //error message
-            if (errorMessage) {
-                searchError.textContent = errorMessage; 
-                event.preventDefault(); 
-            } else {
-                searchError.textContent = ""; 
-            }
+            if(!valid) event.preventDefault();
         };
+    }
+});
+
+function checkRequired(field) {
+    if (field === '') {
+        return false; // Field is empty
+    }
+    return true;
+}
+
+function validateEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+// Clear messages
+function clearErrors() {
+    document.querySelectorAll(".error").forEach(el => el.textContent = '');
+    document.querySelectorAll(".error").forEach(el => el.classList.remove('active'));
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.getElementById("loginForm");
+    const emailInput = document.getElementById("mail");
+    const passwordInput = document.getElementById("pwd");
+
+    // Function to validate the form
+    if(loginForm){
+        loginForm.onsubmit = function(event) {
+        let valid = true;
+        clearErrors();
+        // Email validation
+        const email = emailInput.value.trim();
+        if (!checkRequired(email)) {
+            showError(emailInput,"Questo campo e' richiesto.");
+            valid = false;
+        } else if (!validateEmail(email)) {
+            showError(emailInput,"Formato email non valido.");
+            valid = false;
+        }
+
+        // Password validation
+        const password = passwordInput.value;
+        if (password.length < 8 || password === "") {
+            showError(passwordInput,"Password deve essere almeno di 8 caratter");
+            valid = false;
+        } else if (password.length > 16) {
+            showError(passwordInput,"Password non puo' superare i 16 caratteri");
+            valid = false;
+        }
+
+        // Don't submit if invalid
+        if (!valid) {
+            event.preventDefault();
+        }
+    };
     }
 });
 
@@ -38,55 +100,74 @@ document.addEventListener("DOMContentLoaded", function() {
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
     const confirmPasswordInput = document.getElementById("confirmPwd");
-    
-    // Clear messages
-    function clearErrors() {
-        document.querySelectorAll(".error-message").forEach(el => el.textContent = '');
-        document.querySelectorAll(".error-message").forEach(el => el.classList.remove('active'));
-    }
+
+
     
     // Function to validate the form
-    signUpForm.onsubmit = function(event) {
+    if(signUpForm){
+        signUpForm.onsubmit = function(event) {
         //clearErrors(); // Clear previous errors
 
         let valid = true;
-
+        clearErrors();
         // Email validation
         const email = emailInput.value.trim();
-        if (email === '') {
-            document.getElementById("emailError").textContent = "Email is required.";
-            document.getElementById("emailError").classList.add('active');
+        if (!checkRequired(email)) {
+            showError(emailInput,"Questo campo e' richiesto.");
             valid = false;
-        } else if (!email.includes('@')) {
-            document.getElementById("emailError").textContent = "Invalid email format.";
-            document.getElementById("emailError").classList.add('active');
+        } else if (!validateEmail(email)) {
+            showError(emailInput,"Formato email non valido.");
             valid = false;
         }
 
         // Password validation
         const password = passwordInput.value;
-        if (password.length < 8) {
-            document.getElementById("passwordError").textContent = "Password deve essere almeno di 8 caratter";
-            document.getElementById("passwordError").classList.add('active');
+        if (password.length < 8 || password === "") {
+            showError(passwordInput,"Password deve essere almeno di 8 caratter");
             valid = false;
         } else if (password.length > 16) {
-            document.getElementById("passwordError").textContent = "Password non puo' superare i 16 caratteri";
-            document.getElementById("passwordError").classList.add('active');
+            showError(passwordInput,"Password non puo' superare i 16 caratteri");
             valid = false;
         }
 
         //confirm password validation
         const confirmPassword = confirmPasswordInput.value;
         if (confirmPassword !== password) {
-            document.getElementById("confirmPasswordError").textContent = "Le password non corrispondono";
-            document.getElementById("confirmPasswordError").classList.add('active');
+            showError(confirmPasswordInput,"Le password non corrispondono");
             valid = false;
         }
-
+        console.log(valid);
         // Don't submit if invalid
         if (!valid) {
             event.preventDefault();
         }
     };
+    }
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const reservationForm = document.getElementById("reservationForm");
+    const withdrawDate = document.getElementById("withdrawDate");
+    const withdrawTime = document.getElementById("withdrawTime");
+
+    if(reservationForm){
+        reservationForm.onsubmit = function(event) {
+            let valid = true;
+            clearErrors();
+            const date = withdrawDate.value;
+            const time = withdrawTime.value;
+            if(date === '' || time === ''){
+                document.getElementById("errorMessage").textContent = "inserire sia la data che l'ora del ritiro";
+                document.getElementById("errorMessage").classList.add('active');
+                valid = false;
+            }
+
+            if(!valid){
+                event.preventDefault();
+            }
+        }
+    }
+
+
+
+});
