@@ -1,62 +1,74 @@
 @import "style.css";
 
-
-/* Sezione dettagli prodotto */
-section.Dettagli {
-    display : flex;
-    align-items: center;
+.Dettagli {
+    display: flex;
     flex-direction: column;
-    padding: 20px;
-    margin: 1em;
-    max-width: 90%;
+    margin: 0 auto;
 }
-
 section.Dettagli h2  {
-    text-align: left;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.img{
-    background-image: url(); /*insert image path or url; la prof. Gaggi dice nelle slide che teoricamente è più opprtuno (?)*/
-    background-color: #badff8;
-}
-
-#ProductName_details {
-	display:flex;
-  	flex-direction:column;
- 	align-items :center;
-}
-
-#ProductName_details h3 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    margin: 1em auto;
+    color: var(--headerBackgroundColor);
+    font-size: xx-large;
 }
 
-dl.details {
-	display:flex;
-    flex-direction: column;
-    width: auto;
-    flex-wrap:wrap;
-
+#ProductName-details {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+	display: grid;
+    grid-template: auto 1fr / 1fr 1fr;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-/*trovare una soluzione per alternare i colori della lista dl?*/
+.item-image {
+    grid-area: 1 / 1 / span 2 /span 1;
+}
 
+.item-image picture {
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}
+
+.item-image img {
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    object-fit: contain;
+    object-position: center;
+}
+
+#ProductName-details h3 {
+    grid-area: 1 / 2 / span 1 / span 1;
+    margin: 1em auto;
+    border-bottom: 5px solid var(--headerBackgroundColor);
+    height: fit-content;
+    padding-bottom: 1.5em;
+}
+
+.details {
+    margin: 2em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px 20px;
+    align-items: start;
+    justify-items: start;
+    letter-spacing: .05rem;
+}
 
 .details dt {
+    color: var(--headerBackgroundColor);
     font-weight: bold;
-    font-size: 1.2em;
-    color: #007bff;
-    text-align: left;
-    margin-left: 10px;
-    color: #333;
+    margin: 0;
+    padding: 5px;
 }
 
 .details dd {
-    margin-left: 30px;
-    margin-bottom: 10px;
+    margin: 0;
+    padding: 5px;
 }
 
 /* Stile per il pulsante di prenotazione */
@@ -93,77 +105,13 @@ form {
     background-color: #004494;
 }
 
-
-/* Responsive */
-/* @media (max-width: 760px) {
-    main {
-        padding: 15px;
-    }
-
-    .breadcrumb ul {
+@media screen and (max-width: 760px) {
+    .Dettagli {
+        display : flex;
+        align-items: center;
         flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .breadcrumb li {
-        margin-bottom: 5px;
-    }
-
-    section.Dettagli {
-        padding: 15px;
-    }
-
-    #ProductName-details dt {
-        font-size: 1.1em;
-    }
-
-    .details dt {
-        font-size: 1em;
-    }
-    
-    button {
-        width: 100%;
-        font-size: 1.2em;
-        padding: 15px;
-    }
-} */
-
-/*
-@media (min-width: 760px) {
-    section.Dettagli {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #ProductName-details {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    #ProductName-details dt {
-        flex: 1;
-    }
-
-    #ProductName-details dd {
-        flex: 3;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .details {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .details dt, .details dd {
-        width: 48%;
-    }
-
-    button {
-        max-width: 220px;
-        margin: 0 auto;
+        padding: 20px;
+        margin: 1em;
+        max-width: 90%;
     }
 }
-*/

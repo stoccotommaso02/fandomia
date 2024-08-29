@@ -113,8 +113,9 @@
                             header("Location: ../prenotazioneRitiro.php?product_id=" . $product_id);
                             exit();
                         }
-                }
-            }   
+                    }
+                }   
+            }
         }
     }
     //Se non è presente il codice identificativo del prodotto e il valore del campo submit è la stringa :"cancella_prenotazione",

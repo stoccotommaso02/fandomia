@@ -1,6 +1,5 @@
 @import "style.css";
-
-
+@import "card.css";
 /*
 MAIN
 */
@@ -39,165 +38,17 @@ section ul {
   justify-content: space-around;
 }
 
-.card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 200px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Stile di base per la card */
-
-
-/* Stile per il titolo del prodotto */
-.card h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-  color: #333;
-}
-
-/* Stile per l'immagine del prodotto */
-.item-image picture {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.item-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-/* Stile per le informazioni del prodotto */
-.item-info dl {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 0.9em;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.item-info dt {
-  width: 50%;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.item-info dd {
-  width: 50%;
-  margin-bottom: 5px;
-  margin-left: 0;
-}
-
-/* Stile per i pulsanti di azione */
-.item-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-}
-
-.item-actions form {
-  /* flex: 1; */
-  margin: 5px;
-}
-
-.item-actions button {
-  width: 100%;
-  padding: 10px;
-  font-size: 0.9em;
-  font-weight: bold;
-  color: #fff;
-  background-color: var(--headerBackgroundColor);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-decoration: underline;
-}
-
-.item-actions button:hover {
-  background-color: var(--accentColor);
-}
-
-.item-actions button:active {
-  background-color: #004494;
-}
-
 /* Punto di rottura per dispositivi mobili (max 760px) */
 @media (max-width: 760px) {
-  ul {
-      flex-direction: column;
-      align-items: center;
-      flex-wrap: wrap;
+  section {
+    padding: 1em 0;
   }
 
   section ul {
-    flex-wrap: wrap;
-  }
-  
-  .card {
-      margin: 20px 0;
-      padding: 10px;
-      border: 1px solid #ccc;
-      display: flex;
+      flex-direction: column;
       align-items: flex-start;
-  }
-
-  .item-row {
-    display: flex;
-    width: 100%;
-  }
-
-  .item-image {
-    flex: 0 0 150px;
-    margin-right: 20px;
-  }
-
-  .item-image img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .item-info {
-    display: felx;
-    flex: 1;
-    flex-direction: column;
-  }
-
-  .item-actions {
-    margin-top: 20px;
-  }
-
-  
-  .item-actions {
-    margin-top: 10px;
-  }
-}
-
-/* Punto di rottura per schermi desktop (min 760px) */
-@media (min-width: 760px) {
-  ul {
-      justify-content: flex-start;
-  }
-
-  .card {
-      /* flex-basis: calc(33.33% - 30px); */
-      max-width: 30%;
+      justify-content: center;
+      gap: 20px;
   }
 }
 /*-------Fine card-------*/

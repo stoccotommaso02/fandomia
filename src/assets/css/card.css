@@ -1,0 +1,148 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile di base per la card */
+
+
+/* Stile per il titolo del prodotto */
+.card h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+/* Stile per l'immagine del prodotto */
+.item-image picture {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.item-image img {
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 5px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Stile per le informazioni del prodotto */
+.item-info dl {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  color: #555;
+  text-indent: 0.8em;
+}
+
+.item-info dt {
+  width: 50%;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.item-info dd {
+  width: 50%;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+
+/* Stile per i pulsanti di azione */
+.item-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: auto;
+}
+
+.item-actions form {
+  flex: 1;
+  margin: 5px;
+}
+
+.item-actions button {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--headerBackgroundColor);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: underline;
+}
+
+.item-actions button:hover {
+  background-color: var(--accentColor);
+}
+
+.item-actions button:active {
+  background-color: #004494;
+}
+
+@media screen and (max-width: 760px){
+  .card {
+    margin: 0 auto;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: flex-start;
+    max-width: 95%;
+    box-sizing: border-box;
+}
+
+  .item-row {
+    display: grid;
+    width: 100%;
+    grid-template: 3fr 1fr / 1fr 1fr;
+  }
+
+  .item-image {
+    grid-area: 1 / 1 / span 2 / span 1;
+    padding: 1em;
+    align-self: center;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-info {
+    grid-area: 1 / 2 / span 1 / span 1;
+    align-self: end;
+  }
+
+  .item-info dl {
+    row-gap: 0.8em;
+    text-align: center;
+  }
+
+  .item-info dl > * {
+    margin: 5px;
+  }
+  
+  .item-actions {
+    grid-area: 2 / 2 / span 1 / span 1;
+    align-self: end;
+  }
+}

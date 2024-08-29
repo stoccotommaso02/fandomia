@@ -52,6 +52,11 @@ body {
     min-height: 100vh;
 }
 
+.navigationHelp {
+    position: absolute;
+    text-indent: -999em;
+}
+
 /*////////////////////
 ////    HEADER    ////
 ////////////////////*/
@@ -114,17 +119,7 @@ header search form button {
     min-width: 100px;
 }
 
-#reservation {
-    font-size: x-large;
-    padding: 0.5em 1em;
-}
-
-#loginForm {
-    font-size: x-large;
-    padding: 0.5em 1em;
-}
-
-#areaPersonale {
+#reservation, #loginForm, #areaPersonale {
     font-size: x-large;
     padding: 0.5em 1em;
 }
@@ -153,6 +148,8 @@ header a:link {
     text-decoration: None;
     font-weight: bold;
     vertical-align: bottom;
+    text-decoration: underline;
+    letter-spacing: 0.1em;
 }
 
 header a:visited{
@@ -207,7 +204,7 @@ nav.breadcrumb ul li {
 main {
     flex: 1;
     background-color: var(--backgroundColor);
-    padding-bottom: 1em;
+    padding: 0 1em 1em 1em;
 }
 
 main > * {
@@ -224,6 +221,11 @@ footer{
     max-width:100%;
     /*margin-top: 10px; */
     padding-top: 1em;
+}
+
+footer a {
+    letter-spacing: 0.1em;
+    font-weight: bold;
 }
 
 .contact_info{
@@ -299,26 +301,44 @@ footer{
 
 @media screen and (max-width: 760px) {
     header > div {
+        padding: 0;
         flex-wrap: wrap;
+        padding: 0.5em;
+        align-items: center;
+        gap: 0;
+        justify-content: center;
+    }
+    search {
+        flex-grow: 2;
+    }
+    #reservation, .ultimobottone {
+        display: block;
+        text-align: center;
+        flex: 1 1 50%;
+        padding: auto;
+        margin: 0;
+        width: 50%;
+        box-sizing: border-box;
     }
 
-    #reservation, #areaPersonale, #loginForm {
-        flex: 1 1 50%;
-        margin-top: 1em;
+    #loginForm, #areaPersonale {
+        display: block;
+        height: 100%;
+        width: 100%;
     }
 
     #menuList li:not(:first-child) {
-        margin-top: 2em;
+        margin-top: 1.5em;
     }
 
     #menuList {
         transform-origin: 0 0;
         display: flex;
         flex-direction: column;
-        padding: 0;
+        padding: auto;
         transition: transform 0.5s ease-out;
         transform: scaleY(0%);
-        /*transition: padding 0.5s ease-in-out, max-height 0.5s ease-in-out; */
+        gap: auto;
     }
 
     #menu {
@@ -326,7 +346,7 @@ footer{
     }
 
     #openmenu {
-        background-color: none;
+        background-color: transparent;
         margin: 0 auto 1em auto;
         display: block;
         align-items: center;
@@ -361,7 +381,7 @@ footer{
     }
 
     #closemenu {
-        background-color: none;
+        background-color: transparent;
         margin: 0 auto 1em auto;
         display: none;
         align-items: center;

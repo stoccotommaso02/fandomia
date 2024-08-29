@@ -31,7 +31,7 @@ else    if(isset($_SESSION['search_result']))   {
 
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $prodotti_per_pagina = 10;
+    $prodotti_per_pagina = 12;
     
     $offset = ($page - 1) * $prodotti_per_pagina;
     $prodotti_pagina = array_slice($prodotti, $offset, $prodotti_per_pagina);
@@ -52,9 +52,9 @@ else    if(isset($_SESSION['search_result']))   {
     $pagination_links = "<div class='pagination'>";
     $next = $previous = "";
     if ($page > 1) {
-        $previous =  "<a href='?page=" . ($page - 1) . "'>Previous</a> ";
+        $previous =  "<a href='?page=" . ($page - 1) . "'>Precedente</a> ";
     } else {
-        $previous = "<span>Previous</span> "; // Disabled state
+        $previous = "<span>Precedente</span> "; // Disabled state
     }
     $pagination_links .= $previous;
     for ($i = 1; $i <= $total_pages; $i++) {
@@ -66,9 +66,9 @@ else    if(isset($_SESSION['search_result']))   {
     }
         // Bottone "Next"
     if ($page < $total_pages) {
-            $next = "<a href='?page=" . ($page + 1) . "'>Next</a>";
+            $next = "<a href='?page=" . ($page + 1) . "'>Successiva</a>";
         } else {
-            $next = "<span>Next</span>"; // Disabled state
+            $next = "<span>Successiva</span>"; // Disabled state
         }
         $pagination_links .= $next;
     
@@ -78,7 +78,8 @@ $header = buildHeader();
 $footer = buildFooter();
 
 $searchTemplate = new Template();
-$searchTemplate = $searchTemplate -> render('searchResult.html',array("header" => $header,
+$searchTemplate = $searchTemplate -> render('searchResult.html',array("query" => $searchParam,
+                                                                      "header" => $header,
                                                                       "footer" => $footer,
                                                                       "searchList" => $products_list,
                                                                       "pagination_links" => $pagination_links));

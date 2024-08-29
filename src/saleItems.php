@@ -17,7 +17,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 // Calcola l'offset (da dove iniziare a prendere i prodotti)
 $offset = ($page - 1) * $products_per_page;
 
-$saleItems = '';
+$saleItems = '<ul>';
 $connection =new DBconnection();
 $connection -> setConnection();
 $query = "SELECT *
@@ -34,6 +34,7 @@ if (!empty($rows)) {
         $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
         $saleItems .= $saleItemTemplate;
     }
+    $saleItems .= '</ul>';
  } else {
     $saleItems = "il DB è vuoto";
 }
@@ -48,9 +49,9 @@ $total_pages = ceil($total_pages);
 $pagination_links =  "<div class='pagination'>";
 for ($i = 1; $i <= $total_pages; $i++) {
     if ($i == $page) {
-        $pagination_links .= "<strong>$i</strong> "; // Pagina corrente senza link
+        $pagination_links .= "<strong>$i</strong></div>"; // Pagina corrente senza link
     } else {
-        $pagination_links .= "<a href='saleItems.php?page=$i'>$i</a> "; // Altre pagine con link
+        $pagination_links .= "<a href='saleItems.php?page=$i'>$i</a></div>"; // Altre pagine con link
     }
 }
 

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="nome prodotto,nome prodotto+autore,negozio ecc.. qualche altra roba">
-    <meta name="description" content="pagina riguardante prodotto xyz del negozio Fandomia">
-    <title>ProductName</title>
+    <meta name="keywords" content="Prenota {{name}}, {{genre}}, Fandomia">
+    <meta name="description" content="pagina riguardante prodotto {{name}} del negozio Fandomia">
+    <title>Fandomia - {{name}}</title>
     <link rel="stylesheet" href="../assets/css/productpage.css">
 </head>
 
@@ -22,13 +22,13 @@
         </nav>
         <section class="Dettagli">
         <h2>{{name}}</h2>
-            <dl id="ProductName-details">
+            <div id="ProductName-details">
                     <div class="item-image">
                         <picture><img src="assets/images/products/{{id}}.jpg" alt={{alt}} ></picture>
                     </div>
-                    <h3>Dettagli:</h3>
+                    <h3>Dettagli prodotto</h3>
                     <dl class="details">
-                        <dt>Titolo :</dt><dd>{{name}}</dd>
+                        <dt>Titolo:</dt><dd>{{name}}</dd>
                         <dt class="example-genre">Tipologia:</dt>
                         <dd>{{product_type}}</p</dd>
                         <dt class="example-genre">Genere:</dt>
@@ -41,7 +41,7 @@
                         <dd>{{price}}</dd>
                         {{extra_infos}}
                     </dl>
-            </dl>
+            </div>
         </section>
         <div id="buttons">
         <form action="prenotazioneRitiro.php" method="get">
