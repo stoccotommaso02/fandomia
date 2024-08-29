@@ -31,7 +31,7 @@ try{
             exit();
         }
         
-    if (!empty($results)) {
+    if (count($results) == 1) {
         // ciclo dei record restituiti dalla query
         foreach ($results as $row) {
             $product_name = $row["name"];
@@ -40,7 +40,8 @@ try{
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
         }
      } else {
-        $errorMessage = "Spiacenti,il prodotto non è al momento presente!";
+        header("Location: 404.php");
+        exit();
     }
 
 
