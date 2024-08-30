@@ -24,7 +24,7 @@
   font-weight: bold;
   margin-bottom: 10px;
   text-align: center;
-  color: #333;
+  color: var(--headerBackgroundColor);
 }
 
 /* Stile per l'immagine del prodotto */
@@ -46,7 +46,6 @@
 .item-info dl {
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.9em;
   margin-bottom: 15px;
   color: #555;
   text-indent: 0.8em;
@@ -56,6 +55,7 @@
   width: 50%;
   font-weight: bold;
   margin-bottom: 5px;
+  color: var(--headerBackgroundColor);
 }
 
 .item-info dd {
@@ -135,10 +135,6 @@
   .item-info dl {
     row-gap: 0.8em;
     text-align: center;
-  }
-
-  .item-info dl > * {
-    margin: 5px;
   }
   
   .item-actions {

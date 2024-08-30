@@ -1,29 +1,28 @@
 <li class="card">
-<div>
-<h2>{{name}}</h2>
-<div class="item-row">
-    <div class="item-image">
-        <picture><img src="assets/images/products/{{id}}.jpg" alt="" ></picture>
-    </div>
-    <div class="item-info">
-        <dl>
-            <dt>Prezzo:</dt>
-            <dd id="prezzo">{{price}} &euro;</dd> 
-            <dt>Disponibilità:</dt><dd>{{status}}</dd>
-            <dt>Data d'uscita:</dt><dd>{{release_date}}</dd>
-            <dt>Genere:</dt><dd>{{product_type}}</dd>
-        </dl>
-    </div>
-<div class="item-actions">
-    <form action="prenotazioneRitiro.php" method="get">
-        <input type="hidden" name="product_id" value="{{id}}">
-        <button type="submit">Prenota</button>
-    </form>
-    <form action="productPage.php" method="get">
-        <input type="hidden" name="product_id" value="{{id}}">
-        <button type="submit">Visualizza</button>
-    </form>
-</div>
-</div>
-</div>
+    <article>
+        <h2>{{name}}</h2>
+        <div class="item-row">
+            <div class="item-image">
+                <picture><img src="assets/images/products/{{id}}.jpg" alt="" ></picture>
+            </div>
+            <div class="item-info">
+                <dl>
+                    <dt>Prezzo:</dt><dd id="prezzo">{{price}} &euro;</dd> 
+                    <dt>Disponibilità:</dt><dd>{{status}}</dd>
+                    <dt>Data d'uscita:</dt><dd>{{release_date}}</dd>
+                    <dt>Genere:</dt><dd>{{product_type}}</dd>
+                </dl>
+            </div>
+            <div class="item-actions">
+                <form action="prenotazioneRitiro.php" method="get">
+                    <input type="hidden" name="product_id" value="{{id}}">
+                    <button type="submit">Prenota</button>
+                </form>
+                <form action="productPage.php" method="get">
+                    <input type="hidden" name="product_id" value="{{id}}">
+                    <button type="submit">Visualizza</button>
+                </form>
+            </div>
+        </div>
+    </article>
 </li>
