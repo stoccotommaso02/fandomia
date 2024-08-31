@@ -13,11 +13,11 @@ $errors_list = '';
 
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
-    $errors_list = '<ul>';
+    $errors_list = '<ul style="color:red; align-self: center; max-width:75%">';
     foreach($errors as $error){
         $errors_list .= '<li>'.$error.'</li>';
         }
-        $errors_list .= '<ul>';
+        $errors_list .= '</ul>';
     unset($_SESSION['errors']);
 } 
 

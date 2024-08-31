@@ -17,8 +17,8 @@
             </ul>
         </nav>
         <main id="content">
-            <div class="container">
-            <form id="signUpForm" name="signUpForm" action="../lib/signupController.php" method="post">
+            <h2 lang="en">Sign Up</h2>
+            <form class="form" name="signUpForm" action="../lib/signupController.php" method="post">
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail"
@@ -31,7 +31,6 @@
                 placeholder="Ripeti la password" required/>
                 <button type="submit">Registrati</button>
             </form>
-            </div>
         </main>
         {{footer}}
     </body>

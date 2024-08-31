@@ -12,7 +12,20 @@ main h2 {
     color: var(--headerBackgroundColor);
 }
 
-#login{
+
+p{
+    align-self: center;
+    pointer-events: none;
+}
+
+ul{
+    color:red; 
+    align-self: center; 
+    max-width:75%;
+}
+
+
+.form{
     width: 100%;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -23,24 +36,58 @@ main h2 {
     display: flex;
     flex-direction: column;
     align-content: center;
+    gap: 1em
 }
 
-#login input {
+.form input {
     margin: auto;
     width: max(30%, 30em);
     border: none;
-    border-bottom: 2px solid #AAAAAA;
+    border-bottom: 3px solid #AAAAAA;
     transition: all 0.3s;
 }
 
-#login input:focus, #login input:active, #login input:hover{
+.form input:focus, .form input:active, .form input:hover{
     outline: none;
     border-bottom: 2px solid var(--headerBackgroundColor);
 }
 
 
-#login label {
+.form label {
     margin: .5em auto;
     color: var(--headerBackgroundColor);
     padding-top: 0.5em;
 }
+
+button {
+    width: 30%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+  }
+
+  button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+  }
+  
+  button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+  /* #showPassword{
+  } */ /*non ho capito come spostare quel maledetto checkbox*/
+
+  a{
+    align-self: center;
+  }

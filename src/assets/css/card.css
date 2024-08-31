@@ -93,10 +93,12 @@
 
 .item-actions button:hover {
   background-color: var(--accentColor);
+  color: var(--textColor);
 }
 
 .item-actions button:active {
-  background-color: #004494;
+  background-color: white;
+  color: var(--accentColor);
 }
 
 @media screen and (max-width: 760px){

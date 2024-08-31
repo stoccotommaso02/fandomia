@@ -117,7 +117,8 @@ section.Dettagli h2  {
 }
 
 #book_button:active {
-    background-color: #004494;
+    background-color: white;
+    color: var(--accentColor);
 }
 
 @media screen and (max-width: 760px) {
