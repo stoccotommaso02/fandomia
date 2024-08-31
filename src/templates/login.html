@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="../assets/css/style.css">
         <script src="../assets/script.js"></script>
+        <script src="../assets/script/showPassword.js"></script>
     </head>
     <body>
         {{header}}
@@ -26,9 +27,10 @@
 
             <label for="pwd">Password</label>
             <input id="pwd" type="password" name="password"
-            placeholder="Inserisci la tua password" required>
-
-            <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}}>
+            placeholder="Inserisci la tua password" required  />
+            <label for="showPassword">Mostra password</label>
+            <input type="checkbox" id="showPassword" onclick="togglePassword()" /> 
+            <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}} />
             <button type="submit">Accedi</button>
             <a href="signup.php">Non sei già registrato?</a>
         </form>  

@@ -17,7 +17,11 @@
         </nav>
         <p> Il tuo ordine:</p>
         {{reserved_product}}
+<<<<<<< HEAD
         <form id="reservationForm" action="./lib/reservationController.php?product_id={{product_id}}" method="post" novalidate> 
+=======
+        <form id="reservationForm" action="./lib/reservationController.php" method="post"> 
+>>>>>>> homePage-html
             {{errors}}
             <label for="withdrawDate">Scegli il giorno:</label>
             <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} required>
@@ -35,8 +39,13 @@
             </select>
             <label for="notes">Note:</label>
             <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140"></textarea>
+<<<<<<< HEAD
             <span id="errorMessage"></span>
 
+=======
+            <input type="hidden" name="product_id" value="{{product_id}}">
+            {{reservation_id}}
+>>>>>>> homePage-html
             <button type="submit">Prenota</button>
         </form>  
     {{footer}}

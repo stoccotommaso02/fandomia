@@ -58,10 +58,7 @@ main {
     align-items: center;
 }
 
-main h2 {
-    display: flex;
-    justify-content: center;
-}
+
 /*
 section {
     width : 90%;
@@ -115,13 +112,6 @@ form {
     background-color: #f7f7f7;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Contenitore per label e input */
-.form-row {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
 }
 
 /* Stile per label */
@@ -185,9 +175,7 @@ section ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
 }
 
 /* Stile di base per la card */
@@ -197,12 +185,13 @@ section ul {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 200px;
+    max-width: 300px;
     margin: 15px;
-    padding: 15px;
+    margin-bottom : 15px;
+    padding: 0px;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    align-items : center;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -235,6 +224,7 @@ section ul {
 
 /* Stile per le informazioni del prodotto */
 .item-info dl {
+    width:220px;
     display: flex;
     flex-wrap: wrap;
     font-size: 0.9em;
@@ -243,13 +233,14 @@ section ul {
 }
 
 .item-info dt {
-    width: 50%;
+    width: 100px;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .item-info dd {
-    width: 50%;
+    width: 100px;
     margin-bottom: 5px;
     margin-left: 0;
 }

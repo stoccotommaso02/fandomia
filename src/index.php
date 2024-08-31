@@ -65,19 +65,18 @@ function getLatestItems() : string {
 }
 
 function getNextItems() : string {
-    //implementazione 
+
     $connection =new DBconnection();
     $connection -> setConnection();
     $nextItems = '';
     $query = "SELECT *
               from Products
               where release_date > CURDATE()
-                    and sale_percentage = 0
+                    
               order by release_date ASC
               limit 3 ";
     $rows = $connection->queryDB($query);
     if (!empty($rows)) {
-        // ciclo dei record restituiti dalla query
         foreach ($rows as $row) {
             $nextItemTemplate = new Template();
             $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
@@ -90,25 +89,7 @@ function getNextItems() : string {
 };
 
 function getSaleItems() : string {
-    /* implementazione: per iniziare ho usato un file Json; quando avremo
-    il DB questi metodo faranno delle query.
-    $jsonFile=file_get_contents("../assets/libri.json");
-
-$jsonEncoded=json_decode($jsonFile,true);
-
-$listaLibri=""; 
-
-foreach($jsonEncoded as $libro) {
-    $libroTemplate=file_get_contents("../templates/card.html");
     
-    $libroTemplate=str_replace('{{titolo}}',$libro['titolo'],$libroTemplate);
-    $libroTemplate=str_replace('{{prezzo}}',$libro['prezzo'],$libroTemplate);
-    $libroTemplate=str_replace('{{disponibilità}}',$libro['disponibilità'],$libroTemplate);
-    $libroTemplate=str_replace('{{releaseDate}}',$libro['data di uscita'],$libroTemplate);
-    $libroTemplate=str_replace('{{genere}}',$libro['genere'],$libroTemplate);
-    $libroTemplate = str_replace('{{productId}}',$libro['id'],$libroTemplate);
-    $listaLibri .= $libroTemplate;
-}  */
     $saleItems = '';
     $connection =new DBconnection();
     $connection -> setConnection();
