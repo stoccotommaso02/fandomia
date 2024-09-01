@@ -57,12 +57,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("mail");
-    const passwordInput = document.getElementById("pwd");
+    const emailInput = document.getElementById("lmail");
+    const passwordInput = document.getElementById("lpwd");
 
     // Function to validate the form
     if(loginForm){
+        console.log("uga");
+
         loginForm.onsubmit = function(event) {
+        console.log("buga");
+        event.preventDefault();
+        event.stopPropagation();
         let valid = true;
         clearErrors();
         // Email validation
@@ -84,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showError(passwordInput,"Password non puo' superare i 16 caratteri");
             valid = false;
         }
-
+        console.log(valid);
         // Don't submit if invalid
         if (!valid) {
             event.preventDefault();
@@ -95,20 +100,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // input validation sign up form
 document.addEventListener("DOMContentLoaded", function() {
+
     const signUpForm = document.getElementById("signUpForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
     const confirmPasswordInput = document.getElementById("confirmPwd");
 
-
-    
     // Function to validate the form
     if(signUpForm){
         signUpForm.onsubmit = function(event) {
-        //clearErrors(); // Clear previous errors
-
         let valid = true;
         clearErrors();
+
         // Email validation
         const email = emailInput.value.trim();
         if (!checkRequired(email)) {
