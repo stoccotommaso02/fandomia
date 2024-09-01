@@ -9,7 +9,7 @@ $header = buildHeader();
 $footer = buildFooter();
 
 if (!isset($_POST['product_id']) || $_POST['product_id'] == null ) {
-    header("Location: index.php");
+    header("Location: 404.php");
     exit();
 } else {
     $product_id = sanitizeString($_POST['product_id']); 

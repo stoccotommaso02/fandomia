@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedUser'])) {
     exit();
 }
 if (!isset($_POST['product_id']) || $_POST['product_id'] == null) {
-    header("Location:index.php");
+    header("Location: 404.php");
     exit();
 }
 

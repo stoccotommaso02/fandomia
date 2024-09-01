@@ -55,6 +55,7 @@ if (!(isset($_POST['usermail']) &&
             }
     
     $_SESSION['errors'] = $errors;
+    $_SESSION['previous_usermail'] = $_POST['usermail']; 
     header("Location: ../signup.php" );
     exit();
 
