@@ -11,6 +11,7 @@
         header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
         exit();
     }
+   
     if (isset($_POST['product_id'])) {
 
         $product_id = sanitizeString($_POST['product_id']);

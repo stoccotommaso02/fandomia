@@ -20,12 +20,7 @@ if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
  $user = sanitizeString($_POST['userEmail']);
  $password = sanitizeString($_POST['password']);
 
-<<<<<<< HEAD
- 
- if ($user == "" || $pass == "") {
-=======
  if ($user == "" || $password == "") {
->>>>>>> homePage-html
      $error = "Non sono stati compilati tutti i campi!";
      $_SESSION['errors'] = $error;
      header("Location: ../login.php");
