@@ -29,7 +29,12 @@ if (isset($_POST['search']) ) {
 else    if(isset($_SESSION['search_result']))   {
     $prodotti = $_SESSION['search_result'];
 }
+/* Valori di default presenti nella pagina, cioè nel caso
+in cui la ricerca non abbia prodotto nessun risultato */
+$products_list = "<p>Spiacente, la tua ricerca non ha prodotto nessun risultato</p>";
+$pagination_links = '';
 
+if (!empty($prodotti))  {
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
     $prodotti_per_pagina = 10;
@@ -50,6 +55,7 @@ else    if(isset($_SESSION['search_result']))   {
     $total_products = count($prodotti);
     
     $pagination_links = get_pagination_links($page,$total_products);
+}   
 
 $header = buildHeader();
 $footer = buildFooter();
