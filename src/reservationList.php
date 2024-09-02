@@ -26,9 +26,8 @@ $reservationList .= retrieveReservationList();
 
 $reservationTemplate = new Template();
 $reservationTemplate = $reservationTemplate->render("reservation_list.html",array('header' => $headerTemplate,
-                                                                               'area_personale' => "Lista prenotazioni",
-                                                                               'contenutoAreaPersonale' => $reservationList,
-                                                                               'footer' => $footerTemplate));
+                                                                                  'reservation_list' => $reservationList,
+                                                                                  'footer' => $footerTemplate));
 
 echo($reservationTemplate);
 
@@ -48,7 +47,6 @@ $result = $connection -> queryDB($query);
 if (count($result) > 0 ) {
     $reservationList = "<ul>";
     foreach ($result as $record) {
-        echo($record['notes']);
         $reservation_card_template = new Template();
         $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
         $reservationList .= $reservation_card_template;
