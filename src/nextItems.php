@@ -3,6 +3,7 @@
 require_once("./lib/global.php");
 require_once("./lib/DBController.php");
 require_once("./lib/templateController.php");
+require_once("./pagination_links_factory.php");
 require_once("header.php");
 require_once("footer.php");
 
@@ -41,33 +42,10 @@ if (!empty($rows)) {
 $total_products_sql = "SELECT COUNT(*) as total_products FROM Products where release_date > CURDATE()";
 $connection -> setConnection();
 $total_products_result = $connection->queryDB($total_products_sql);
-$total_pages = $total_products_result[0]['total_products'] / $products_per_page;
-$total_pages = ceil($total_pages);
+$total_products = $total_products_result[0]['total_products'];
 
-// Visualizza i link di paginazione
-$pagination_links =  "<div class='pagination'>";
-$next = $previous = "";
-
-    if ($page > 1) {
-        $previous = "<a href='nextItems.php?page=" . ($page - 1) . ">Previous</a>";
-    } else {
-        $previous = "<span>Previous</span> "; // Disabled state
-    }
-$pagination_links .= $previous;
-for ($i = 1; $i <= $total_pages; $i++) {
-    if ($i == $page) {
-        $pagination_links .= "<strong>$i</strong> "; // Pagina corrente senza link
-    } else {
-        $pagination_links .= "<a href='nextItems.php?page=$i'>$i</a> "; // Altre pagine con link
-    }
-}
-if ($page < $total_pages) {
-    $next = "<a href='nextItems.php?page=" . ($page + 1) . "'>Next</a>";
-} else {
-    $next = "<span>Next</span>"; // Disabled state
-}
-$pagination_links .= $next;
-$pagination_links .=  "</div>";
+//Creazione dei link di paginazione
+$pagination_links =  get_pagination_links($page,$total_products);
 
 $next_items_template = new Template();
 $next_items_template = $next_items_template->render("nextItems.html",array("header" => $header,
