@@ -1,3 +1,7 @@
+    //unused:
+    //const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+    //return datePattern.test(date);
+
 function showError(field, message) {
     // Create a new div element to hold the error message
     let errorDiv = document.createElement('div');
@@ -8,6 +12,13 @@ function showError(field, message) {
     // Insert the error message after the field
     field.parentNode.insertBefore(errorDiv, field.nextSibling);
 }
+
+function checkDate(date) {
+    const today = new Date().toISOString().split('T')[0];
+
+    return today < date;
+}
+
 
 function checkRequired(field) {
     if (field === '') {
@@ -62,10 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to validate the form
     if(loginForm){
-        console.log("uga");
 
         loginForm.onsubmit = function(event) {
-        console.log("buga");
         event.preventDefault();
         event.stopPropagation();
         let valid = true;
@@ -89,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
             showError(passwordInput,"Password non puo' superare i 16 caratteri");
             valid = false;
         }
-        console.log(valid);
         // Don't submit if invalid
         if (!valid) {
             event.preventDefault();
@@ -158,17 +166,19 @@ document.addEventListener("DOMContentLoaded", function() {
             clearErrors();
             const date = withdrawDate.value;
             const time = withdrawTime.value;
-            if(!checkRequired(date) || checkRequired(time)){
+
+            if(!checkRequired(date) || time === ""){
                 showError(reservationForm, "inserire sia la data che l'ora del ritiro");
                 valid = false;
             }
-
+            else if(!checkDate(date)){
+                showError(reservationForm, "Puoi prenotare solo da domani in poi!");
+                valid = false;
+            }
             if(!valid){
                 event.preventDefault();
             }
         }
     }
-
-
 
 });
