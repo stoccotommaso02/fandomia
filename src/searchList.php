@@ -9,33 +9,41 @@ function searchList(string $searchParam) : array {
     
     $searchQuery = "SELECT *
                     from Products";
-    
-    $results = $connection -> queryDB($searchQuery);
-    
+    try {
+        $results = $connection -> queryDB($searchQuery);
+    } catch(Exception $e) {
+        echo("Database problem : " . $e->getMessage());
+        exit();
+    }
+
     $searchResult = '';
-    if (empty($results)) {
-        $searchResult = "Nessun prodotto corrisponde alla tua ricerca!";
-    } else {
-
+  
         $products = [];
-
+        if(empty($results)) {
+            header("Location: 404.php");
+            exit();
+        }   else    {
         foreach ($results as $result) {
             $similarity = jaro_winkler($searchParam, $result['name']);
-            $products[] = ['id' => $result['id'],
+            if ($similarity >= 0.66) {
+             $products[] = ['id' => $result['id'],
                            'name' => $result['name'],
                            'status' => $result['status'],
                            'price' => $result['price'],
                            'release_date' => $result['release_date'],
                            'product_type' => $result['product_type'],
                            'similarity' => $similarity];
+                            echo($similarity);
             /*Un punteggio di similarità uguale a 1 , equivale ad aver trovato
               una perfetta corrispondenza, e quindi fermo il ciclo*/
             if ($similarity == 1)   {
                 $searchResult = end($products);
                 return $searchResult;
                         }
+                    }
         }
-
+        
+        if(!empty($products))   {
         // Ordina i risultati in base alla somiglianza (decrescente)
         usort($products, function($a, $b) {
             if($a['similarity'] < $b['similarity']) {
@@ -48,9 +56,10 @@ function searchList(string $searchParam) : array {
                 return 0;
             }
         });
-
+        }   
         $searchResult = $products;
-    }
+
+}
     return $searchResult;
 }
 
