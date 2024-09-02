@@ -42,17 +42,3 @@ $pagination_links .=  "</ul>";
 return $pagination_links;
 }
 ?>
-
-<li>
-          <a href="/page-3" aria-label="Current Page, Page 3" aria-current="true">3</a>
-        </li>
-
-        <nav role="navigation" aria-label="Pagination Navigation">
-    <ul>
-        <li><a href="/page-1" aria-label="Goto Page 1">1</a></li>
-        <li><a href="/page-2" aria-label="Goto Page 2">2</a></li>
-        <li><a href="/page-3" aria-label="Goto Page 3">3</a></li>
-        <li><a href="/page-4" aria-label="Goto Page 4">4</a></li>
-        <li><a href="/page-5" aria-label="Goto Page 5">5</a></li>
-    </ul>
-</nav>
