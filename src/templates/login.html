@@ -18,15 +18,15 @@
         </nav>
         <main>
         {{state}}
-        <form id="loginForm" name="loginForm" action="../lib/loginController.php" method="post" novalidate> 
+        <form id="loginForm" name="loginForm" action="../lib/loginController.php" method="post"> 
             {{errors}}
             <label for="mail">Email</label>
             <input id="lmail" type="email" name="userEmail" 
-            placeholder="Inserisci la tua Email" required>
+            placeholder="Inserisci la tua Email" pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" required>
 
             <label for="pwd">Password</label>
             <input id="lpwd" type="password" name="password"
-            placeholder="Inserisci la tua password" required>
+            placeholder="Inserisci la tua password" minlength="8", maxlength="16" required>
 
             <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}}>
             <button type="submit">Accedi</button>

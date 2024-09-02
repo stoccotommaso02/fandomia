@@ -19,6 +19,17 @@ function checkDate(date) {
     return today < date;
 }
 
+function strongPwd(pwd){    //password must contain at least one special character
+    var valid = true;
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    
+    if(format.test(pwd)) valid = false;
+    if(pwd !== pwd.toLowerCase()) valid = false;
+    if( (/\d/.test(pwd))) valid = true;
+
+    return valid;
+}
+
 
 function checkRequired(field) {
     if (field === '') {
@@ -73,8 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to validate the form
     if(loginForm){
-        this.addEventListener("submit", function(event) {
-
+        loginForm.onsubmit = function(event) {
         let valid = false;
         clearErrors();
         // Email validation
@@ -100,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!valid) {
             event.preventDefault();
         }
-    });
-    }
+    };
+}
 });
 
 // input validation sign up form
@@ -135,6 +145,10 @@ document.addEventListener("DOMContentLoaded", function() {
             valid = false;
         } else if (password.length > 16) {
             showError(passwordInput,"Password non puo' superare i 16 caratteri");
+            valid = false;
+        }
+        else if(!strongPwd(password)) {
+            showError(passwordInput, "Password deve avere almeno: un numero un carattere speciale e una maiuscola");
             valid = false;
         }
 
