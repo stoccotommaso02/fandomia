@@ -49,6 +49,14 @@ $total_pages = ceil($total_pages);
 
 // Visualizza i link di paginazione
 $pagination_links =  "<div class='pagination'>";
+$next = $previous = "";
+
+    if ($page > 1) {
+        $previous = "<a href='latestItems.php?page=" . ($page - 1) . ">Previous</a>";
+    } else {
+        $previous = "<span>Previous</span> "; // Disabled state
+    }
+$pagination_links .= $previous;
 for ($i = 1; $i <= $total_pages; $i++) {
     if ($i == $page) {
         $pagination_links .= "<strong>$i</strong> "; // Pagina corrente senza link
@@ -56,6 +64,13 @@ for ($i = 1; $i <= $total_pages; $i++) {
         $pagination_links .= "<a href='latestItems.php?page=$i'>$i</a> "; // Altre pagine con link
     }
 }
+if ($page < $total_pages) {
+    $next = "<a href='latestItems.php?page=" . ($page + 1) . "'>Next</a>";
+} else {
+    $next = "<span>Next</span>"; // Disabled state
+}
+$pagination_links .= $next;
+$pagination_links .=  "</div>";
 
 $latest_item_template = new Template();
 $latest_item_template = $latest_item_template->render("latestItems.html",array("header" => $header,
