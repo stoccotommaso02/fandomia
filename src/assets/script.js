@@ -73,11 +73,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to validate the form
     if(loginForm){
+        this.addEventListener("submit", function(event) {
 
-        loginForm.onsubmit = function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        let valid = true;
+        let valid = false;
         clearErrors();
         // Email validation
         const email = emailInput.value.trim();
@@ -102,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!valid) {
             event.preventDefault();
         }
-    };
+    });
     }
 });
 
