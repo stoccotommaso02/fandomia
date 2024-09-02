@@ -3,7 +3,7 @@
 require_once("./lib/global.php");
 require_once("./lib/DBController.php");
 require_once("searchList.php");
-require_once("./pagination_links_factory");
+require_once("./pagination_links_factory.php");
 require_once("header.php");
 require_once("footer.php");
 /* step logici:
