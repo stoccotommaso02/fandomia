@@ -33,7 +33,7 @@ switch($category) {
 }
 $products_list = '';
 
-$products_per_page = 20; // Numero di prodotti per pagina
+$products_per_page = 12; // Numero di prodotti per pagina
 
 // Ottieni la pagina corrente dal parametro GET, o usa la pagina 1 come predefinita
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -79,7 +79,7 @@ if (!empty($result))    {
 }
 
 // Creazione dei link di paginazione
-$pagination_links = get_pagination_links($page , $total_products ,$category);
+$pagination_links = get_pagination_links($page , $total_products, $products_per_page, $category);
 
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("current_url" => $_SERVER['REQUEST_URI'],

@@ -10,7 +10,7 @@ require_once("footer.php");
 $header = buildHeader();
 $footer = buildFooter();
 
-$products_per_page = 10; // Numero di prodotti per pagina
+$products_per_page = 12; // Numero di prodotti per pagina
 
 // Ottieni la pagina corrente dal parametro GET, o usa la pagina 1 come predefinita
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -49,7 +49,7 @@ $total_products_result = $connection->queryDB($total_products_sql);
 $totale_products = $total_products_result[0]['total_products'];
 
 // Creazione dei link di paginazione
-$pagination_links = get_pagination_links($page , $totale_products);
+$pagination_links = get_pagination_links($page , $totale_products, $products_per_page);
 
 $latest_item_template = new Template();
 $latest_item_template = $latest_item_template->render("latestItems.html",array("header" => $header,

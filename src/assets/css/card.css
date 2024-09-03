@@ -37,7 +37,6 @@
 .item-image img {
   max-width: 100%;
   aspect-ratio: 1/1;
-  border-radius: 5px;
   object-fit: contain;
   object-position: center;
 }

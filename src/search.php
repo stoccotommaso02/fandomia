@@ -54,7 +54,7 @@ if (!empty($prodotti))  {
     
     $total_products = count($prodotti);
     
-    $pagination_links = get_pagination_links($page,$total_products);
+    $pagination_links = get_pagination_links($page,$total_products, $products_per_page);
 }   
 
 $header = buildHeader();

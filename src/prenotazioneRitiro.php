@@ -13,13 +13,13 @@ if (!isset($_SESSION['loggedUser'])) {
     header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
     exit();
 }
-if (!isset($_POST['product_id']) || $_POST['product_id'] == null) {
+if (!isset($_REQUEST['product_id']) || $_REQUEST['product_id'] == null) {
     header("Location: 404.php");
     exit();
 }
 
-$productId = sanitizeString($_GET['product_id']);
-$product_typename = $product_name = $product_type = "";
+$productId = sanitizeString($_REQUEST['product_id']);
+
 $connection =new DBconnection();
 $connection -> setConnection();
 try{
@@ -30,25 +30,33 @@ try{
             echo("Database problem : " . $e->getMessage());
             exit();
         }
-        
-    if (count($results) == 1) {
+    
+    $release_date = '';
+
+    if (!empty($results)) {
         // ciclo dei record restituiti dalla query
         foreach ($results as $row) {
             $product_name = $row["name"];
             $product_type = $row["product_type"];
+            $release_date = $row['release_date'];
             $reservedProduct = new Template();
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
         }
      } else {
-        header("Location: 404.php");
-        exit();
+        $errorMessage = "Spiacenti,il prodotto non è al momento presente!";
     }
 
+    $errors_list = '';
 
-if (isset($_SESSION['errors']) && $_SESSION['errors'] != null ) {
-    $errorMessage = '<p style="color:red;">' . htmlspecialchars($_SESSION['errors']) . '</p>';
-    unset($_SESSION['errors']);
-}
+    if (isset($_SESSION['errors'])) {
+        $errors = $_SESSION['errors'];
+        $errors_list = '<ul>';
+        foreach($errors as $error){
+            $errors_list .= '<li>'.$error.'</li>';
+            }
+        $errors_list .= '</ul>';
+        unset($_SESSION['errors']);
+    } 
 
 switch ($product_type)  {
     case "book":
@@ -129,5 +137,7 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
                                                                                   'footer' => $footer,
                                                                                   'errors' => $errorMessage));
 
+
 echo($reservationTemplate);
 
+?>

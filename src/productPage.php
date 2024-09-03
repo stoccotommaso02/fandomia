@@ -8,7 +8,7 @@ require_once("footer.php");
 $header = buildHeader();
 $footer = buildFooter();
 
-if (!isset($_POST['product_id']) || $_POST['product_id'] == null ) {
+if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
     header("Location: 404.php");
     exit();
 } else {

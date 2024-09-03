@@ -1,29 +1,35 @@
-<li class="card">
+<li class="reservationCard">
 <div>
 <h2>{{name}}</h2>
 <div class="item-row">
     <div class="item-image">
-        <picture><img src="{{immagine}}" alt="" ></picture>
+        <picture><img src="assets/images/products/{{id}}.jpg" alt="" ></picture>
     </div>
     <div class="item-info">
 <dl>
-    <dt>Prezzo:</dt>
+    <dt>Prezzo</dt>
     <dd id="prezzo">{{price}} &euro;</dd> 
-    <dt>Disponibilità:</dt><dd>{{status}}</dd>
-    <dt>Data di uscita:</dt><dd>{{release_date}}</dd>
-    <dt>Genere:</dt><dd>{{product_type}}</dd>
-    <dt>Data di ritiro:</dt><dd>{{reservation_date}}</dd>
-    <dt>Fascia oraria di ritiro:</dt><dd>{{reservation_time}}</dd>
+    <dt>Disponibilità</dt><dd>{{status}}</dd>
+    <dt>Data di uscita</dt><dd>{{release_date}}</dd>
+    <dt>Genere</dt><dd>{{product_type}}</dd>
+    <dt>Data di ritiro</dt><dd>{{reservation_date}}</dd>
+    <dt>Fascia oraria di ritiro</dt><dd>{{reservation_time}}</dd>
+    <dt>Note</dt><dd>{{notes}}</dd>
 </dl>
 </div>
 <div class="item-actions">
+    <form action="./productPage.php" method="get">
+        <input type="hidden" name="product_id" value="{{product_id}}">
+        <button type="submit">Pagina del prodotto</button>
+    </form>
     <form action="../lib/reservationController.php" method="post">
         <input type="hidden" name="reservation_id" value="{{reservation_id}}">
         <button type="submit">Cancella prenotazione</button>
     </form>
-    <form action="productPage.php" method="post">
-        <input type="hidden" name="reservation_id" value="{{id}}">
-        <button type="submit">Modifica prenotazione</button>
+    <form action="./prenotazioneRitiro.php" method="post">
+        <input type="hidden" name="product_id" value="{{product_id}}">
+        <input type="hidden" name="reservation_id" value="{{reservation_id}}">
+        <button type="submit" name="submit" value="modifica_prenotazione" >Modifica prenotazione</button>
     </form>
 </div>
 </div>

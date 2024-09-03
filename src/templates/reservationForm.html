@@ -19,23 +19,27 @@
               <li><a href="prenotazioneRitiro.php?product_id={{product_id}}" aria-current="page">Prenotazione ritiro</a></li>
             </ul>
         </nav>
-        <p> Il tuo ordine:</p>
-        {{reserved_product}}
-        <form id="reservationForm" action="./lib/reservationController.php?product_id={{product_id}}" method="post" novalidate> 
-            {{errors}}
-            <label for="withdrawDate">Scegli il giorno:</label>
-            <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} value="{{data_ritiro}}" required>
-            <label for="withdrawTime">Orario di ritiro:</label>
-            <select id="withdrawTime" name="fascia_oraria" required>
-              <option value="">--Seleziona una fascia oraria--</option>
-              {{option_values}}
-            </select>
-            <label for="notes">Note:</label>
-            <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140"></textarea>
-            <span id="errorMessage"></span>
-            {{reservation_id}}
-            <button type="submit">{{submit_action}}</button>
-        </form>  
+        <main id="content">
+            <p> Il tuo ordine:</p>
+            <div class="reservation">
+                {{reserved_product}}
+                <form id="reservationForm" action="./lib/reservationController.php" method="post" novalidate> 
+                    {{errors}}
+                    <label for="withdrawDate">Scegli il giorno:</label>
+                    <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} value="{{data_ritiro}}" required>
+                    <label for="withdrawTime">Orario di ritiro:</label>
+                    <select id="withdrawTime" name="fascia_oraria" required>
+                        <option value="">--Seleziona una fascia oraria--</option>
+                        {{option_values}}
+                    </select>
+                    <label for="notes">Note:</label>
+                    <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140"></textarea>
+                    <input type="hidden" name="product_id" value="{{product_id}}">
+                    {{reservation_id}}
+                    <button type="submit">{{submit_action}}</button>
+                </form>
+            </div>
+        </main> 
     {{footer}}
     </body>
 </html>

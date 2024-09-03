@@ -10,7 +10,7 @@ $footer = buildFooter();
 $errorMessage = $state = '';
 
 if (isset($_SESSION['loggedUser']) && $_SESSION['loggedUser'] != null ) {
-    header("Location :areaPersonale.php");
+    header("Location: index.php");
 }
 
 if (isset($_SESSION['errors'])) {
