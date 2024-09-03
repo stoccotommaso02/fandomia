@@ -6,8 +6,9 @@
         </div>
     </div>
         <search>
-            <form action="search.php" method="post" id="searchForm">
-              <input type="search" placeholder="Cerca il titolo di un prodotto" id="search" name="search" />
+            <form action="search.php" method="post" id="searchForm" role="search">
+              <input type="search" placeholder="Cerca il titolo di un prodotto" 
+                     id="search" name="search" aria-label="Ricerca prodotto per nome"/>
               <span id="searchError" class="error-message"></span>
               <button type="submit">Cerca</button>
             </form>
