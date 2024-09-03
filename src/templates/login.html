@@ -6,13 +6,13 @@
         <meta name="keywords" content="login, fandomia">
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="../assets/css/form.css">
-        <script src="../assets/script.js"></script>
+        <script src="../assets/script/script.js"></script>
         <script src="../assets/script/showPassword.js"></script>
     </head>
     <body>
         {{header}}
         <nav aria-label="Percorso" class="breadcrumb">
-            <p>Ti trovi in: </p>
+            <p>Ti trovi in:&nbsp; </p>
             <ul>
               <li><a href="index.php" lang="en">Home</a></li>
               <li><a href="login.php" aria-current="page" lang="en">Login</a></li>
@@ -25,7 +25,7 @@
             {{errors}}
             <label for="mail">Email</label>
             <input id="mail" type="email" name="userEmail" 
-            placeholder="E-mail" pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" required>
+            placeholder="E-mail" required>
             <label for="pwd">Password</label>
             <input id="pwd" type="password" name="password"
             placeholder="Inserisci la tua password" required  />

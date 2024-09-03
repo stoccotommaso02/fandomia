@@ -18,14 +18,14 @@ p{
     pointer-events: none;
 }
 
-ul{
+main ul{
     color:red; 
     align-self: center; 
     max-width:75%;
 }
 
 
-.form{
+.userForm{
     width: 100%;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -39,21 +39,22 @@ ul{
     gap: 1em
 }
 
-.form input {
+.userForm input {
     margin: auto;
     width: max(30%, 30em);
     border: none;
     border-bottom: 3px solid #AAAAAA;
-    transition: all 0.3s;
+    transition: border-bottom 0.3s ease;
+    font-size: 1em;
 }
 
-.form input:focus, .form input:active, .form input:hover{
+.userForm input:focus, .userForm input:active, .userForm input:hover{
     outline: none;
     border-bottom: 2px solid var(--headerBackgroundColor);
 }
 
 
-.form label {
+.userForm label {
     margin: .5em auto;
     color: var(--headerBackgroundColor);
     padding-top: 0.5em;
@@ -64,7 +65,7 @@ button {
     align-self: center;
     padding: 10px;
     margin: 10px;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: bold;
     color: #fff;
     background-color: var(--headerBackgroundColor);
@@ -75,12 +76,12 @@ button {
     text-decoration: underline;
   }
 
-  button:hover {
+  .userForm button:hover {
     background-color: var(--accentColor);
     color: var(--textColor);
   }
   
-  button:active {
+  .userForm button:active {
     background-color: white;
     color: var(--accentColor);
 }

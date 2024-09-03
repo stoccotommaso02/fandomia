@@ -8,7 +8,7 @@ function buildHeader() : string {
         $logout = '<a href="logout.php">Logout</a>';
         $headerTemplate = str_replace('{{areaPersonale}}',$logout,$headerTemplate);
     } else {
-        $login='<a href="login.php" id="loginFormLink">Login</a>';
+        $login='<a href="login.php" id="login">Login</a>';
         $headerTemplate = str_replace('{{areaPersonale}}',$login,$headerTemplate);
     }
 

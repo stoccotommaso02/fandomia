@@ -119,7 +119,7 @@ header search form button {
     min-width: 100px;
 }
 
-#reservation, #loginForm, #areaPersonale {
+#reservation,  #login, #areaPersonale {
     font-size: x-large;
     padding: 0.5em 1em;
 }
@@ -336,7 +336,7 @@ footer p {
         box-sizing: border-box;
     }
 
-    #loginForm {
+     #login {
         display: block;
     }
 

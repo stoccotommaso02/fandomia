@@ -6,20 +6,20 @@
         <meta name="keywords" content="registrazione, fandomia, nuovo utente">
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="../assets/css/form.css">
-        <script src="../assets/script.js"></script>
+        <script src="../assets/script/script.js"></script>
     </head>
     <body>
         {{header}}
         <nav aria-label="Percorso" class="breadcrumb">
-            <p>Ti trovi in: </p>
+            <p>Ti trovi in:&nbsp; </p>
             <ul>
                 <li><a href="index.php" lang="en">Home</a></li>
-                <li><a href="signup.php" aria-current="page">Registrazione</a></li>
+                <li><a href="signup.php" aria-current="page">Registrati</a></li>
             </ul>
         </nav>
         <main id="content">
-            <h2 lang="en">Sign Up</h2>
-            <form class="form" name="signUpForm" action="../lib/signupController.php" method="post">
+            <h2>Registrati</h2>
+            <form class="userForm" name="signUpForm" action="../lib/signupController.php" method="post">
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail" value="{{usermail}}"
@@ -28,7 +28,7 @@
 
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
-                placeholder="Inserisci la tua password" minlength="8", maxlength="16"  required>
+                placeholder="Inserisci la tua password" minlength="8", maxlength="16"  required/>
                 
 
                 <label for="confirmPwd">Conferma password</label>
