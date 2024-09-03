@@ -10,6 +10,7 @@ di gestire i dati submittati dal form */
 $header = buildHeader();
 $footer = buildFooter();
 $errors_list = '';
+$usermail = '';
 
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
@@ -19,11 +20,16 @@ if (isset($_SESSION['errors'])) {
         }
         $errors_list .= '</ul>';
     unset($_SESSION['errors']);
+    if (isset($_SESSION['previous_usermail']))   {
+        $usermail = $_SESSION['previous_usermail'];
+        unset($_SESSION['previous_usermail']);
+    }
 } 
 
 $signUpForm = new Template();
 $signUpForm = $signUpForm -> render('signup.html',array("header" => $header,
                                                         "errors" => $errors_list,
+                                                        "usermail" => $usermail,
                                                         "footer" => $footer));
 
 echo($signUpForm);

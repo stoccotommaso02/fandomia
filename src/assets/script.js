@@ -178,8 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
             clearErrors();
             const date = withdrawDate.value;
             const time = withdrawTime.value;
-
-            if(!checkRequired(date) || time === ""){
+            if(!checkRequired(date) || !checkRequired(time)){
                 showError(reservationForm, "inserire sia la data che l'ora del ritiro");
                 valid = false;
             }

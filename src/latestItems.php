@@ -3,6 +3,7 @@
 require_once("./lib/global.php");
 require_once("./lib/DBController.php");
 require_once("./lib/templateController.php");
+require_once("./pagination_links_factory.php");
 require_once("header.php");
 require_once("footer.php");
 
@@ -45,18 +46,10 @@ $total_products_sql = "SELECT COUNT(*) as total_products
                        WHERE release_date <= CURDATE() and release_date >= CURDATE() - INTERVAL 30 DAY ";
 $connection -> setConnection();
 $total_products_result = $connection->queryDB($total_products_sql);
-$total_pages = $total_products_result[0]['total_products'] / $products_per_page;
-$total_pages = ceil($total_pages);
+$totale_products = $total_products_result[0]['total_products'];
 
-// Visualizza i link di paginazione
-$pagination_links =  "<div class='pagination'>";
-for ($i = 1; $i <= $total_pages; $i++) {
-    if ($i == $page) {
-        $pagination_links .= "<strong>$i</strong></div>"; // Pagina corrente senza link
-    } else {
-        $pagination_links .= "<a href='latestItems.php?page=$i'>$i</a></div>"; // Altre pagine con link
-    }
-}
+// Creazione dei link di paginazione
+$pagination_links = get_pagination_links($page , $totale_products);
 
 $latest_item_template = new Template();
 $latest_item_template = $latest_item_template->render("latestItems.html",array("header" => $header,
