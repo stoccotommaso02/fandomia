@@ -39,7 +39,7 @@ class DBconnection {
     /* Da modificare con dei prepared statements, più sicuri rispetto alla SQL injection*/
     /* metodo per effettuare query di Selezione ,le quali restituiscono un oggetto mysqli_result*/
     function queryDB(string $query) : array  {
-        $queryResult = mysqli_query($this -> connection, $query) or die("errore in DBacces" .mysqli_error($this->connection));
+        $queryResult = mysqli_query($this -> connection, $query) or http_response_code(500); 
         $result = array();
                 if (mysqli_num_rows($queryResult) > 0 )  {
                 while( $row = mysqli_fetch_assoc($queryResult) )    {

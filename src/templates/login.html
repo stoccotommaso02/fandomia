@@ -20,15 +20,15 @@
         <main id="content">
         <h2 lang="en">Login</h2>
         {{state}}
-        <form class="form" action="./lib/loginController.php" method="post"> 
+        <form class="userForm" name="loginForm" action="./lib/loginController.php" method="post"> 
             {{errors}}
-            <label for="mail" lang="en">Email</label>
-            <input id="mail" type="email" name="userEmail" required placeholder="email">
-            <label for="pwd" lang="en">Password</label>
-            <input id="pwd" type="password" name="password" required placeholder="password">
-            <label for="showPassword">Mostra <span lang="en">password</span></label>
-            <input type="checkbox" id="showPassword" onclick="togglePassword()">
-            <input type="hidden" id="redirect_url" name="redirect_url" value="{{redirect_url}}">
+            <label for="mail">Email</label>
+            <input id="mail" type="email" name="userEmail" 
+            placeholder="E-mail" pattern="/^[^\s@]+@[^\s@]+\.[^\s@]+$/" required>
+            <label for="pwd">Password</label>
+            <input id="pwd" type="password" name="password"
+            placeholder="Password" minlength="8", maxlength="16" required  />
+            <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}}>
             <button type="submit">Accedi</button>
             <a href="signup.php">Non sei già registrato?</a>
         </form>  
