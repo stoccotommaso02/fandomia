@@ -43,24 +43,35 @@
 
 /* Stile per le informazioni del prodotto */
 .item-info dl {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 15px;
-  color: #555;
-  text-indent: 0.8em;
+  text-align: center;
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap:0;
+  align-items: stretch;
+  justify-items: stretch;
 }
 
 .item-info dt {
-  width: 50%;
-  font-weight: bold;
-  margin-bottom: 5px;
+  align-self: center;
+  display: block;
   color: var(--headerBackgroundColor);
+  font-weight: bold;
+  margin: 0;
+  padding: .5em 1.5em;
+  border-right: 2px solid var(--headerBackgroundColor)
 }
 
 .item-info dd {
-  width: 50%;
-  margin-bottom: 5px;
-  margin-left: 0;
+  width: 100%;
+  align-self: center;
+  display: block;
+  margin: 0;
+  padding: .5em 0;
+}
+
+.item-info dt:nth-of-type(even), .item-info dd:nth-of-type(even) {
+  background-color: var(--backgroundColor);
 }
 
 /* Stile per i pulsanti di azione */
@@ -134,12 +145,26 @@
   }
 
   .item-info dl {
-    row-gap: 0.8em;
     text-align: center;
   }
   
   .item-actions {
     grid-area: 2 / 2 / span 1 / span 1;
     align-self: end;
+  }
+}
+
+@media screen and (max-width:650px) {
+  .item-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item-image picture{
+    height: 200px;
+  }
+
+  .item-info {
+    width: 100%;
   }
 }

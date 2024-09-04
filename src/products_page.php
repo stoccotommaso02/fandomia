@@ -82,8 +82,7 @@ if (!empty($result))    {
 $pagination_links = get_pagination_links($page , $total_products, $products_per_page, $category);
 
 $products_page_template = new Template();
-$products_page_template = $products_page_template->render("products_page.html",array("current_url" => $_SERVER['REQUEST_URI'],
-                                                                                     "header" => $header,
+$products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
                                                                                      "category" => $_GET['category'],
                                                                                      "products" => $products,
                                                                                      "products_list" => $products_list,

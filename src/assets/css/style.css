@@ -220,6 +220,7 @@ main > * {
 ////////////////////*/ 
 
 .pagination ul{
+    border: none;
     display: flex;
     flex-wrap: wrap;
     margin: 1em auto;
