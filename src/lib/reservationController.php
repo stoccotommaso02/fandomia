@@ -39,9 +39,9 @@
 
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $updateQuery = "UPDATE Reservation
-                                SET reservation_date = '{$_POST['data_ritiro']}',
-                                    reservation_time = '{$_POST['fascia_oraria']}',
-                                    notes = '{$_POST['notes']}'
+                                SET reservation_date = '{$withdrawDate}',
+                                    reservation_time = '{$withdrawTime}',
+                                    notes = '{$notes}'
                                 WHERE Reservation.id = {$_POST['reservation_id']}" ;
                 $result = $connection -> alterQueryDB($updateQuery);
             }
