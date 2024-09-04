@@ -20,9 +20,9 @@
 <div class="item-actions">
     <form action="./productPage.php" method="get">
         <input type="hidden" name="product_id" value="{{product_id}}">
-        <button type="submit">Pagina del prodotto</button>
+        <button type="submit" name="submit" >Pagina del prodotto</button>
     </form>
-    <form action="../lib/reservationController.php" method="post">
+    <form action="../lib/reservationController.php" id="cancelReservation" name="cancelReservation" method="post">
         <input type="hidden" name="reservation_id" value="{{reservation_id}}">
         <button type="submit" name ="submit" value="cancella_prenotazione">Cancella prenotazione</button>
     </form>

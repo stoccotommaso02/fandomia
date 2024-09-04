@@ -49,6 +49,17 @@ function clearErrors() {
     document.querySelectorAll(".error").forEach(el => el.classList.remove('active'));
 }
 
+//ask for confirmation before deleteing a reservation
+function handleCancellation(event) {
+    
+    let cancel = false;
+    if (confirm("Sei sicuro di voler cancellare la prenotazione? Questa azione non può essere annullata.")) {
+        cancel = true;
+    }
+
+    return cancel;
+}
+
 //input validation for search bar form
 document.addEventListener("DOMContentLoaded", function() {
     const searchForm = document.getElementById("searchForm");
@@ -192,4 +203,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const cancelReservationForm = document.getElementById("cancelReservation");
+    if (cancelReservationForm) {
+        cancelReservationForm.onsubmit = function(event){
+            if(!handleCancellation(event)){
+                event.preventDefault();
+            }
+        }
+    }
 });
