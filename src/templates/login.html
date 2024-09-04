@@ -25,10 +25,10 @@
             {{errors}}
             <label for="mail">Email</label>
             <input id="mail" type="email" name="userEmail" 
-            placeholder="E-mail" required>
+            placeholder="E-mail" autocomplete="email" required>
             <label for="pwd">Password</label>
             <input id="pwd" type="password" name="password"
-            placeholder="Inserisci la tua password" required  />
+            placeholder="Inserisci la tua password" autocomplete="current-password" required  />
             <label for="showPassword">Mostra password</label>
             <input type="checkbox" id="showPassword" onclick="togglePassword()" /> 
             <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}} />

@@ -23,12 +23,13 @@
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail" value="{{usermail}}"
-                placeholder="Inserisci la tua Email" required>
+                placeholder="Inserisci la tua Email" autocomplete="email" required>
                 
 
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
-                placeholder="Inserisci la tua password" minlength="8", maxlength="16"  required/>
+                placeholder="Inserisci la tua password" minlength="8", maxlength="16" 
+                autocomplete="new-password"  required/>
                 
 
                 <label for="confirmPwd">Conferma password</label>
