@@ -16,7 +16,7 @@
             <div class="item-actions">
                 <form action="prenotazioneRitiro.php" method="get">
                     <input type="hidden" name="product_id" value="{{id}}">
-                    <button type="submit">Prenota</button>
+                    <button type="submit" {{check_unavailable}} >Prenota</button>
                 </form>
                 <form action="productPage.php" method="get">
                     <input type="hidden" name="product_id" value="{{id}}">

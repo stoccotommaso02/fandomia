@@ -53,6 +53,7 @@ function getLatestItems() : string {
     if (!empty($rows)) {
     foreach ($rows as $row) {
     $latestItemTemplate = new Template();
+    $row['check_unavailable'] = $row['status'] == 'not available'? "disabled = 'true'" : '';
     $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
     $latestItems .= $latestItemTemplate;
     }
@@ -79,6 +80,7 @@ function getNextItems() : string {
     if (!empty($rows)) {
         foreach ($rows as $row) {
             $nextItemTemplate = new Template();
+            $row['check_unavailable'] = $row['status'] == 'not available'? "disabled = 'true'" : '';
             $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
@@ -103,6 +105,7 @@ function getSaleItems() : string {
         // ciclo dei record restituiti dalla query
         foreach ($rows as $row) {
             $saleItemTemplate = new Template();
+            $row['check_unavailable'] = $row['status'] == 'not available'? "disabled = 'true'" : '';
             $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
             $saleItems .= $saleItemTemplate;
         }
