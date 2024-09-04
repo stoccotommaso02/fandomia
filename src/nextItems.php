@@ -18,7 +18,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 // Calcola l'offset (da dove iniziare a prendere i prodotti)
 $offset = ($page - 1) * $products_per_page;
 
-$nextItems = '<ul>';
+$nextItems = '<ul class="products_list">';
 $connection =new DBconnection();
 $connection -> setConnection();
 $query = "SELECT *

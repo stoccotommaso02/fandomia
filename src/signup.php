@@ -14,9 +14,9 @@ $usermail = '';
 
 if (isset($_SESSION['errors'])) {
     $errors = $_SESSION['errors'];
-    $errors_list = '<ul style="color:red; align-self: center; max-width:75%">';
+    $errors_list = '<ul id="errorList">';
     foreach($errors as $error){
-        $errors_list .= '<li>'.$error.'</li>';
+        $errors_list .= '<li class="formError">'.$error.'</li>';
         }
         $errors_list .= '</ul>';
     unset($_SESSION['errors']);
