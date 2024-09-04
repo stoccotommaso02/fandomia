@@ -1,6 +1,6 @@
 <?php
 
-function get_pagination_links(int $page, int $total_products, int $products_per_page, string $category = '') : string {
+function get_pagination_links(int $page, int $total_products, int $products_per_page = 12, string $category = '') : string {
 $total_pages = $total_products / $products_per_page;
 $total_pages = ceil($total_pages);
 

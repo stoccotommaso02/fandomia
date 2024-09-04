@@ -87,8 +87,7 @@ foreach ($record as $key => $value) {
         $extra_infos .= "<dt>$key:</dt> <dd>$value</dd>";
     }
 }
-            $productTemplate = $productTemplate -> render("product_page.html",array("current_url" => $_SERVER['REQUEST_URI'],
-                                                                                    "header" => $header,
+            $productTemplate = $productTemplate -> render("product_page.html",array("header" => $header,
                                                                                     "id" => $record['id'],
                                                                                     "name" => $record['name'],
                                                                                     "product_type" => $product_type,

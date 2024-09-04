@@ -41,7 +41,7 @@ main ul{
 
 .userForm input {
     margin: auto;
-    width: max(30%, 30em);
+    width: max(30%, min(30em, 100%));
     border: none;
     border-bottom: 3px solid #AAAAAA;
     transition: border-bottom 0.3s ease;
@@ -93,6 +93,7 @@ main ul{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: inline-block;
     margin: 0 auto;
+    width: min(100%, 32em);
 }
 
 .reservedProducts > div {
@@ -118,7 +119,7 @@ main ul{
 }
 
 .item-image img {
-    width: 30em;
+    width: min(100%, 30em);
     aspect-ratio: 1/1;
     border-radius: 5px;
     object-fit: contain;
@@ -251,5 +252,3 @@ main ul{
 #reservationForm select:hover, #reservationForm select:focus, #reservationForm select:active {
     border-bottom: 3px solid var(--headerBackgroundColor);
 }
-
-@media

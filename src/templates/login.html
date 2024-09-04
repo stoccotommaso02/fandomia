@@ -15,7 +15,7 @@
             <p>Ti trovi in:&nbsp; </p>
             <ul>
               <li><a href="index.php" lang="en">Home</a></li>
-              <li><a href="login.php" aria-current="page" lang="en">Login</a></li>
+              <li><span lang="en">Login</span></li>
             </ul>
         </nav>
         <main id="content">
@@ -31,7 +31,7 @@
             placeholder="Inserisci la tua password" autocomplete="current-password" required  />
             <label for="showPassword">Mostra password</label>
             <input type="checkbox" id="showPassword" onclick="togglePassword()" /> 
-            <input type="hidden" id="redirect_url" name="redirect_url" value={{redirect_url}} />
+            <input type="hidden" id="redirect_url" name="redirect_url" value="{{redirect_url}}" />
             <button type="submit">Accedi</button>
             <a href="signup.php">Non sei già registrato?</a>
         </form>  
