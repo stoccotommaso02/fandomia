@@ -41,7 +41,7 @@ main ul{
 
 .userForm input {
     margin: auto;
-    width: max(30%, 30em);
+    width: max(30%, min(30em, 100%));
     border: none;
     border-bottom: 3px solid #AAAAAA;
     transition: border-bottom 0.3s ease;
