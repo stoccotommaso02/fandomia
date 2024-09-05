@@ -22,12 +22,12 @@
     </nav>
     <main id="content">
         <section class="product">
-        <h2>{{name}}</h2>
+        <h1>{{name}}</h1>
             <div id="product-display">
                     <div class="item-image">
                         <picture><img src="assets/images/products/{{id}}.jpg" alt={{alt}} ></picture>
                     </div>
-                    <h3>Dettagli prodotto</h3>
+                    <h2>Dettagli prodotto</h2>
                     <dl class="details">
                         <dt>Titolo:</dt><dd>{{name}}</dd>
                         <dt class="example-genre">Tipologia:</dt>
@@ -42,6 +42,10 @@
                         <dd>{{price}}</dd>
                         {{extra_infos}}
                     </dl>
+                    <div class="item-description">
+                        <h2>Descrizione</h2>
+                        <p class="description">{{description}}</p>
+                    </div>
             </div>
         </section>
         <div id="buttons">
