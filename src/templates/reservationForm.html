@@ -5,8 +5,8 @@
         <title>Fandomia - Prenotazione</title>
         <meta name="keywords" content="prenotazione, fandomia,fumetti,videogiochi,libri,musica">
         <meta name="viewport" content="width=device-width" >
-        <link rel="stylesheet" href="../assets/css/finalstyle.css">
-        <script src="../assets/script/script.js"></script>
+        <link rel="stylesheet" href="assets/css/finalstyle.css">
+        <script src="assets/script/script.js"></script>
     </head>
     <body>
         {{header}}
@@ -23,7 +23,7 @@
             <h1>Il tuo ordine:</h1>
             <div class="reservation">
                 {{reserved_product}}
-                <form id="reservationForm" action="./lib/reservationController.php" method="post" novalidate> 
+                <form id="reservationForm" action="./lib/reservationController.php" method="post" > 
                     {{errors}}
                     <label for="withdrawDate">Scegli il giorno:</label>
                     <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} value="{{data_ritiro}}" required>

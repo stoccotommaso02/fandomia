@@ -1,7 +1,5 @@
 <?php 
 function buildHeader() : string {
-    
-    session_start();
 
     $current_page = basename($_SERVER['REQUEST_URI']);
 
@@ -21,7 +19,7 @@ function buildHeader() : string {
     foreach ($menu_items as $action => $name) {
         $links_state[$action] = ($action == $current_page) ? 
                              "<li id='current_link'>$name</li>" : 
-                             "<li><a href=$action>$name</a></li>";
+                             "<li><a href='$action'>$name</a></li>";
         $headerTemplate = str_replace("{{$name}}",$links_state[$action],$headerTemplate);
     }
 

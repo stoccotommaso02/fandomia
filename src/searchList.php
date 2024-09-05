@@ -31,7 +31,8 @@ function searchList(string $searchParam) : array {
                            'status' => $result['status'],
                            'price' => $result['price'],
                            'release_date' => $result['release_date'],
-                           'product_type' => $result['product_type']
+                           'product_type' => $result['product_type'],
+                           'similarity' => $similarity
                            ];
             /*Un punteggio di similarità uguale a 1 , equivale ad aver trovato
               una perfetta corrispondenza, e quindi fermo il ciclo*/

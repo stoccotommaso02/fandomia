@@ -140,13 +140,14 @@
             exit();
         }
         function checkProductAvalaibility(string $product_id) : bool {
-        $connection = getConnection();
+        $connection = new DBconnection;    
+        $connection -> setConnection();
         $checkQuery = "SELECT * 
                        from Products
                        where id = '$product_id' ";
-        $result = $connection->query($checkQuery);
-        if ($result->num_rows > 0)  {
-            $record = $result->fetch_assoc();
+        $result = $connection->queryDB($checkQuery);
+        if (!empty($result))  {
+            $record = $result[0];
             if ($record['status'] == 'available') {
                 return true;
             }

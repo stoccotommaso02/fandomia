@@ -26,7 +26,7 @@ if (isset($_SESSION['errors'])) {
 
 $header = buildHeader();
 
-$redirect_url=$_GET['redirect_url'] ? $_GET['redirect_url'] : '';
+$redirect_url=isset($_GET['redirect_url']) ? $_GET['redirect_url'] : '';
 
 $loginTemplate = new Template();
 $loginTemplate = $loginTemplate->render("login.html",array('header' => $header,

@@ -312,11 +312,11 @@ main > * {
 }
 
 
-main h2 {
+main h1 {
     display: flex;
     justify-content: center;
     color: var(--headerBackgroundColor);
-    margin: .5em auto;
+    margin: 1em auto;
 }
 
 /*////////////////////

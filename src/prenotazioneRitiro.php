@@ -1,8 +1,8 @@
 <?php 
 
-require_once("./lib/global.php");
-require_once("./lib/templateController.php");
-require_once("./lib/DbController.php");
+require_once("lib/global.php");
+require_once("lib/templateController.php");
+require_once("lib/DBController.php");
 require_once("header.php");
 require_once("footer.php");
 
@@ -136,7 +136,7 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
                                                                                   'submit_action' => $submit_action,
                                                                                   'reservation_id' => $reservation_id,
                                                                                   'footer' => $footer,
-                                                                                  'errors' => $errorMessage,
+                                                                                  'errors' => $errors_list,
                                                                                   'reservation_id' => $reservation_id));
 
 

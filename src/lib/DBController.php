@@ -2,10 +2,10 @@
 
 class DBconnection {
 
-    private const HOST_DB = "fandomiadb";
-    private const DATABASE = "testdb";
-    private const USER = "testuser";
-    private const PASSWORD = "testpassword";
+    private const HOST_DB = "localhost";
+    private const DATABASE = "isignore";
+    private const USER = "isignore";
+    private const PASSWORD = "zied3Bai3thi0jah";
     private $connection;
     private $isConnected = false;
 

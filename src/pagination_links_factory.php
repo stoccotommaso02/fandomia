@@ -5,7 +5,7 @@ $total_pages = $total_products / $products_per_page;
 $total_pages = ceil($total_pages);
 
 // Visualizza i link di paginazione
-$pagination_links =  "<nav class='pagination' role='navigation' aria-label='Navigazione pagine di risultati'><ul>";
+$pagination_links =  "<nav class='pagination' aria-label='Navigazione pagine di risultati'><ul>";
 $next = $previous = "";
 
     if ($page > 1) {
