@@ -11,7 +11,8 @@ function buildHeader() : string {
         'products_page.php?category=book' => 'Libri',
         'products_page.php?category=music' => 'Musica',
         'products_page.php?category=comic' => 'Fumetti',
-        'products_page.php?category=videogame' => 'Videogiochi'
+        'products_page.php?category=videogame' => 'Videogiochi',
+        'reservationList.php' => 'Le tue prenotazioni'
     );
 
     // Crea un array che indica se un link deve essere disabilitato
