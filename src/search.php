@@ -42,7 +42,7 @@ if (!empty($prodotti))  {
     $offset = ($page - 1) * $prodotti_per_pagina;
     $prodotti_pagina = array_slice($prodotti, $offset, $prodotti_per_pagina);
     
-    $products_list = "<ul>";
+    $products_list = "<ul class='products_list'>";
     foreach ($prodotti_pagina as $prodotto) {
 
         $product_template = new Template();

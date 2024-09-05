@@ -1,0 +1,1275 @@
+/*//////////////////////
+///                  ///
+/// ELEMENTI GLOBALI ///
+///                  ///
+//////////////////////*/
+
+:root {
+    --headerBackgroundColor: #013020;
+    --headerTextColor: #FFFFFF;
+    --accentColor: #F9690E;
+    --backgroundColor: #EEEEEE;
+    --textColor: #000000;
+    --linkColor: #0000EE;
+    --visitedLinkColor: #800080;
+    --fontFamily: "Roboto Condensed", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:link {
+    color: var(--linkColor);
+}
+
+:visited {
+    color: var(--visitedLinkColor);
+}
+
+html {
+    margin: auto;
+    font-size: 100%;
+    line-height: 1.5em;
+    font-family: var(--fontFamily);
+}
+
+body {
+    height : 100%;
+    display : flex;
+    flex-direction : column;
+    min-height: 100vh;
+}
+
+.navigationHelp {
+    position: absolute;
+    text-indent: -999em;
+}
+
+/*////////////////////
+////    HEADER    ////
+////////////////////*/
+
+header {
+    z-index: 1;
+    top: 0;
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+}
+
+@supports (position: sticky) {
+    header {
+        position: sticky;
+    }
+}
+.logo_icon_wrapper img{
+    width: 80px;
+    padding: 0em 1em;
+}
+
+header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;  
+    padding: 10px 10px 20px 10px;       
+}
+
+header search {
+    flex-grow: 0.8;
+}
+
+header search form {
+    display: flex;
+    position: static;
+}
+
+header search form input {
+    flex-grow: 3;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+header search form button {
+    flex-grow: 0;
+    width: 8%;
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+    text-transform: capitalize;
+    letter-spacing: .05rem;
+    background-color:var(--accentColor);
+    border: none;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+#reservation, .ultimobottone a{
+    font-size: x-large;
+    padding: 0.5em 1em;
+}
+
+#menu ul {
+    display : flex;
+    direction: row;
+    margin: 1em;
+    justify-content: space-around;
+}
+
+#menu ul li {
+    width: 100%;
+    text-align: center;
+    list-style: none;
+}
+
+#menu ul li a {
+    font-size: x-large;
+    width: 100%;
+    padding: 0.5em 1em;
+}
+
+header a {
+    transition: color 0.3s, background-color 0.3s;
+}
+
+header a:link {
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    vertical-align: bottom;
+    text-decoration: underline;
+    letter-spacing: .05rem;
+}
+
+header a:visited{
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+header a:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+header a:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+.hamburger {
+    display: none;
+}
+
+@media screen and (max-width: 760px) {
+    header > div {
+        padding: 0;
+        flex-wrap: wrap;
+        padding: 0.5em;
+        align-items: center;
+        gap: 0;
+        justify-content: center;
+    }
+
+    search {
+        flex-grow: 2;
+    }
+
+    #reservation, .ultimobottone {
+        display: block;
+        text-align: center;
+        flex: 1 1 50%;
+        margin: 0;
+        width: 50%;
+        box-sizing: border-box;
+    }
+
+     #login {
+        display: block;
+    }
+
+    #menuList li:not(:first-child) {
+        margin-top: 1.5em;
+    }
+
+    #menuList {
+        transform-origin: 0 0;
+        display: flex;
+        flex-direction: column;
+        padding: auto;
+        transition: transform 0.5s ease-out;
+        transform: scaleY(0%);
+        gap: auto;
+    }
+
+    #menu {
+        height: auto;
+    }
+
+    #openmenu {
+        background-color: transparent;
+        margin: 0 auto 1em auto;
+        display: block;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        height: 40px;
+        width: 40px;
+        background-image: url("../images/hamburger.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #openmenu + div {
+        transition: max-height 0.5s ease-out;
+    }
+
+    #openmenu[aria-expanded='true'] + div {
+        max-height: 500px;
+    }
+
+    #openmenu[aria-expanded='false'] + div {
+        max-height: 0;
+    }
+    
+    #openmenu[aria-expanded='true'] + div > #menuList{
+        transform: scaleY(100%);
+        padding-bottom: 0.5em;
+    }
+
+    #openmenu[aria-expanded='true'] {
+        display: None;
+    }
+
+    #closemenu {
+        background-color: transparent;
+        margin: 0 auto 1em auto;
+        display: none;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+        height: 40px;
+        width: 40px;
+        background-image: url("../images/close.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    #openmenu[aria-expanded='true'] + div #closemenu {
+        display:block;
+    }
+}
+
+
+/*////////////////////
+////  BREADCRUMB  ////
+////////////////////*/ 
+
+nav.breadcrumb  {
+    padding: 1em 0.5em 0.5em 1.5em;
+    display: flex;
+    background-color: var(--backgroundColor);
+   }
+
+nav.breadcrumb ul li {
+   display: inline;
+   list-style-type: none;
+   font-weight: bold;
+}
+
+nav.breadcrumb li:not(:first-child)::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-image: url('../images/breadcrumb-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 5px;
+}
+
+/*////////////////////
+////     MAIN     ////
+////////////////////*/ 
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: var(--backgroundColor);
+    padding: 0 1em 1em 1em;
+}
+
+main > * {
+    max-width: 1400px;
+}
+
+
+main h2 {
+    display: flex;
+    justify-content: center;
+    color: var(--headerBackgroundColor);
+    margin: .5em auto;
+}
+
+/*////////////////////
+////  PAGINATION  ////
+////////////////////*/
+
+.pagination ul{
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em auto;
+    justify-content: center;
+    gap: 1em;
+    list-style-type: none;
+    text-align: center;
+    font-size: 110%;
+}
+
+.pagination ul li span, .pagination ul li a{
+    background-color: var(--headerBackgroundColor);
+    display: block;
+}
+
+.pagination ul li:not(:first-child):not(:last-child) a{
+    padding: .5em;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.pagination ul li:first-child span::before, .pagination ul li:first-child a::before{
+    content: "<< " / "";
+}
+
+.pagination ul li:last-child span::after, .pagination ul li:last-child a::after{
+    content: " >>" / "";
+}
+.pagination ul li:first-child span, .pagination ul li:first-child a, .pagination ul li:last-child a, .pagination ul li:last-child span {
+    cursor: pointer;
+    padding: .5em;
+    border-radius: 8px;
+}
+
+.pagination ul li:hover a, .pagination ul li:hover span{
+    background-color: var(--accentColor);
+}
+
+.pagination ul li, .pagination ul li a, .pagination ul li a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.pagination ul li a[aria-current="true"] {
+    background-color: var(--accentColor);
+    color: black;
+}
+
+.pagination ul li span:hover , .pagination ul li a:hover, .pagination ul li a:visited:hover {
+    color: black;
+}
+
+/*////////////////////
+////    FOOTER    ////
+////////////////////*/ 
+
+footer{
+    background-color: var(--headerBackgroundColor);
+    color: var(--headerTextColor);
+    max-width:100%;
+    /*margin-top: 10px; */
+    padding-top: 1em;
+}
+
+footer p {
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: .05rem;
+}
+
+.contact_info{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 10px;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 10px;
+}
+
+.contact_info dt,dd {
+    width: 48%;
+    display: inline-block;
+    font-weight: bold;
+    letter-spacing: .05em;
+}
+
+.contact_info dt {
+    margin-top: auto;
+    text-align: right;
+}
+
+.contact_info dd a{
+    padding: 0.5em 1em;
+    color: #FFFFFF;
+    font-size: large;
+    width: 100%;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.contact_info a::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    margin-right: 5px;
+}
+
+.contact_info a[href*="facebook.com"]::before {
+    background-image: url("../images/facebook.svg");
+}
+
+.contact_info a[href*="x.com"]::before {
+    background-image: url("../images/x.svg");
+}
+
+.contact_info a[href*="instagram.com"]::before {
+    background-image: url("../images/instagram.svg");
+}
+
+.contact_info a[href*="tel:"]::before {
+    background-image: url("../images/telephone.svg");
+}
+
+.contact_info dd a:hover{
+    background-color: #0E9EF9;
+    filter: invert(100%);
+}
+
+.signature{
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+/*///////////////////
+///               ///
+/// CARD PRODOTTI ///
+///               ///
+///////////////////*/
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    color: var(--headerBackgroundColor);
+}
+
+.card .item-image picture {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+  
+.card .item-image img {
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    object-position: center;
+}
+
+.card .item-info dl {
+    text-align: center;
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap:0;
+    align-items: stretch;
+    justify-items: stretch;
+}
+  
+.card .item-info dt {
+    align-self: center;
+    display: block;
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    margin: 0;
+    padding: .5em 1.5em;
+    border-right: 2px solid var(--headerBackgroundColor)
+}
+  
+.item-info dd {
+    width: 100%;
+    align-self: center;
+    display: block;
+    margin: 0;
+    padding: .5em 0;
+}
+  
+.item-info dt:nth-of-type(even), .item-info dd:nth-of-type(even) {
+    background-color: var(--backgroundColor);
+}
+
+.item-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: auto;
+    align-items: stretch;
+}
+
+.item-actions form {
+    flex: 1;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.item-actions button {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+}
+
+.item-actions button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+  
+.item-actions button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+@media screen and (max-width: 760px){
+    .card {
+        flex-grow: 1;
+        margin: 0 auto;
+        padding: 10px 10px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: flex-start;
+        width: 95%;
+        box-sizing: border-box;
+    }
+  
+    .item-row {
+        display: grid;
+        width: 100%;
+        grid-template: 3fr 1fr / 1fr 1fr;
+    }
+  
+    .item-image {
+        min-width: 80px;
+        grid-area: 1 / 1 / span 2 / span 1;
+        align-self: center;
+    }
+  
+    .item-image img {
+        width: 100%;
+        height: auto;
+    }
+  
+    .item-info {
+        grid-area: 1 / 2 / span 1 / span 1;
+        align-self: end;
+    }
+  
+    .item-info dl {
+        text-align: center;
+    }
+    
+    .item-actions {
+        grid-area: 2 / 2 / span 1 / span 1;
+        align-self: end;
+    }
+}
+
+
+/*Breakpoint ulteriore per mantenere un'immagine visibile*/
+@media screen and (max-width:650px) {
+    .card .item-row {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .card .item-image picture{
+      height: 200px;
+    }
+  
+    .card .item-info {
+      width: 100%;
+    }
+}
+
+/*//////////////////
+///              ///
+///   HOMEPAGE   ///
+///              ///
+//////////////////*/
+
+main.homepage .sezioneCard {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-bottom: 1.5em;
+}
+
+main.homepage section {
+    padding: 20px;
+    margin: 10px;
+    border: 5px double rgba(1, 48, 32, .5);
+    border-radius: 15px;
+}
+@media (max-width: 760px) {
+    main.homepage section {
+        padding: 1em 0;
+    }
+}
+
+main.homepage section:hover {
+    border: 5px double var(--accentColor);
+}
+
+main.homepage section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-around;
+}
+@media (max-width: 760px) {
+    main.homepage section ul {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+main.homepage section ul .card {
+    flex-basis: 30%;
+}
+
+main.homepage .sezioneCard > a {
+    width: fit-content;
+    align-self: center;;
+    margin-top: .5em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 120%;
+    color: white;
+    background-color: var(--headerBackgroundColor);
+    border-radius: 5px;
+    padding: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+main.homepage .sezioneCard > a:hover {
+    background-color: var(--accentColor);
+    color: black;
+}
+
+main.homepage .sezioneCard > a::after {
+    content: " >>" / "";
+}
+
+/*/////////////////////
+///                 ///
+///   PRODUCTLIST   ///
+///    SEARCHLIST   ///
+///                 ///
+/////////////////////*/
+
+main.search h2 {
+    padding: 1.6em 0 0.4em 0;
+    display: flex;
+    justify-content: center;
+}
+
+main.products_page .products_list, main.search .products_list{
+    display: flex;
+    flex-wrap: wrap;
+    border: 5px double rgba(1, 48, 32, .5);
+    border-radius: 15px;
+    padding: 1.5em;
+    gap: 1em;
+    justify-content: space-around;
+}
+@media (max-width: 760px) {
+    .products_list {
+      padding: 1em 1.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      margin: 10px;
+    }
+}
+
+.products_list .card {
+    flex-basis: 21.5%;
+    flex: 1;
+}
+@media (max-width: 760px) {
+    .products_list .card {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+}
+
+/*/////////////////////
+///                 ///
+///   PRODUCTLIST   ///
+///                 ///
+/////////////////////*/
+
+section.product {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+@media screen and (max-width: 760px) {
+    section.product {
+        display : flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+section.product h2 {
+    text-align: center;
+    margin: 1em auto;
+    color: var(--headerBackgroundColor);
+    font-size: xx-large;
+}
+
+#product-display {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+	display: grid;
+    grid-template: auto 1fr / 50% 50%;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    letter-spacing: .05rem;
+}
+@media screen and (max-width: 760px) {
+    #product-display {
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+    }
+}
+
+#product-display .item-image {
+    grid-area: 1 / 1 / span 2 /span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 760px) {
+    #product-display .item-image{
+        width: 90%;
+    }
+}
+
+#product-display .item-image picture {
+    display: block;
+    margin: 1em;
+}
+
+.item-image img {
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    object-fit: contain;
+    object-position: center;
+}
+
+#product-display h3 {
+    grid-area: 1 / 2 / span 1 / span 1;
+    margin: 1em auto;
+    border-bottom: 5px solid var(--headerBackgroundColor);
+    height: fit-content;
+    padding-bottom: 1.5em;
+}
+
+#product-display .details {
+    margin: 1em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap:0;
+    align-items: stretch;
+    justify-items: stretch;
+}
+@media screen and (max-width: 760px) {
+    #product-display .details {
+        align-self: stretch;
+    }
+}
+
+#product-display .details dt {
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    padding: .5em 1.5em;
+    border-right: 2px solid var(--headerBackgroundColor);
+}
+
+#product-display .details dd {
+    text-align: center;
+    width: 100%;
+    padding: .5em 0;
+}
+
+#product-display .details dt:nth-of-type(even), #product-display .details dd:nth-of-type(even) {
+    background-color: var(--backgroundColor);
+}
+
+#buttons{
+    margin: 1em auto auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+#buttons form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50%;
+}
+
+#book_button {
+    margin: 0 auto 0 auto;
+    width: 100%;
+    padding: 1em 3em;
+    font-size: 150%;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+    text-decoration: underline;
+    letter-spacing: .05em;
+}
+
+#book_button:hover {
+    background-color: var(--accentColor);
+    color: var(--headerBackgroundColor);
+}
+
+#book_button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+/*////////////////////
+///                ///
+///   USER FORMS   ///
+///                ///
+////////////////////*/
+
+#errorList {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+}
+
+.formError {
+    align-self: center;
+    padding: 1em 3em;
+    background-color: #FFB6B6;
+    border-radius: 15px;
+    border: 1px solid #FF0000;
+}
+
+.userForm {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    font-size: 110%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1em;
+}
+
+.userForm input {
+    margin: auto;
+    width: max(30%, min(30em, 100%));
+    border: none;
+    border-bottom: 3px solid #AAAAAA;
+    transition: border-bottom 0.3s ease;
+    font-size: 1em;
+}
+
+.userForm input:focus, .userForm input:active, .userForm input:hover{
+    outline: none;
+    border-bottom: 2px solid var(--headerBackgroundColor);
+}
+
+.userForm label {
+    margin: .5em auto;
+    color: var(--headerBackgroundColor);
+    padding-top: 0.5em;
+}
+
+.userForm button {
+    width: 30%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+}
+
+.userForm button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+.userForm button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+/*///////////////////////////
+///                       ///
+///   RESERVATION FORMS   ///
+///                       ///
+///////////////////////////*/
+
+.reservation {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.reservation .reservedProducts {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: inline-block;
+    margin: 0 auto;
+    width: min(100%, 32em);
+}
+
+.reservation .reservedProducts > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation .reservedProducts h2 {
+    width: 100%;
+    text-align: center;
+    margin: 1em 0;
+}
+
+@media screen and (max-width: 760px) {
+    .reservation .reservedProducts .item-row {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.reservation .reservedProducts .item-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation .reservedProducts .item-image picture {
+    display: flex;
+    margin: 1em;
+}
+
+.reservation .reservedProducts .item-image img {
+    width: min(100%, 30em);
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.reservation .reservedProducts .item-info dl{
+    margin: 2em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap:0;
+    align-items: stretch;
+    justify-items: stretch;
+}
+@media screen and (max-width: 760px) {
+    .reservation .reservedProducts .item-info{
+        width: 100%;
+    }
+}
+
+.reservation .reservedProducts .item-info dt {
+    display: block;
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    margin: 0;
+    padding: 1.5em;
+    border-right: 2px solid var(--headerBackgroundColor)
+}
+
+.reservation .reservedProducts .item-info dd {
+    width: auto;
+    display: block;
+    margin: 0;
+    padding: 1.5em 0 1.5em 1.5em;
+}
+
+#reservationForm {
+    width: 100%;
+    flex: 1 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    font-size: 110%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1em;
+}
+
+#reservationForm input, #reservationForm select {
+    margin: auto;
+    min-width: min(30em, 30%);
+    border: none;
+    border-bottom: 3px solid #AAAAAA;
+    transition: border-bottom 0.3s ease;
+    font-size: 1em;
+}
+
+#reservationForm label {
+    margin: .5em auto;
+    color: var(--headerBackgroundColor);
+    padding-top: 0.5em;
+}
+
+#reservationForm textarea {
+    margin: 1em;
+    padding: .5em;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    resize:none;
+    background-color: transparent;
+    border: 3px solid #AAAAAA;
+    transition: border 0.3s ease;
+}
+
+#reservationForm textarea:active, #reservationForm textarea:focus {
+    border: 3px solid var(--headerBackgroundColor);
+    outline: none;
+}
+
+#reservationForm input:focus, #reservationForm input:active, #reservationForm input:hover{
+    outline: none;
+    border-bottom: 2px solid var(--headerBackgroundColor);
+}
+
+#reservationForm button {
+    width: 30%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+}
+
+#reservationForm button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+#reservationForm button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+#reservationForm select {
+    height: 5em;
+    cursor: pointer;
+    text-align: center;
+    background-color: transparent;
+    transition: border 0.3s ease;
+}
+
+#reservationForm select:hover, #reservationForm select:focus, #reservationForm select:active {
+    border-bottom: 3px solid var(--headerBackgroundColor);
+}
+
+/*//////////////////////
+///                  ///
+/// RESERVATION LIST ///
+///                  ///
+//////////////////////*/
+
+.reservationList > ul {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.reservationCard {
+    margin: 0 auto;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    width: 95%;
+}
+
+.reservationCard .item-row {
+    display: grid;
+    width: 100%;
+    grid-template: 3fr 1fr / 1fr 3fr;
+    gap: 0;
+}
+@media screen and (max-width: 760px){
+    .reservationCard .item-row {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.reservationCard .item-image {
+    grid-area: 1 / 1 / span 2 / span 1;
+    padding: 1em;
+    align-self: center;
+}
+
+.reservationCard .item-image picture {
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 760px){
+    .reservationCard .item-image picture {
+        max-width: 360px;
+    }
+}
+  
+.reservationCard .item-image img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    object-position: center;
+}
+
+.reservationCard .item-info {
+    grid-area: 1 / 2 / span 1 / span 1;
+    align-self: end;
+    justify-content: center;
+}
+@media screen and (max-width: 760px){
+    .reservationCard .item-info {
+        width: 100%;
+    }
+}
+
+.reservationCard .item-info dl {
+    text-align: center;
+    margin: 1em;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap:0;
+    align-items: stretch;
+    justify-items: stretch;
+}
+  
+.reservationCard .item-info dt {
+    align-self: center;
+    display: block;
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    margin: 0;
+    padding: .5em 1.5em;
+    border-right: 2px solid var(--headerBackgroundColor)
+}
+  
+.reservationCard .item-info dd {
+    width: 100%;
+    align-self: center;
+    display: block;
+    margin: 0;
+    padding: .5em 0;
+}

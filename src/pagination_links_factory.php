@@ -34,7 +34,7 @@ if ($page < $total_pages) {
     $next = "<li class='disabled'><span aria-hidden='true'>Successiva</span></li>"; // Disabled state
 }
 $pagination_links .= $next;
-$pagination_links .=  "</ul>";
+$pagination_links .=  "</ul></nav>";
 
 return $pagination_links;
 }

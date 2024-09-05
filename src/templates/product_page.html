@@ -6,7 +6,7 @@
     <meta name="keywords" content="Prenota {{name}}, {{genre}}, Fandomia">
     <meta name="description" content="pagina riguardante prodotto {{name}} del negozio Fandomia">
     <title>Fandomia - {{name}}</title>
-    <link rel="stylesheet" href="../assets/css/productpage.css">
+    <link rel="stylesheet" href="../assets/css/finalstyle.css">
     <script src="../assets/script/script.js"></script>
 </head>
 
@@ -21,9 +21,9 @@
         </ul>
     </nav>
     <main id="content">
-        <section class="Dettagli">
+        <section class="product">
         <h2>{{name}}</h2>
-            <div id="ProductName-details">
+            <div id="product-display">
                     <div class="item-image">
                         <picture><img src="assets/images/products/{{id}}.jpg" alt={{alt}} ></picture>
                     </div>
@@ -31,11 +31,11 @@
                     <dl class="details">
                         <dt>Titolo:</dt><dd>{{name}}</dd>
                         <dt class="example-genre">Tipologia:</dt>
-                        <dd>{{product_type}}</p</dd>
+                        <dd>{{product_type}}</dd>
                         <dt class="example-genre">Genere:</dt>
-                        <dd>{{genre}}</p</dd>
+                        <dd>{{genre}}</dd>
                         <dt class="example-genre">Disponibilità:</dt>
-                        <dd>{{status}}</p</dd>
+                        <dd>{{status}}</dd>
                         <dt>Data uscita:</dt>
                         <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
                         <dt class="price(?)">Prezzo:</dt>

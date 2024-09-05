@@ -53,7 +53,7 @@ section.Dettagli h2  {
 }
 
 .details {
-    margin: 2em;
+    margin: 1em;
     display: grid;
     grid-template-columns: auto 1fr;
     gap:0;

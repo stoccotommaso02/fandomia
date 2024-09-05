@@ -136,7 +136,8 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
                                                                                   'submit_action' => $submit_action,
                                                                                   'reservation_id' => $reservation_id,
                                                                                   'footer' => $footer,
-                                                                                  'errors' => $errorMessage));
+                                                                                  'errors' => $errorMessage,
+                                                                                  'reservation_id' => $reservation_id));
 
 
 echo($reservationTemplate);
