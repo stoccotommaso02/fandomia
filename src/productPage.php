@@ -96,6 +96,7 @@ foreach ($record as $key => $value) {
                                                                                     "status" => $record['status'],
                                                                                     "release_date" => $record['release_date'],
                                                                                     "price" => $record['price'],
+                                                                                    "description" => $record['description'],
                                                                                     "category" => $category,
                                                                                     "footer" => $footer));
             echo($productTemplate);

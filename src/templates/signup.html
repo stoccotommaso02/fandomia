@@ -19,11 +19,11 @@
         </nav>
         <main id="content">
             <h1>Registrati</h1>
-            <form class="userForm" name="signUpForm" action="lib/signupController.php" method="post">
+            <form class="userForm" name="signUpForm" action="lib/signupController.php" method="post" id="signupForm" novalidate>
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail" value="{{usermail}}" autocomplete="email"
-                placeholder="Inserisci la tua Email" pattern="[a-zo-9._%+\-]+@[a-zo-9. \-]+\. [a-z] {2,}$" required>
+                placeholder="Inserisci la tua Email" pattern="/[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/" required>
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
                 placeholder="Inserisci la tua password" 

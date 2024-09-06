@@ -17,6 +17,10 @@ function buildHeader() : string {
     $links_state = [];
     $headerTemplate = file_get_contents("./templates/header.html");
     foreach ($menu_items as $action => $name) {
+        $links_state[$action] = ($action == $current_page) 
+                                 && ($action == 'reservationlist.php') ? 
+                                 '<a href="#content" id="reservation" aria-label="Salta alla lista delle prenotazioni"><span>Le tue prenotazioni</span></a>' : 
+                                 '<a href="reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>';
         $links_state[$action] = ($action == $current_page) ? 
                              "<li id='current_link'>$name</li>" : 
                              "<li><a href='$action'>$name</a></li>";
@@ -27,7 +31,7 @@ function buildHeader() : string {
         $logout = '<a href="logout.php">Logout</a>';
         $headerTemplate = str_replace('{{login/logout}}',$logout,$headerTemplate);
     } else {
-        $login='<a href="login.php" id="login">Login</a>';
+        $login = $current_page == 'login.php' ? '<a href="#content" aria-label="Vai al form di login" id="login">Login</a>' : '<a href="login.php" id="login">Login</a>';
         $headerTemplate = str_replace('{{login/logout}}',$login,$headerTemplate);
     }
 
