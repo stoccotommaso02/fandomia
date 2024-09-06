@@ -88,40 +88,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+ocument.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
-    const emailInput = document.getElementById("lmail");
-    const passwordInput = document.getElementById("lpwd");
+    const emailInput = document.getElementById("mail");
+    const passwordInput = document.getElementById("pwd");
 
     // Function to validate the form
     if(loginForm){
         loginForm.onsubmit = function(event) {
-        let valid = false;
-        clearErrors();
-        // Email validation
-        const email = emailInput.value.trim();
-        if (!checkRequired(email)) {
-            showError(emailInput,"Questo campo e' richiesto.");
-            valid = false;
-        } else if (!validateEmail(email)) {
-            showError(emailInput,"Formato email non valido.");
-            valid = false;
-        }
+            let valid = true;
+            clearErrors();
+            // Email validation
+            const email = emailInput.value.trim();
+            if (!checkRequired(email)) {
+                showError(emailInput,"Questo campo e' richiesto.");
+                valid = false;
+            } else if (!validateEmail(email)) {
+                showError(emailInput,"Formato email non valido.");
+                valid = false;
+            }
 
-        // Password validation
-        const password = passwordInput.value;
-        if (password.length < 8 || password === "") {
-            showError(passwordInput,"Password deve essere almeno di 8 caratter");
-            valid = false;
-        } else if (password.length > 16) {
-            showError(passwordInput,"Password non puo' superare i 16 caratteri");
-            valid = false;
-        }
-        // Don't submit if invalid
-        if (!valid) {
-            event.preventDefault();
-        }
-    };
+            // Password validation
+            const password = passwordInput.value;
+            if (password.length < 8 || password === "") {
+                showError(passwordInput,"Password deve essere almeno di 8 caratter");
+                valid = false;
+            } else if (password.length > 16) {
+                showError(passwordInput,"Password non puo' superare i 16 caratteri");
+                valid = false;
+            }
+            // Don't submit if invalid
+            if (!valid) {
+                event.preventDefault();
+            }
+        };
+    }
+});
 }
 });
 
