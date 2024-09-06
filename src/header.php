@@ -20,16 +20,16 @@ function buildHeader() : string {
         
         if($action == $current_page){
             if($name == 'Home'){
-                $links_state[$action] = "<li id='current_link'><span lan='en'>$name </span> </li>";
+                $links_state[$action] = "<li id='current_link'><span lang='en'>$name</span></li>";
             }
             else{
-                $links_state[$action] = "<li id='current_link'>$name</li>";
+                $links_state[$action] = "<li id='current_link'><span>$name</span></li>";
             }
             
         }
         else{
             if($name == 'Home'){
-                $links_state[$action] = "<li><a href='$action'> <span lan='en'> $name </span> </a></li>";
+                $links_state[$action] = "<li><a href='$action' lang='en'>$name</a></li>";
             }
             else{
                 $links_state[$action] = "<li><a href='$action'>$name</a></li>";

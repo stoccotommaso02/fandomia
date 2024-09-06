@@ -32,8 +32,6 @@
                         <dt>Titolo:</dt><dd>{{name}}</dd>
                         <dt class="example-genre">Tipologia:</dt>
                         <dd>{{product_type}}</dd>
-                        <dt class="example-genre">Genere:</dt>
-                        <dd>{{genre}}</dd>
                         <dt class="example-genre">Disponibilità:</dt>
                         <dd>{{status}}</dd>
                         <dt>Data uscita:</dt>
@@ -51,7 +49,7 @@
         <div id="buttons">
         <form action="prenotazioneRitiro.php" method="get">
             <input type="hidden" name="product_id" value="{{id}}">
-            <button type="submit" id="book_button">Prenota</button>
+            <button type="submit" id="book_button" {{check_unavailable}}>Prenota</button>
         </form>
         </div>
     </main>

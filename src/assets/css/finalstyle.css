@@ -126,10 +126,18 @@ header search form button {
     list-style: none;
 }
 
-#menu ul li a {
+#menu ul li a, #menu #current_link span{
     font-size: x-large;
     width: 100%;
     padding: 0.5em 1em;
+}
+
+#menu #current_link span {
+    background-color: var(--accentColor);
+    color: black;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    vertical-align: bottom;
 }
 
 header a {
@@ -378,6 +386,18 @@ main h1 {
     color: black;
 }
 
+.pagination .disabled span {
+    cursor: not-allowed;
+    background-color: #AAAAAA;
+    color: #292929;
+}
+
+.pagination .disabled span:hover {
+    cursor: not-allowed;
+    background-color: #AAAAAA;
+    color: #292929;
+}
+
 /*////////////////////
 ////    FOOTER    ////
 ////////////////////*/ 
@@ -572,9 +592,20 @@ footer p {
     text-decoration: underline;
 }
 
+.item-actions button[disabled] {
+    background-color: #AAAAAA;
+    color: #292929;
+}
+
 .item-actions button:hover {
     background-color: var(--accentColor);
     color: var(--textColor);
+}
+
+.item-actions button[disabled]:hover {
+    cursor: not-allowed;
+    background-color: #AAAAAA;
+    color: #292929;
 }
   
 .item-actions button:active {
@@ -931,6 +962,12 @@ section.product h1 {
 #book_button:active {
     background-color: white;
     color: var(--accentColor);
+}
+
+#book_button[disabled] {
+    cursor: not-allowed;
+    background-color: #AAAAAA;
+    color: #292929;
 }
 
 /*////////////////////

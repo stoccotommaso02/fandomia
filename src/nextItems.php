@@ -31,6 +31,7 @@ $rows = $connection->queryDB($query);
 if (!empty($rows)) {
     // ciclo dei record restituiti dalla query
     foreach ($rows as $row) {
+        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
         $nextItemTemplate = new Template();
         $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
         $nextItems .= $nextItemTemplate;

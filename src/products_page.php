@@ -58,7 +58,7 @@ if (!empty($result)) {
     // Mostra i prodotti filtrati
     foreach ($result as $row) {
         $product_template = new Template();
-        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled = 'disabled'" : '';
+        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
         $product_template = $product_template->render("card.html",$row);
         $products_list .= $product_template;
         }

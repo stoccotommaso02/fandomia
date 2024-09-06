@@ -8,7 +8,7 @@
 
     if(!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] == null ) {
         $_SESSION['errors'] = "Effettuare il login per effettuare una prenotazione";
-        header("Location: ../login.php?redirect_url=" . urlencode($_GET['product_id']));
+        header("Location: login.php?redirect_url=" . urlencode($_GET['product_id']));
         exit();
     }
    

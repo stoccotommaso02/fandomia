@@ -91,12 +91,12 @@ foreach ($record as $key => $value) {
                                                                                     "id" => $record['id'],
                                                                                     "name" => $record['name'],
                                                                                     "product_type" => $product_type,
-                                                                                    "genre" => $record['genre'],
                                                                                     "extra_infos" => $extra_infos,
                                                                                     "status" => $record['status'],
                                                                                     "release_date" => $record['release_date'],
                                                                                     "price" => $record['price'],
-                                                                                    "description" => $record['description'],
+                                                                                    // "description" => $record['description'],
+                                                                                    "check_unavailable" => $record['status'] == 'not available'? "disabled" : '',
                                                                                     "category" => $category,
                                                                                     "footer" => $footer));
             echo($productTemplate);
