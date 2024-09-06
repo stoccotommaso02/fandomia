@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 if (isset($_SESSION['message'])) {
-    $reservationList = "<p>" . $_SESSION['message'] . "</p>";
+    $reservationList = "<p class='sessionMessage'>" . $_SESSION['message'] . "</p>";
     unset($_SESSION['message']);
 }
 

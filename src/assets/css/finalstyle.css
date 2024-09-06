@@ -649,6 +649,14 @@ footer p {
 ///              ///
 //////////////////*/
 
+p.sessionState {
+    background-color: var(--backgroundColor);
+    color: var(--headerBackgroundColor);
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: .05rem;
+}
+
 main.homepage .sezioneCard {
     display: flex;
     flex-direction: column;
@@ -773,16 +781,11 @@ main.products_page .products_list, main.search .products_list{
 /////////////////////////*/
 
 section.product {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 0 auto;
-}
-@media screen and (max-width: 760px) {
-    section.product {
-        display : flex;
-        align-items: center;
-        flex-direction: column;
-    }
 }
 
 section.product h1 {
@@ -793,6 +796,7 @@ section.product h1 {
 }
 
 #product-display {
+    width: 100%;
     border: 1px solid #ddd;
     border-radius: 15px;
     margin: 10px;
@@ -855,7 +859,7 @@ section.product h1 {
     margin: 1em auto;
     border-bottom: 5px solid var(--headerBackgroundColor);
     height: fit-content;
-    padding-bottom: 1.5em;
+    padding: 0 2em 1.5em;
 }
 
 #product-display .details {
@@ -1009,6 +1013,12 @@ section.product h1 {
 .userForm button:active {
     background-color: white;
     color: var(--accentColor);
+}
+
+.userForm a {
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
 }
 
 /*///////////////////////////
@@ -1196,6 +1206,12 @@ section.product h1 {
 /// RESERVATION LIST ///
 ///                  ///
 //////////////////////*/
+
+.sessionMessage {
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    letter-spacing: .05rem;
+}
 
 .reservationList > ul {
     display: flex;

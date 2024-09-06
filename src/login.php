@@ -18,7 +18,7 @@ if (isset($_SESSION['errors'])) {
     unset($_SESSION['errors']);
 } else {
     if (isset($_SESSION['state']))  {
-        $state = '<p class="formState">' . htmlspecialchars($_SESSION['state']) . '</p>';
+        $state = '<p class="sessionState">' . htmlspecialchars($_SESSION['state']) . '</p>';
         unset($_SESSION['state']);
     }
        
