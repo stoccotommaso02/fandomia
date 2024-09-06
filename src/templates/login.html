@@ -21,20 +21,20 @@
         <main id="content">
         <h1 lang="en">Login</h1>
         {{state}}
-        <form class="userForm" name="loginForm" action="./lib/loginController.php" method="post"> 
+        <form class="userForm" name="loginForm" id="loginForm" action="./lib/loginController.php" method="post"> 
             {{errors}}
             <label for="mail">Email</label>
-            <input id="mail" type="email" name="userEmail"  autocomplete="email"
-            placeholder="E-mail" pattern="[a-zo-9._%+\-]+@[a-zo-9. \-]+\. [a-z] {2,}$" required>
+            <input id="mail" type="email" id="mail" name="userEmail"  autocomplete="email"
+            placeholder="E-mail" pattern="[a-zo-9._%+\-]+@[a-zo-9.\-]+\.[a-z]{2,}$" required>
             <label for="pwd">Password</label>
-            <input id="pwd" type="password" name="password"
+            <input id="pwd" type="password" name="password" id="mail"
             placeholder="Inserisci la tua password" autocomplete="current-password" required  />
             <label for="showPassword">Mostra password</label>
             <input type="checkbox" id="showPassword" onclick="togglePassword()" /> 
             <input type="hidden" id="redirect_url" name="redirect_url" value="{{redirect_url}}" />
             <button type="submit">Accedi</button>
             <a href="signup.php">Non sei già registrato?</a>
-        </form>  
+        </form>    
         </main>
         {{footer}}
     </body>
