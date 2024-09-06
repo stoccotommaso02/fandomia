@@ -16,14 +16,26 @@ function buildHeader() : string {
     // Crea un array che indica se un link deve essere disabilitato
     $links_state = [];
     $headerTemplate = file_get_contents("./templates/header.html");
-    foreach ($menu_items as $action => $name) {
-        $links_state[$action] = ($action == $current_page) 
-                                 && ($action == 'reservationlist.php') ? 
-                                 '<a href="#content" id="reservation" aria-label="Salta alla lista delle prenotazioni"><span>Le tue prenotazioni</span></a>' : 
-                                 '<a href="reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>';
-        $links_state[$action] = ($action == $current_page) ? 
-                             "<li id='current_link'>$name</li>" : 
-                             "<li><a href='$action'>$name</a></li>";
+    foreach ($menu_items as $action => $name) { 
+        
+        if($action == $current_page){
+            if($name == 'Home'){
+                $links_state[$action] = "<li id='current_link'><span lan='en'>$name </span> </li>";
+            }
+            else{
+                $links_state[$action] = "<li id='current_link'>$name</li>";
+            }
+            
+        }
+        else{
+            if($name == 'Home'){
+                $links_state[$action] = "<li><a href='$action'> <span lan='en'> $name </span> </a></li>";
+            }
+            else{
+                $links_state[$action] = "<li><a href='$action'>$name</a></li>";
+            }
+        }
+
         $headerTemplate = str_replace("{{$name}}",$links_state[$action],$headerTemplate);
     }
 
