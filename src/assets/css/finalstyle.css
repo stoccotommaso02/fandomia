@@ -1180,7 +1180,7 @@ section.product h1 {
 }
 
 #reservationForm textarea {
-    margin: 1em;
+    margin: 1em auto;
     padding: .5em;
     font-family: 'Roboto', sans-serif;
     height: 100%;
@@ -1188,6 +1188,8 @@ section.product h1 {
     background-color: transparent;
     border: 3px solid #AAAAAA;
     transition: border 0.3s ease;
+    width: min(80%, 400px);
+    height: min(80%, 200px);
 }
 
 #reservationForm textarea:active, #reservationForm textarea:focus {
