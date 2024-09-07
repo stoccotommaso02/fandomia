@@ -1,8 +1,38 @@
-* {
-  background-color: white;
+/*//////////////////////
+///                  ///
+/// ELEMENTI GLOBALI ///
+///                  ///
+//////////////////////*/
+
+:root {
+  --backgroundColor: #EEEEEE;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  color: black !important;
+}
+
+html{
+  font-size: 12pt; 
+  font-family: "Times New Roman", serif;
+  line-height: 1em;
+  margin: auto;
+}
+
+/*//////////////////
+///              ///
+///    HEADER    ///
+///              ///
+//////////////////*/
+
 search {
+  display: none;
+}
+
+#reservation, .ultimobottone {
   display: none;
 }
 
@@ -12,4 +42,162 @@ header nav {
 
 button {
   display: none;
+}
+
+a {
+  display: none;
+}
+
+header {
+  border-bottom: 2px solid black;
+}
+
+/*//////////////////
+///              ///
+///  BREADCRUMB  ///
+///              ///
+//////////////////*/
+
+nav.breadcrumb a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+nav.breadcrumb li:not(:first-child)::before {
+  background-image: none;
+  content: "> ";
+}
+
+/*//////////////
+///          ///
+///  FOOTER  ///
+///          ///
+//////////////*/
+
+footer {
+  background-color: white;
+  border-top: 2px solid black;
+}
+
+footer a {
+  display: inline-block;
+}
+
+footer dl.contact_info {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1em;
+  row-gap: 1em;
+}
+
+footer dl.contact_info > dd {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+footer dl.contact_info > dd a {
+  padding: 0;
+  text-decoration: none;
+}
+
+footer dl.contact_info > dd a::before {
+  display: none;
+  margin: 0;
+  width: 0;
+}
+
+footer dl.contact_info > dt {
+  text-align: right;
+  width: 150px;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+/*////////////////
+///            ///
+///    CARD    ///
+///            ///
+////////////////*/
+
+.card {
+  margin: 0 auto;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 95%;
+}
+.item-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 200px 350px;
+}
+
+.item-image {
+  height: 200px;
+  align-self: center;
+}
+
+.item-image img {
+  height: 200px;
+}
+
+.item-info {
+  align-self: stretch;
+}
+
+.card .item-info dl {
+  text-align: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.item-info dl dt:nth-of-type(even), .item-info dd:nth-of-type(even) {
+  background-color: var(--backgroundColor);
+}
+
+
+/*////////////////
+///            ///
+///  HOMEPAGE  ///
+///            ///
+////////////////*/
+
+main.homepage section {
+  border: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+main.homepage section ul {
+  width: 100%;
+}
+@media print and (orientation: landscape) {
+  main.homepage section ul {
+    display: table-row;
+  }
+}
+
+/*////////////////////
+///                ///
+///  PRODUCTSLIST  ///
+///                ///
+////////////////////*/
+
+main.products_page .products_list, main.search .products_list {
+  border: none;
+  display: table-column;
+  align-items: center;
+  padding: 0;
+}
+
+main.products_page .products_list .card, main.search .products_list .card {
+  margin: 1em 0;
 }

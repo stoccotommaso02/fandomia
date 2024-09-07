@@ -57,11 +57,12 @@ header {
     background-color: var(--headerBackgroundColor);
     color: var(--headerTextColor);
 }
-
-@supports (position: sticky) {
+@media (min-height: 500px) {
+@supports (position: sticky) or (position: -webkit-sticky) {
     header {
         position: sticky;
     }
+}
 }
 .logo_icon_wrapper img{
     width: 80px;
@@ -1271,6 +1272,11 @@ section.product h2 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     width: 95%;
+}
+
+.reservationCard h3 {
+    text-align: center;
+    color: var(--headerBackgroundColor);
 }
 
 .reservationCard .item-row {
