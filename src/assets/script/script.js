@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-ocument.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
@@ -123,8 +123,6 @@ ocument.addEventListener("DOMContentLoaded", function() {
             }
         };
     }
-});
-}
 });
 
 // input validation sign up form

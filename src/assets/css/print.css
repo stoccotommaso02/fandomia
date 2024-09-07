@@ -1,0 +1,15 @@
+* {
+  background-color: white;
+}
+
+search {
+  display: none;
+}
+
+header nav {
+  display: none;
+}
+
+button {
+  display: none;
+}
