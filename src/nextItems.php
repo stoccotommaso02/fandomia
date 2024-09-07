@@ -31,14 +31,14 @@ $rows = $connection->queryDB($query);
 if (!empty($rows)) {
     // ciclo dei record restituiti dalla query
     foreach ($rows as $row) {
-        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+        $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $nextItemTemplate = new Template();
         $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
         $nextItems .= $nextItemTemplate;
     }
     $nextItems .= '</ul>';
  } else {
-    $nextItems = "il DB è vuoto";
+    $nextItems = "Nessun articolo è presente in questa sezione.";
 }
 
 $total_products_sql = "SELECT COUNT(*) as total_products FROM Products where release_date > CURDATE()";

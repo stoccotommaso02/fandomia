@@ -15,18 +15,19 @@ $extra_filters = '';
 $products = '';
 $category = $_GET['category'];
 switch($category) {
-    case "comic":
+    case "Fumetto":
         $genre_table = "Comics";
         $products = "Fumetti";
         break;
-    case "videogame":
-        $genre_table = $products = "Videogames";
+    case "Videogioco":
+        $genre_table = "Videogames";
+        $products = "Videogiochi";
         break;
-    case "book":
+    case "Libro":
         $genre_table = "Books";
         $products = "Libri";
         break;
-    case "music":
+    case "Musica":
         $genre_table = "Music";
         $products = "Musica";
         break;
@@ -58,25 +59,24 @@ if (!empty($result)) {
     // Mostra i prodotti filtrati
     foreach ($result as $row) {
         $product_template = new Template();
-        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+        $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $product_template = $product_template->render("card.html",$row);
         $products_list .= $product_template;
         }
     $products_list .= '</ul>';
 } else {
-     //Da inserire un possibile errore 404;
-     $products_list .= "Nessun prodotto corrispondente filtri selezionati";
+     header("Location: 404.php");
 }
 //Per la paginazione, devo conoscere il totale di prodotti della particolare categoria
 $total_products_query = "SELECT COUNT(*) as total_products
                          FROM Products join $genre_table on Products.id = {$genre_table}.id";
 $connection -> setConnection();
 $result = $connection -> queryDB($total_products_query);
-$total_products ;
-if (!empty($result))    {
+$total_products;
+if (!empty($result)) {
     $total_products = $result[0]['total_products'];
 }   else {
-    //stesso discorso di prima?
+    header("Location: 404.php");
 }
 
 // Creazione dei link di paginazione
@@ -84,7 +84,7 @@ $pagination_links = get_pagination_links($page , $total_products, $products_per_
 
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
-                                                                                     "category" => $_GET['category'],
+                                                                                     "category" => $category,
                                                                                      "products" => $products,
                                                                                      "products_list" => $products_list,
                                                                                      "pagination_links" => $pagination_links,

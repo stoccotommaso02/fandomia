@@ -16,7 +16,7 @@
         <p>Ti trovi in:&nbsp; </p>
         <ul>
           <li><a href="index.php" lang="en">Home</a></li>
-          <li><a href="products_page.php?category={{category}}" lang="en">{{product_type}}</a></li>
+          <li><a href="products_page.php?category={{product_type}}" lang="en">{{breadcrumb_text}}</a></li>
           <li>{{name}}</li>
         </ul>
     </nav>
@@ -29,15 +29,15 @@
                     </div>
                     <h2>Dettagli prodotto</h2>
                     <dl class="details">
-                        <dt>Titolo:</dt><dd>{{name}}</dd>
-                        <dt class="example-genre">Tipologia:</dt>
+                        <dt>Titolo</dt><dd>{{name}}</dd>
+                        <dt class="example-genre">Tipologia</dt>
                         <dd>{{product_type}}</dd>
-                        <dt class="example-genre">Disponibilità:</dt>
+                        <dt class="example-genre">Disponibilità</dt>
                         <dd>{{status}}</dd>
-                        <dt>Data uscita:</dt>
+                        <dt>Data uscita</dt>
                         <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
-                        <dt class="price(?)">Prezzo:</dt>
-                        <dd>{{price}}</dd>
+                        <dt class="price">Prezzo</dt>
+                        <dd>{{price}} &euro;</dd>
                         {{extra_infos}}
                     </dl>
                     <div class="item-description">

@@ -28,9 +28,9 @@ if (!isset($_POST['userEmail']) || !isset($_POST['password'])) {
 } else  {
  $connection = new DBconnection;
  $connection -> setConnection();
- $result = $connection -> queryDB("SELECT username,password as hashed_password
+ $result = $connection -> queryDB("SELECT email,password as hashed_password
                                    FROM Users
-                                   WHERE username='$user' ");
+                                   WHERE email='$user' ");
  if (empty($result) || !password_verify($password , $result[0]['hashed_password']))  {
    $error = "Credenziali non corrette";
    $_SESSION['errors'] = $error;

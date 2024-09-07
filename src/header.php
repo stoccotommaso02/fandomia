@@ -6,10 +6,10 @@ function buildHeader() : string {
     // Array di link del menu
     $menu_items = array(
         'index.php' => 'Home',
-        'products_page.php?category=book' => 'Libri',
-        'products_page.php?category=music' => 'Musica',
-        'products_page.php?category=comic' => 'Fumetti',
-        'products_page.php?category=videogame' => 'Videogiochi',
+        'products_page.php?category=Libro' => 'Libri',
+        'products_page.php?category=Musica' => 'Musica',
+        'products_page.php?category=Fumetto' => 'Fumetti',
+        'products_page.php?category=Videogioco' => 'Videogiochi',
         'reservationList.php' => 'Le tue prenotazioni'
     );
 

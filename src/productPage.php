@@ -33,25 +33,24 @@ if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
 
     $row = $result[0];
     $product_type = $row["product_type"];
-    $productTable = "";
-    $category = $product_type;
+    $productTable = $plural = "";
 
     switch ($product_type)  {
-        case "book":
+        case "Libro":
             $productTable = "Books";
-            $product_type = "Libri";
+            $plural = "Libri";
             break;
-        case "comic":
+        case "Fumetto":
             $productTable = "Comics";
-            $product_type = "Fumetti";
+            $plural = "Fumetti";
             break;
-        case "videogame":
+        case "Videogioco":
             $productTable = "Videogames";
-            $product_type = "Videogame";
+            $plural = "Videogiochi";
             break;
-        case "music":
+        case "Musica":
             $productTable = "Music";
-            $product_type = "Musica";
+            $plural = "Musica";
             break;
     }
     
@@ -80,24 +79,25 @@ if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
 
 // Itera sull'array associativo
 foreach ($record as $key => $value) {
-    $index++;
+    $index++; //FIXME
     // Se l'indice è maggiore o uguale a 7, esegui le operazioni
-    if ($index >= 8) {
+    if ($index >= 9) {
         // Esegui le operazioni che desideri su chiave e valore
-        $extra_infos .= "<dt>$key:</dt> <dd>$value</dd>";
+        $extra_infos .= "<dt>$key</dt> <dd>$value</dd>";
     }
 }
             $productTemplate = $productTemplate -> render("product_page.html",array("header" => $header,
                                                                                     "id" => $record['id'],
                                                                                     "name" => $record['name'],
                                                                                     "product_type" => $product_type,
+                                                                                    "breadcrumb_text" => $plural,
                                                                                     "extra_infos" => $extra_infos,
                                                                                     "status" => $record['status'],
                                                                                     "release_date" => $record['release_date'],
                                                                                     "price" => $record['price'],
-                                                                                    // "description" => $record['description'],
-                                                                                    "check_unavailable" => $record['status'] == 'not available'? "disabled" : '',
-                                                                                    "category" => $category,
+                                                                                    "sale_percentage" => $record['sale_percentage'],
+                                                                                    "description" => $record['description'],
+                                                                                    "check_unavailable" => $record['status'] == 'Non disponibile'? "disabled" : '',
                                                                                     "footer" => $footer));
             echo($productTemplate);
           }

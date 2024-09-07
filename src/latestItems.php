@@ -32,14 +32,14 @@ $rows = $connection->queryDB($query);
 if (!empty($rows)) {
     // ciclo dei record restituiti dalla query
     foreach ($rows as $row) {
-        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+        $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $latestItemTemplate = new Template();
         $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
         $latestItems .= $latestItemTemplate;
     }
     $latestItems .= '</ul>';
  } else {
-    $latestItems = "il DB è vuoto";
+    $latestItems = "Nessun articolo è presente in questa sezione.";
 }
 
 $total_products_sql = "SELECT COUNT(*) as total_products 

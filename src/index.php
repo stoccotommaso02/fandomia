@@ -53,12 +53,12 @@ function getLatestItems() : string {
     if (!empty($rows)) {
     foreach ($rows as $row) {
     $latestItemTemplate = new Template();
-    $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+    $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
     $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
     $latestItems .= $latestItemTemplate;
     }
 }   else {
-        $latestItems = "il DB è vuoto";
+        $latestItems = "Nessun articolo è presente in questa sezione.";
     }
     
     return $latestItems;
@@ -80,12 +80,12 @@ function getNextItems() : string {
     if (!empty($rows)) {
         foreach ($rows as $row) {
             $nextItemTemplate = new Template();
-            $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+            $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
             $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
      } else {
-        $nextItems = "il DB è vuoto";
+        $nextItems = "Nessun articolo è presente in questa sezione.";
     }
     return $nextItems;
 };
@@ -105,12 +105,12 @@ function getSaleItems() : string {
         // ciclo dei record restituiti dalla query
         foreach ($rows as $row) {
             $saleItemTemplate = new Template();
-            $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+            $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
             $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
             $saleItems .= $saleItemTemplate;
         }
      } else {
-        $saleItems = "il DB è vuoto";
+        $saleItems = "Nessun articolo è presente in questa sezione.";
     }
     return $saleItems;
 };

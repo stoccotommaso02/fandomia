@@ -31,14 +31,14 @@ $rows = $connection->queryDB($query);
 if (!empty($rows)) {
     // ciclo dei record restituiti dalla query
     foreach ($rows as $row) {
-        $row['check_unavailable'] = $row['status'] == 'not available'? "disabled" : '';
+        $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $saleItemTemplate = new Template();
         $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
         $saleItems .= $saleItemTemplate;
     }
     $saleItems .= '</ul>';
  } else {
-    $saleItems = "il DB è vuoto";
+    $saleItems = "Nessun articolo è presente in questa sezione.";
 }
 
 $total_products_sql = "SELECT COUNT(*) as total_products FROM Products where sale_percentage != 0";

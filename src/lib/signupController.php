@@ -64,7 +64,7 @@ function is_email_available(string $user_email) : bool {
     $connection -> setConnection();
     $checkQuery = "SELECT * 
                    from Users
-                   where username = '$user_email' ";
+                   where email = '$user_email' ";
     $result = $connection->queryDB($checkQuery);
     return count($result) == 0;
 }

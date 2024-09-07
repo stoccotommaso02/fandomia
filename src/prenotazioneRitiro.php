@@ -56,22 +56,7 @@ try{
             }
         $errors_list .= '</ul>';
         unset($_SESSION['errors']);
-    } 
-
-switch ($product_type)  {
-    case "book":
-        $product_typename = "Libri";
-        break;
-    case "comic":
-        $product_typename = "Fumetti";
-        break;
-    case "videogame":
-        $product_typename = "Videogiochi";
-        break;
-    case "music":
-        $product_typename = "Musica";
-        break;
-}
+    }
 
 $header = buildHeader();
 $footer = buildFooter();
@@ -101,6 +86,22 @@ if(isset($_POST['reservation_id']))  {
     }
 }
 
+$plural = "";
+switch ($product_type)  {
+    case "Libro":
+        $plural = "Libri";
+        break;
+    case "Fumetto":
+        $plural = "Fumetti";
+        break;
+    case "Videogioco":
+        $plural = "Videogiochi";
+        break;
+    case "Musica":
+        $plural = "Musica";
+        break;
+}
+
 $timeSlots = [
     "09:00-10:00",
     "10:00-11:00",
@@ -124,10 +125,10 @@ $minDate = date('Y-m-d', strtotime('+1 day')) < $release_date ? $release_date : 
 
 $reservationTemplate = new Template();
 $reservationTemplate =  $reservationTemplate->render("reservationForm.html",array('header' => $header,
+                                                                                  'breadcrumb_text' => $plural,
                                                                                   'product_id' => $productId,
                                                                                   'product_type' => $product_type,
                                                                                   'product_name' => $product_name,
-                                                                                  'product_typename' => $product_typename,
                                                                                   'reserved_product' => $reservedProduct,
                                                                                   'min_date' => $minDate,
                                                                                   'data_ritiro' => $data_ritiro,
@@ -136,8 +137,7 @@ $reservationTemplate =  $reservationTemplate->render("reservationForm.html",arra
                                                                                   'submit_action' => $submit_action,
                                                                                   'reservation_id' => $reservation_id,
                                                                                   'footer' => $footer,
-                                                                                  'errors' => $errors_list,
-                                                                                  'reservation_id' => $reservation_id));
+                                                                                  'errors' => $errors_list));
 
 
 echo($reservationTemplate);

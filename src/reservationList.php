@@ -41,7 +41,7 @@ $user = $_SESSION['loggedUser'];
 $query = "SELECT * , Reservation.id as reservation_id , Reservation.notes
           from Reservation join Products
                on (Reservation.product_id = Products.id)
-          where username = '$user'
+          where email = '$user'
           order by reservation_date";
 $result = $connection -> queryDB($query);
 if (count($result) > 0 ) {

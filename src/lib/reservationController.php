@@ -78,7 +78,7 @@
                             $connection -> setConnection();
 
                             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-                            $insertionQuery = "INSERT into Reservation(product_id,username,reservation_date,reservation_time,notes)
+                            $insertionQuery = "INSERT into Reservation(product_id,email,reservation_date,reservation_time,notes)
                                                values('$product_id','$userEmail','$withdrawDate','$withdrawTime','$notes')";
                             $result = $connection -> alterQueryDB($insertionQuery);
                         }
@@ -148,7 +148,7 @@
         $result = $connection->queryDB($checkQuery);
         if (!empty($result))  {
             $record = $result[0];
-            if ($record['status'] == 'available') {
+            if ($record['status'] == 'Disponibile') {
                 return true;
             }
         }
