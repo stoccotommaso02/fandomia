@@ -1,6 +1,3 @@
-    //unused:
-    //const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-    //return datePattern.test(date);
 
 function showError(field, message) {
     // Create a new div element to hold the error message
@@ -88,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-ocument.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const loginForm = document.getElementById("loginForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
@@ -111,7 +108,7 @@ ocument.addEventListener("DOMContentLoaded", function() {
             // Password validation
             const password = passwordInput.value;
             if (password.length < 8 || password === "") {
-                showError(passwordInput,"Password deve essere almeno di 8 caratter");
+                showError(passwordInput,"Password deve essere almeno di 8 caratteri");
                 valid = false;
             } else if (password.length > 16) {
                 showError(passwordInput,"Password non puo' superare i 16 caratteri");
@@ -123,8 +120,6 @@ ocument.addEventListener("DOMContentLoaded", function() {
             }
         };
     }
-});
-}
 });
 
 // input validation sign up form
