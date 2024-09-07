@@ -26,7 +26,9 @@
                 <form id="reservationForm" action="./lib/reservationController.php" method="post" > 
                     {{errors}}
                     <label for="withdrawDate">Scegli il giorno:</label>
-                    <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} value="{{data_ritiro}}" required>
+                    <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}}
+                    aria-describedby="date-instructions" value="{{data_ritiro}}" required>
+                    <span id="date-instructions" class="sr-only">Inserisci la data nel formato GG-MM-AAAA.</span>
                     <label for="withdrawTime">Orario di ritiro:</label>
                     <select id="withdrawTime" name="fascia_oraria" autocomplete="off" required>
                         <option value="">--Seleziona una fascia oraria--</option>

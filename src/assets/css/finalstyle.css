@@ -1238,6 +1238,12 @@ section.product h1 {
     border-bottom: 3px solid var(--headerBackgroundColor);
 }
 
+#reservationForm span {
+    position:absolute;
+    height:0;
+    overflow:hidden;    
+}
+
 /*//////////////////////
 ///                  ///
 /// RESERVATION LIST ///

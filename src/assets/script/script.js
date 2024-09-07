@@ -121,6 +121,10 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 });
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 // input validation sign up form
 document.addEventListener("DOMContentLoaded", function() {
