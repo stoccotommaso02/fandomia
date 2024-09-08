@@ -1353,3 +1353,51 @@ section.product h2 {
     margin: 0;
     padding: .5em 0;
 }
+
+/*////////////////////
+///                ///
+///   ERROR PAGE   ///
+///                ///
+////////////////////*/
+
+main.errorPage {
+    justify-content: center;
+}
+
+main.errorPage ul {
+    margin: 2em;
+    list-style-type: none;
+    display: flex;
+    gap: 1em;
+}
+
+main.errorPage ul li {
+    width: 100%;
+    flex: 1;
+}
+
+main.errorPage ul li a {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+}
+
+header a:visited{
+    color: var(--headerTextColor);
+    text-decoration: None;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+main.errorPage ul li a:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
