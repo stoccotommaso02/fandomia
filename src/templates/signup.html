@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Fandomia - Registrazione</title>
+        <meta name="description"
+        content="Crea il tuo profilo e prenota le ultime e le prossime novità, e le offerte presenti nel negozio di Fandomia">
         <meta name="keywords" content="registrazione, fandomia, nuovo utente">
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="assets/css/finalstyle.css">
@@ -20,7 +22,7 @@
         </nav>
         <main id="content">
             <h2>Registrati</h2>
-            <form class="userForm" name="signUpForm" action="lib/signupController.php" method="post" id="signupForm">
+            <form class="userForm" name="signUpForm" action="lib/signupController.php" method="post" id="signupForm" >
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail" value="{{usermail}}" autocomplete="email"

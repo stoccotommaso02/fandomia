@@ -13,23 +13,28 @@ $footer = buildFooter();
 $genre_table = '';
 $extra_filters = '';
 $products = '';
+$meta_tag_title = '';
 $category = $_GET['category'];
 switch($category) {
     case "Fumetto":
         $genre_table = "Comics";
         $products = "Fumetti";
+        $meta_tag_title = 'Fandomia - i nostri fumetti';
         break;
     case "Videogioco":
         $genre_table = "Videogames";
         $products = "Videogiochi";
+        $meta_tag_title = 'Fandomia - i nostri videogiochi';
         break;
     case "Libro":
         $genre_table = "Books";
         $products = "Libri";
+        $meta_tag_title = 'Fandomia - i nostri libri';
         break;
     case "Musica":
         $genre_table = "Music";
         $products = "Musica";
+        $meta_tag_title = 'Fandomia - la nostra musica';
         break;
 }
 $products_list = '';
@@ -84,6 +89,7 @@ $pagination_links = get_pagination_links($page , $total_products, $products_per_
 
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
+                                                                                     "page_title" => $meta_tag_title,
                                                                                      "category" => $category,
                                                                                      "products" => $products,
                                                                                      "products_list" => $products_list,

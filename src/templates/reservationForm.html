@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Fandomia - Prenotazione</title>
-        <meta name="keywords" content="prenotazione, fandomia,fumetti,videogiochi,libri,musica">
+        <meta name="keywords" content="prenotazione, esclusivo , fandomia,fumetti,videogiochi,libri,musica">
+        <meta name="description" content="Prenota un prodotto che ti piace e vienilo a ritirare da Fandomia,
+                                          non vediamo l'ora di conoscerti!">
         <meta name="viewport" content="width=device-width" >
         <link rel="stylesheet" href="assets/css/finalstyle.css">
         <script src="assets/script/script.js"></script>
@@ -26,7 +28,9 @@
                 <form id="reservationForm" action="./lib/reservationController.php" method="post" > 
                     {{errors}}
                     <label for="withdrawDate">Scegli il giorno:</label>
-                    <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}} value="{{data_ritiro}}" required>
+                    <input type="date" id="withdrawDate" name="data_ritiro" min={{min_date}}
+                    aria-describedby="date-instructions" value="{{data_ritiro}}" required>
+                    <span id="date-instructions" class="sr-only">Inserisci la data nel formato GG-MM-AAAA.</span>
                     <label for="withdrawTime">Orario di ritiro:</label>
                     <select id="withdrawTime" name="fascia_oraria" autocomplete="off" required>
                         <option value="">--Seleziona una fascia oraria--</option>

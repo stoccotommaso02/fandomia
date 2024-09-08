@@ -64,6 +64,7 @@ $searchTemplate = new Template();
 $searchTemplate = $searchTemplate -> render('searchResult.html',array("query" => $searchParam,
                                                                       "header" => $header,
                                                                       "footer" => $footer,
+                                                                      "query" => $searchParam,
                                                                       "searchList" => $products_list,
                                                                       "pagination_links" => $pagination_links));
                  
