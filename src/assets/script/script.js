@@ -6,6 +6,7 @@ function showError(field, message) {
     errorDiv.className = 'error';
     // Set the error message text
     errorDiv.innerText = message;
+    errorDiv.role= 'alert';
     // Insert the error message after the field
     field.parentNode.insertBefore(errorDiv, field.nextSibling);
 }
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Email validation
             const email = emailInput.value.trim();
             if (!checkRequired(email)) {
-                showError(emailInput,"Questo campo e' richiesto.");
+                showError(emailInput,"il campo email non puo' essere vuoto.");
                 valid = false;
             } else if (!validateEmail(email)) {
                 showError(emailInput,"Formato email non valido.");
@@ -125,13 +126,13 @@ document.addEventListener("DOMContentLoaded", function() {
 // input validation sign up form
 document.addEventListener("DOMContentLoaded", function() {
 
-    const signUpForm = document.getElementById("signUpForm");
+    const signUpForm = document.getElementById("signupForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
     const confirmPasswordInput = document.getElementById("confirmPwd");
-
     // Function to validate the form
     if(signUpForm){
+        
         signUpForm.onsubmit = function(event) {
         let valid = true;
         clearErrors();
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Email validation
         const email = emailInput.value.trim();
         if (!checkRequired(email)) {
-            showError(emailInput,"Questo campo e' richiesto.");
+            showError(emailInput,"il campo email non puo' essere vuoto.");
             valid = false;
         } else if (!validateEmail(email)) {
             showError(emailInput,"Formato email non valido.");
@@ -166,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function() {
             showError(confirmPasswordInput,"Le password non corrispondono");
             valid = false;
         }
-        console.log(valid);
         // Don't submit if invalid
         if (!valid) {
             event.preventDefault();

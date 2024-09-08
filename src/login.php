@@ -14,11 +14,11 @@ if (isset($_SESSION['loggedUser']) && $_SESSION['loggedUser'] != null ) {
 }
 
 if (isset($_SESSION['errors'])) {
-    $errorMessage = '<p class="formError">' . htmlspecialchars($_SESSION['errors']) . '</p>';
+    $errorMessage = '<p class="formError" role="alert">' . htmlspecialchars($_SESSION['errors']) . '</p>';
     unset($_SESSION['errors']);
 } else {
     if (isset($_SESSION['state']))  {
-        $state = '<p class="sessionState">' . htmlspecialchars($_SESSION['state']) . '</p>';
+        $state = '<p class="sessionState" role="alert">' . htmlspecialchars($_SESSION['state']) . '</p>';
         unset($_SESSION['state']);
     }
        

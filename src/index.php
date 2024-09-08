@@ -24,7 +24,7 @@ $state = '';
 
 if (isset($_SESSION['state'])) {
     global $state;
-    $state = "<p class='sessionState'>" . $_SESSION['state'] . "</p>";
+    $state = "<p class='sessionState' role='alert'>" . $_SESSION['state'] . "</p>";
     unset($_SESSION['state']);
 }
 

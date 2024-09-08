@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedUser'])) {
 }
 
 if (isset($_SESSION['message'])) {
-    $reservationList = "<p class='sessionMessage'>" . $_SESSION['message'] . "</p>";
+    $reservationList = "<p class='sessionMessage' role='alert'>" . $_SESSION['message'] . "</p>";
     unset($_SESSION['message']);
 }
 
@@ -53,7 +53,7 @@ if (count($result) > 0 ) {
     }
     $reservationList .= "</ul>";
 } elseif (count($result) == 0) {
-    $reservationList = "<p>Non è presente nessuna prenotazione!</p>";
+    $reservationList = "<p role='alert'>Non è presente nessuna prenotazione!</p>";
 }
 return $reservationList;
 }

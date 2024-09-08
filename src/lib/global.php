@@ -30,10 +30,11 @@ $var = stripslashes($var);
 return $var;
 }
 
-function to500() {
+function err500($errno) {
   http_response_code(500);
-  header("Location: 500.php");
+  header("Location: ./500.php");
   exit();
 }
 
-set_exception_handler('to500');
+set_error_handler('err500');
+set_exception_handler('err500');
