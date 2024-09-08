@@ -6,6 +6,7 @@
         <meta name="keywords" content="registrazione, fandomia, nuovo utente">
         <meta name="viewport" content="width=device-width" />
         <link rel="stylesheet" href="assets/css/finalstyle.css">
+        <link rel="stylesheet" href="assets/css/print.css" media="print">
         <script src="assets/script/script.js"></script>
     </head>
     <body>
@@ -23,7 +24,7 @@
                 {{errors}}
                 <label for="mail">Email</label>
                 <input id="mail" type="email" name="usermail" value="{{usermail}}" autocomplete="email"
-                placeholder="Inserisci la tua Email" pattern="/[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/" required>
+                placeholder="Inserisci la tua Email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
                 <label for="pwd">Password</label>
                 <input id="pwd" type="password" minlength="8" maxlength="16" name="password"
                 placeholder="Inserisci la tua password" 
