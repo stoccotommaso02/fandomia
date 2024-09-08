@@ -1,9 +1,10 @@
 
 function showError(field, message) {
     // Create a new div element to hold the error message
-    let errorDiv = document.createElement('div');
+    let errorDiv = document.createElement('p');
     // Add a class name to the error div for styling
     errorDiv.className = 'error';
+    errorDiv.role = 'alert';
     // Set the error message text
     errorDiv.innerText = message;
     // Insert the error message after the field
@@ -125,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // input validation sign up form
 document.addEventListener("DOMContentLoaded", function() {
 
-    const signUpForm = document.getElementById("signUpForm");
+    const signUpForm = document.getElementById("signupForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
     const confirmPasswordInput = document.getElementById("confirmPwd");
@@ -166,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function() {
             showError(confirmPasswordInput,"Le password non corrispondono");
             valid = false;
         }
-        console.log(valid);
         // Don't submit if invalid
         if (!valid) {
             event.preventDefault();
