@@ -7,6 +7,7 @@
     <meta name="description" content="pagina riguardante prodotto {{name}} del negozio Fandomia">
     <title>Fandomia - {{name}}</title>
     <link rel="stylesheet" href="assets/css/finalstyle.css">
+    <link rel="stylesheet" href="assets/css/print.css" media="print">
     <script src="assets/script/script.js"></script>
 </head>
 
@@ -22,12 +23,12 @@
     </nav>
     <main id="content">
         <section class="product">
-        <h1>{{name}}</h1>
+        <h2>{{name}}</h2>
             <div id="product-display">
                     <div class="item-image">
                         <picture><img src="assets/images/products/{{id}}.jpg" alt="" ></picture>
                     </div>
-                    <h2>Dettagli prodotto</h2>
+                    <h3>Dettagli prodotto</h3>
                     <dl class="details">
                         <dt>Titolo</dt><dd>{{name}}</dd>
                         <dt class="example-genre">Tipologia</dt>
@@ -41,7 +42,7 @@
                         {{extra_infos}}
                     </dl>
                     <div class="item-description">
-                        <h2>Descrizione</h2>
+                        <h3>Descrizione</h3>
                         <p class="description">{{description}}</p>
                     </div>
             </div>

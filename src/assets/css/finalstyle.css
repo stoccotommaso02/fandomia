@@ -57,11 +57,12 @@ header {
     background-color: var(--headerBackgroundColor);
     color: var(--headerTextColor);
 }
-
-@supports (position: sticky) {
+@media (min-height: 500px) {
+@supports (position: sticky) or (position: -webkit-sticky) {
     header {
         position: sticky;
     }
+}
 }
 .logo_icon_wrapper img{
     width: 80px;
@@ -320,11 +321,12 @@ main > * {
 }
 
 
-main h1 {
+main h2 {
     display: flex;
     justify-content: center;
     color: var(--headerBackgroundColor);
     margin: 1em auto;
+    font-size: xx-large;
 }
 
 /*////////////////////
@@ -508,7 +510,7 @@ footer p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.card h2 {
+.card h3 {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
@@ -767,7 +769,7 @@ main.homepage .sezioneCard > a::after {
 ///                 ///
 /////////////////////*/
 
-main.search h2 {
+main.search h3 {
     padding: 1.6em 0 0.4em 0;
     display: flex;
     justify-content: center;
@@ -819,7 +821,7 @@ section.product {
     margin: 0 auto;
 }
 
-section.product h1 {
+section.product h2 {
     text-align: center;
     margin: 1em auto;
     color: var(--headerBackgroundColor);
@@ -885,7 +887,7 @@ section.product h1 {
     object-position: center;
 }
 
-#product-display h2 {
+#product-display h3 {
     grid-area: 1 / 2 / span 1 / span 1;
     margin: 1em auto;
     border-bottom: 5px solid var(--headerBackgroundColor);
@@ -1087,7 +1089,7 @@ section.product h1 {
     flex-direction: column;
 }
 
-.reservation .reservedProducts h2 {
+.reservation .reservedProducts h3 {
     width: 100%;
     text-align: center;
     margin: 1em 0;
@@ -1180,7 +1182,7 @@ section.product h1 {
 }
 
 #reservationForm textarea {
-    margin: 1em;
+    margin: 1em auto;
     padding: .5em;
     font-family: 'Roboto', sans-serif;
     height: 100%;
@@ -1188,6 +1190,8 @@ section.product h1 {
     background-color: transparent;
     border: 3px solid #AAAAAA;
     transition: border 0.3s ease;
+    width: min(80%, 400px);
+    height: min(80%, 200px);
 }
 
 #reservationForm textarea:active, #reservationForm textarea:focus {
@@ -1274,6 +1278,11 @@ section.product h1 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex-direction: column;
     width: 95%;
+}
+
+.reservationCard h3 {
+    text-align: center;
+    color: var(--headerBackgroundColor);
 }
 
 .reservationCard .item-row {

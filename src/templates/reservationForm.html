@@ -20,7 +20,7 @@
             </ul>
         </nav>
         <main id="content">
-            <h1>Il tuo ordine:</h1>
+            <h2>Il tuo ordine:</h2>
             <div class="reservation">
                 {{reserved_product}}
                 <form id="reservationForm" action="./lib/reservationController.php" method="post" > 
@@ -35,7 +35,7 @@
                         {{option_values}}
                     </select>
                     <label for="notes">Note:</label>
-                    <textarea id="notes" name="notes" rows="5" cols="30" maxlength="140" autocomplete="off"></textarea>
+                    <textarea id="notes" name="notes" rows="5" cols="30" maxlength="500" autocomplete="off">{{notes}}</textarea>
                     <input type="hidden" name="product_id" value="{{product_id}}">
                     {{reservation_id}}
                     <button type="submit">{{submit_action}}</button>
