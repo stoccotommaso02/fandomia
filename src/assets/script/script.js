@@ -1,9 +1,10 @@
 
 function showError(field, message) {
     // Create a new div element to hold the error message
-    let errorDiv = document.createElement('div');
+    let errorDiv = document.createElement('p');
     // Add a class name to the error div for styling
     errorDiv.className = 'error';
+    errorDiv.role = 'alert';
     // Set the error message text
     errorDiv.innerText = message;
     errorDiv.role= 'alert';
