@@ -2,7 +2,7 @@
 
 class DBconnection {
 
-    private const HOST_DB = "fandomiadb";
+    private const HOST_DB = "localhost";
     private const DATABASE = "testdb";
     private const USER = "testuser";
     private const PASSWORD = "testpassword";
@@ -17,8 +17,9 @@ class DBconnection {
         if ( mysqli_connect_errno() == 0 ){
             $this -> isConnected = true;
             return true;
-    }
+    }   else    {
         return false;
+    }
 }   
 
     function prepare(string $query)  {
@@ -39,7 +40,7 @@ class DBconnection {
     /* Da modificare con dei prepared statements, più sicuri rispetto alla SQL injection*/
     /* metodo per effettuare query di Selezione ,le quali restituiscono un oggetto mysqli_result*/
     function queryDB(string $query) : array  {
-        $queryResult = mysqli_query($this -> connection, $query) or http_response_code(500); 
+        $queryResult = mysqli_query($this -> connection, $query) or throw new Exception(); 
         $result = array();
                 if (mysqli_num_rows($queryResult) > 0 )  {
                 while( $row = mysqli_fetch_assoc($queryResult) )    {

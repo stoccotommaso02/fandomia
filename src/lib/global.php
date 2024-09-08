@@ -29,3 +29,11 @@ $var = htmlentities($var);
 $var = stripslashes($var);
 return $var;
 }
+
+function to500() {
+  http_response_code(500);
+  header("Location: 500.php");
+  exit();
+}
+
+set_exception_handler('to500');
