@@ -117,6 +117,35 @@ footer dl.contact_info > dt {
   padding: 0;
   text-decoration: none;
 }
+
+/*//////////////////
+///              ///
+///  PAGINATION  ///
+///              ///
+//////////////////*/
+
+nav.pagination ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav.pagination ul li.disabled{
+  display: none;
+}
+
+nav.pagination ul li a{
+  display: none;
+}
+
+nav.pagination ul li a[aria-current="true"] {
+  width: 10em !important;
+  display: inline-block;
+}
+
+nav.pagination ul li a[aria-current="true"]::before {
+  content: "Pagina n°"
+}
+
 /*////////////////
 ///            ///
 ///    CARD    ///
