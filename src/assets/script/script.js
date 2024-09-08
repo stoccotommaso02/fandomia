@@ -108,10 +108,10 @@ document.addEventListener("DOMContentLoaded", function() {
             // Password validation
             const password = passwordInput.value;
             if (password.length < 8 || password === "") {
-                showError(passwordInput,"Password deve essere almeno di 8 caratteri");
+                showError(passwordInput,"La password deve essere almeno di 8 caratteri");
                 valid = false;
             } else if (password.length > 16) {
-                showError(passwordInput,"Password non puo' superare i 16 caratteri");
+                showError(passwordInput,"La password non puo' superare i 16 caratteri");
                 valid = false;
             }
             // Don't submit if invalid
@@ -149,14 +149,14 @@ document.addEventListener("DOMContentLoaded", function() {
         // Password validation
         const password = passwordInput.value;
         if (password.length < 8 || !checkRequired(password)) {
-            showError(passwordInput,"Password deve essere almeno di 8 caratter");
+            showError(passwordInput,"La password deve essere almeno di 8 caratteri");
             valid = false;
         } else if (password.length > 16) {
-            showError(passwordInput,"Password non puo' superare i 16 caratteri");
+            showError(passwordInput,"La password non puo' superare i 16 caratteri");
             valid = false;
         }
         else if(!strongPwd(password)) {
-            showError(passwordInput, "Password deve avere almeno: un numero un carattere speciale e una maiuscola");
+            showError(passwordInput, "L password deve contenere almeno: un numero, un carattere speciale e una maiuscola");
             valid = false;
         }
 
