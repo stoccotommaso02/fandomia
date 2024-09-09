@@ -17,8 +17,9 @@ class DBconnection {
         if ( mysqli_connect_errno() == 0 ){
             $this -> isConnected = true;
             return true;
+    }   else    {
+        throw new Exception("Connection error ({$this->connection->connect_errno})");
     }
-        return false;
 }   
 
     function prepare(string $query)  {
