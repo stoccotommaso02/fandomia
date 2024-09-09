@@ -1,14 +1,10 @@
 
 function showError(field, message) {
-    // Create a new div element to hold the error message
     let errorDiv = document.createElement('p');
-    // Add a class name to the error div for styling
     errorDiv.className = 'error';
     errorDiv.role = 'alert';
-    // Set the error message text
     errorDiv.innerText = message;
     errorDiv.role= 'alert';
-    // Insert the error message after the field
     field.parentNode.insertBefore(errorDiv, field.nextSibling);
 }
 
@@ -22,7 +18,7 @@ function allowedPwd(pwd) {
     return /^[a-zA-Z0-9]+$/.test(pwd);
 }
 
-function strongPwd(pwd){    //password must contain at least one special character
+function strongPwd(pwd){   
     if(!(/[A-Z]/.test(pwd)))
         return false;
     if(!(/[a-z]/.test(pwd)))
@@ -36,7 +32,7 @@ function strongPwd(pwd){    //password must contain at least one special charact
 
 function checkRequired(field) {
     if (field === '') {
-        return false; // Field is empty
+        return false;
     }
     return true;
 }
@@ -46,13 +42,11 @@ function validateEmail(email) {
     return emailPattern.test(email);
 }
 
-// Clear messages
 function clearErrors() {
     document.querySelectorAll(".error").forEach(el => el.textContent = '');
     document.querySelectorAll(".error").forEach(el => el.classList.remove('active'));
 }
 
-//ask for confirmation before deleteing a reservation
 function handleCancellation(event) {
     
     let cancel = false;
@@ -63,18 +57,16 @@ function handleCancellation(event) {
     return cancel;
 }
 
-//input validation for search bar form
 document.addEventListener("DOMContentLoaded", function() {
     const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("search");
 
-    if (searchForm) {  // Check if the form exists
+    if (searchForm) {  
         searchForm.onsubmit = function(event) {
             let searchValue = searchInput.value.trim(); 
             let valid = true;
             clearErrors();
 
-            //input check
             if (searchValue === "") {
                 showError(searchForm,"Per favore, inserisci un termine di ricerca.");
                 valid = false;
@@ -96,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
 
-    // Function to validate the form
     if(loginForm){
         loginForm.onsubmit = function(event) {
             let valid = true;
@@ -106,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
             elements.forEach(function(element) {
                 element.remove();
             });
-            // Email validation
             const email = emailInput.value.trim();
             if (!checkRequired(email)) {
                 showError(emailInput,"il campo email non puo' essere vuoto.");
@@ -116,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 valid = false;
             }
 
-            // Password validation
             const password = passwordInput.value;
             if (password.length < 8 || password === "") {
                 showError(passwordInput,"La password deve essere almeno di 8 caratteri");
@@ -125,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 showError(passwordInput,"La password non può superare i 16 caratteri");
                 valid = false;
             }
-            // Don't submit if invalid
             if (!valid) {
                 event.preventDefault();
             }
@@ -133,21 +121,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// input validation sign up form
 document.addEventListener("DOMContentLoaded", function() {
 
     const signUpForm = document.getElementById("signupForm");
     const emailInput = document.getElementById("mail");
     const passwordInput = document.getElementById("pwd");
     const confirmPasswordInput = document.getElementById("confirmPwd");
-    // Function to validate the form
     if(signUpForm){
         
         signUpForm.onsubmit = function(event) {
         let valid = true;
         clearErrors();
 
-        // Email validation
         const email = emailInput.value.trim();
         if (!checkRequired(email)) {
             showError(emailInput,"il campo email non puo' essere vuoto.");
@@ -157,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function() {
             valid = false;
         }
 
-        // Password validation
         const password = passwordInput.value;
         if (!allowedPwd(password)) {
             showError(passwordInput,"La password può contenere solo lettere minuscole, lettere maiuscole e cifre");
@@ -175,13 +159,11 @@ document.addEventListener("DOMContentLoaded", function() {
             valid = false;
         }
 
-        //confirm password validation
         const confirmPassword = confirmPasswordInput.value;
         if (confirmPassword !== password) {
             showError(confirmPasswordInput,"Le password non corrispondono");
             valid = false;
         }
-        // Don't submit if invalid
         if (!valid) {
             event.preventDefault();
         }

@@ -15,13 +15,13 @@ class Template {
     {
         $this -> file_path = $file_path;
     }
-    /* Il render estrae il file e usa insert_values();*/
+
     function render(string $template,array $values) : string {
         $this->template = file_get_contents($this->file_path . "/$template");
         self::insert_values($values);
         return $this->template;
     }
-    /* Utilizza insert_value() per inserire il singolo elemento */
+    
     function insert_values(array $values) : void {
         foreach ($values as $key => $value) {
             $this->insert_value($key, $value);

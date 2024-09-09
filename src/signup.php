@@ -4,9 +4,6 @@ require_once("./lib/global.php");
 require_once("header.php");
 require_once("footer.php");
 
-/* file che si occupa solo di costruire il template con il form 
-di registrazione; useremo poi un signUpController che si occupa
-di gestire i dati submittati dal form */
 $header = buildHeader();
 $footer = buildFooter();
 $errors_list = '';

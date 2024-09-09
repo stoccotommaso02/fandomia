@@ -1,7 +1,5 @@
 <?php 
-/* guardare pagina 420 del libro Learning PHP, MySQL & JavaScript per 
-gestire errori nella compilazione del form ,sia che si tratti di
-controlli, che di visualizzazione dei relativi messaggi  */
+
 require_once('global.php');
 require_once("./DBController.php");
 

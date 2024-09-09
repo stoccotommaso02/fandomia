@@ -32,11 +32,10 @@ function searchList(string $searchParam) : array {
                            'price' => $result['price'],
                            'release_date' => $result['release_date'],
                            'product_type' => $result['product_type'],
-                           'check_unavailable' => $result['status'] == 'Non disponibile'? "disabled" : '',
-                           'similarity' => $similarity
+                           'check_unavailable' => $result['status'] == 'Non disponibile'? "disabled" : ''
                            ];
             /*Un punteggio di similarità uguale a 1 , equivale ad aver trovato
-              una perfetta corrispondenza, e quindi fermo il ciclo*/
+              una perfetta corrispondenza, e quindi si ferma il ciclo*/
             if ($similarity == 1)   {
                 $searchResult = end($products);
                 return $searchResult;

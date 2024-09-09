@@ -39,7 +39,7 @@ $homePageTemplate = $homePageTemplate->render("index.html",array("header" => $he
 echo($homePageTemplate);
 
 function getLatestItems() : string {
-    //implementazione;
+
     $connection =new DBconnection();
     $connection -> setConnection();
     $latestItems = '';
@@ -102,7 +102,7 @@ function getSaleItems() : string {
               limit 3 ";
     $rows = $connection->queryDB($query);
     if (!empty($rows)) {
-        // ciclo dei record restituiti dalla query
+        
         foreach ($rows as $row) {
             $saleItemTemplate = new Template();
             $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';

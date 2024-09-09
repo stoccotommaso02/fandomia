@@ -77,12 +77,9 @@ if (!isset($_GET['product_id']) || $_GET['product_id'] == null ) {
             $index = 0;
             $extra_infos = '';
 
-// Itera sull'array associativo
 foreach ($record as $key => $value) {
-    $index++; //FIXME
-    // Se l'indice è maggiore o uguale a 7, esegui le operazioni
+    $index++;
     if ($index >= 9) {
-        // Esegui le operazioni che desideri su chiave e valore
         $extra_infos .= "<dt>$key</dt> <dd>$value</dd>";
     }
 }
