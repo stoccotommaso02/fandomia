@@ -17,15 +17,16 @@ class DBconnection {
         if ( mysqli_connect_errno() == 0 ){
             $this -> isConnected = true;
             return true;
+    }   else    {
+        throw new Exception("Connection error ({$this->connection->connect_errno})");
     }
-        return false;
 }   
 
     function prepare(string $query)  {
        if($this -> isConnected)   {
            return  $this->connection -> prepare($query);
        }    else  {
-        throw new Exception("Connection error ({$connection->connect_errno})");
+        throw new Exception("Connection error ({$this->connection->connect_errno})");
         return false;
        }
     }
@@ -42,7 +43,7 @@ class DBconnection {
     function queryDB(string $query) : array  {
         $queryResult = mysqli_query($this -> connection, $query);
         if($queryResult === false){
-            throw new Exception("Connection error ({$connection->connect_errno})");
+            throw new Exception("Connection error ({$this->connection->connect_errno})");
         }
         $result = array();
                 if (mysqli_num_rows($queryResult) > 0 )  {
@@ -58,7 +59,7 @@ class DBconnection {
     function alterQueryDB(string $query) : bool {
         $queryResult = mysqli_query($this -> connection, $query);
         if($queryResult === false){
-            throw new Exception("Connection error ({$connection->connect_errno})");
+            throw new Exception("Connection error ({$this->connection->connect_errno})");
         }
         $this->destroyConnection();
         return $queryResult;
