@@ -18,15 +18,19 @@ function checkDate(date) {
     return today < date;
 }
 
-function strongPwd(pwd){    //password must contain at least one special character
-    var valid = true;
-    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    
-    if(format.test(pwd)) valid = false;
-    if(pwd !== pwd.toLowerCase()) valid = false;
-    if( (/\d/.test(pwd))) valid = true;
+function allowedPwd(pwd) {
+    return /^[a-zA-Z0-9]+$/.test(pwd);
+}
 
-    return valid;
+function strongPwd(pwd){    //password must contain at least one special character
+    if(!(/[A-Z]/.test(pwd)))
+        return false;
+    if(!(/[a-z]/.test(pwd)))
+        return false;
+    if(!(/\d/.test(pwd)))
+        return false;
+
+    return true;
 }
 
 
@@ -150,15 +154,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Password validation
         const password = passwordInput.value;
-        if (password.length < 8 || !checkRequired(password)) {
+        if (!allowedPwd(password)) {
+            showError(passwordInput,"La password può contenere solo lettere minuscole, lettere maiuscole e cifre");
+            valid = false;
+        }
+        else if (password.length < 8 || !checkRequired(password)) {
             showError(passwordInput,"La password deve essere almeno di 8 caratteri");
             valid = false;
         } else if (password.length > 16) {
-            showError(passwordInput,"La password non puo' superare i 16 caratteri");
+            showError(passwordInput,"La password non può superare i 16 caratteri");
             valid = false;
         }
         else if(!strongPwd(password)) {
-            showError(passwordInput, "L password deve contenere almeno: un numero, un carattere speciale e una maiuscola");
+            showError(passwordInput, "La password deve contenere almeno: un numero, una lettera maiuscola e una maiuscola");
             valid = false;
         }
 
@@ -213,42 +221,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
-
-
-/* HAMBURGER MENU */
-const openButton = document.getElementById('openmenu');
-const closeButton = document.getElementById('closemenu');
-const media = window.matchMedia('(width < 760px');
-const collapsable = document.getElementById('collapsable');
-const menuList = document.getElementById('menuList');
-
-function setupMenu(e) {
-    if(e.matches) {
-        collapsable.setAttribute('inert', '');
-        menuList.style.transition = 'none';
-    } else {
-        collapsable.removeAttribute('inert', '');
-    }
-}
-
-function openMenu() {
-    openButton.setAttribute('aria-expanded', 'true');
-    collapsable.removeAttribute('inert');
-    menuList.removeAttribute('style');
-}
-
-function closeMenu() {
-    openButton.setAttribute('aria-expanded', 'false');
-    collapsable.setAttribute('inert', '');
-
-    setTimeout(() => {
-        menuList.style.transition = 'none';
-    }, 500);
-}
-
-setupMenu(media);
-media.addEventListener('change',function(e) {
-    setupMenu(e);
-})
-openButton.addEventListener('click', openMenu);
-closeButton.addEventListener('click', closeMenu);

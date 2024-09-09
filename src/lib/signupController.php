@@ -34,7 +34,7 @@ if (!(isset($_POST['usermail']) &&
     }
     
     if (!is_email_available($user_email)) {
-            $errors[] = "Già registrato un profilo con l'email inserita";
+            $errors[] = "L'email inserita è già stata registrata!";
         }
     
     if  (empty($errors))  {
@@ -74,7 +74,11 @@ function validate_password(string $field)   {
         return "Nessuna password inserita";
     }   else if (strlen($field) < 8)    {
         return "La password dev'essere lunga almeno 8 caratteri";
-    }   else if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/",$field)) {
+    }   else if (strlen($field) > 16)    {
+        return "La password dev'essere lunga al massimo 16 caratteri";
+    } else if (!preg_match("/^[a-zA-Z0-9]+$/", $field)) {
+        return "La password può contenere solo lettere maiuscole, lettere minuscole e numeri";
+    }   else if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]+$/",$field)) {
         return "La password richiede almeno un carattere maiuscolo, uno minuscolo ed un numero da 0 a 9";
     }
 }
