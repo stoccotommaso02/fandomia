@@ -101,6 +101,11 @@ document.addEventListener("DOMContentLoaded", function() {
         loginForm.onsubmit = function(event) {
             let valid = true;
             clearErrors();
+
+            var elements = document.querySelectorAll('.formError');
+            elements.forEach(function(element) {
+                element.remove();
+            });
             // Email validation
             const email = emailInput.value.trim();
             if (!checkRequired(email)) {
