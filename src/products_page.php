@@ -14,27 +14,37 @@ $genre_table = '';
 $extra_filters = '';
 $products = '';
 $meta_tag_title = '';
+$meta_tag_keywords = '';
+$meta_tag_description = '';
 $category = $_GET['category'];
 switch($category) {
     case "Fumetto":
         $genre_table = "Comics";
         $products = "Fumetti";
         $meta_tag_title = 'Fandomia - i nostri fumetti';
+        $meta_tag_description = 'Vieni alla scoperta delle ultime novità arrivate a Fandomia! Tanti fumetti in offerta da non lasciarsi scappare!';
+        $meta_tag_keywords = 'Fandomia, fumetti, manga, comico, superhero, offerte, alan moore';
         break;
     case "Videogioco":
         $genre_table = "Videogames";
         $products = "Videogiochi";
         $meta_tag_title = 'Fandomia - i nostri videogiochi';
+        $meta_tag_description = 'Vieni a scoprire le ultime novità tra i videogiochi di Fandomia, vecchi e nuovi classici da non lasciarsi sfuggire! ';
+        $meta_tag_keywords = 'Fandomia, videogiochi, action , adventure , rpg , jrpg';
         break;
     case "Libro":
         $genre_table = "Books";
         $products = "Libri";
         $meta_tag_title = 'Fandomia - i nostri libri';
+        $meta_tag_description = 'Scopri e prenota le ultime e le prossime novità più fresh, e le offerte migliori tra i libri di Fandomia';
+        $meta_tag_keywords = 'Fandomia,libri,gialli,poesia,narrativa,fantasy,saggistica';
         break;
     case "Musica":
         $genre_table = "Music";
         $products = "Musica";
         $meta_tag_title = 'Fandomia - la nostra musica';
+        $meta_tag_keywords = 'Fandomia, musica,vinili, cd, pop, rap, jazz, electronic,classical';
+        $meta_tag_description = 'Immergiti fra le tante sonorità musicali disponibili a Fandomia, vecchi e nuovi artisti da ri/scoprire solo per te!';
         break;
 }
 $products_list = '';
@@ -90,6 +100,8 @@ $pagination_links = get_pagination_links($page , $total_products, $products_per_
 $products_page_template = new Template();
 $products_page_template = $products_page_template->render("products_page.html",array("header" => $header,
                                                                                      "page_title" => $meta_tag_title,
+                                                                                     "description" => $meta_tag_description,
+                                                                                     "keywords" => $meta_tag_keywords,
                                                                                      "category" => $category,
                                                                                      "products" => $products,
                                                                                      "products_list" => $products_list,
