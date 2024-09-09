@@ -64,7 +64,7 @@
         }
         //Altrimenti se è presente solo il codice identificativo del prodotto,
         //l'utente sta tentando per la prima volta di effettuarne le prenotazione
-        else if (isset($_POST['product_id']))   {
+        else   {
             if (!checkProductAvalaibility($product_id)) {
                 $errors[] = 'Prodotto non disponibile!';
                 $_SESSION['errors'] = $errors;
