@@ -1,0 +1,38 @@
+<header>
+    <nav aria-label="Aiuti alla navigazione">
+        <a class="navigationHelp" href="#content">Salta al contenuto</a>
+    </nav>
+    <div>
+        <h1>Fandomia <span lang="en">Geek Shop</span></h1>
+        <div class="logo_icon_wrapper">
+            <div class="logo">
+                <img src="assets/images/fandomia-logo.png" alt="">
+            </div>
+        </div>
+        <search>
+            <form action="search.php" method="post" id="searchForm" role="search">
+              <input type="search" placeholder="Cerca il titolo di un prodotto" 
+                     id="search" name="search" aria-label="Ricerca prodotto per nome" 
+                     autocomplete="on"/>
+              <span id="searchError" class="error-message"></span>
+              <button type="submit">Cerca</button>
+            </form>
+        </search>
+        <a href="reservationList.php" id="reservation"><span>Le tue prenotazioni</span></a>
+        <div class="ultimobottone">{{login/logout}}</div>
+    </div>
+    <nav id="menu" aria-label="Menu principale">
+        <a class="navigationHelp" href="#content">Salta al contenuto</a>
+        <button class="hamburger" id="openmenu" aria-controls="menuList" aria-expanded="false" aria-label="Apri menù"></button>
+        <div id="collapsable">
+            <button class="hamburger" id="closemenu" aria-label="Chiudi menu"></button>
+            <ul id="menuList">
+                {Home}
+                {Libri}
+                {Musica}
+                {Fumetti}
+                {Videogiochi} 
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Prenota {{name}}, {{genre}}, Fandomia">
+    <meta name="description" content="Scopri tutte le informazioni riguardanti un prodotto che ti interessa!">
+    <title>Fandomia - {{name}}</title>
+    <link rel="stylesheet" href="assets/css/finalstyle.css">
+    <link rel="stylesheet" href="assets/css/print.css" media="print">
+    <script src="assets/script/script.js"></script>
+    <script src="assets/script/hamburgerMenu.js"></script>
+</head>
+
+<body>
+    {{header}}
+    <nav aria-label="Percorso" class="breadcrumb">
+        <p>Ti trovi in:&nbsp; </p>
+        <ul>
+          <li><a href="index.php" lang="en">Home</a></li>
+          <li><a href="products_page.php?category={{product_type}}" lang="en">{{breadcrumb_text}}</a></li>
+          <li>{{name}}</li>
+        </ul>
+    </nav>
+    <main id="content">
+        <section class="product">
+        <h2>{{name}}</h2>
+            <div id="product-display">
+                    <div class="item-image">
+                        <picture><img src="assets/images/products/{{id}}.jpg" alt="" ></picture>
+                    </div>
+                    <h3>Dettagli prodotto</h3>
+                    <dl class="details">
+                        <dt>Titolo</dt><dd>{{name}}</dd>
+                        <dt class="example-genre">Tipologia</dt>
+                        <dd>{{product_type}}</dd>
+                        <dt class="example-genre">Disponibilità</dt>
+                        <dd>{{status}}</dd>
+                        <dt>Data uscita</dt>
+                        <dd><time datetime="aaaa-mm-gg">{{release_date}}</time></dd>
+                        <dt class="price">Prezzo</dt>
+                        <dd>{{price}} &euro;</dd>
+                        {{extra_infos}}
+                    </dl>
+                    <div class="item-description">
+                        <h3>Descrizione</h3>
+                        <p class="description">{{description}}</p>
+                    </div>
+            </div>
+        </section>
+        <div id="buttons">
+        <form action="prenotazioneRitiro.php" method="get">
+            <input type="hidden" name="product_id" value="{{id}}">
+            <button type="submit" id="book_button" {{check_unavailable}}>Prenota</button>
+        </form>
+        </div>
+    </main>
+    {{footer}}
+</body>
+</html>

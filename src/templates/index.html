@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="fandomia,fumetti,videogiochi,libri,musica, prenota, compra, homepage">
+    <meta name="description" content="Fandomia e' il negozio tutto-in-uno per amanti di libri, fumetti, musica e videogiochi">
+    <meta name="author" content="Iulius Signorelli, Joseph Grant, Tommaso Stocco, Pietro Busato">
+
+    <title>Fandomia - Homepage</title>
+    <link rel="stylesheet" href="assets/css/finalstyle.css">
+    <link rel="stylesheet" href="assets/css/print.css" media="print">
+    <script src="assets/script/script.js"></script>
+    <script src="assets/script/hamburgerMenu.js"></script>
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="Percorso" class="breadcrumb">
+          <p>Ti trovi in:&nbsp; </p>
+            <ul>
+              <li><span lang="en">Home</span></li>
+            </ul>
+        </nav>
+        {{state}}
+        <main id="content" class="homepage">
+            <div class="sezioneCard">
+              <h2> Ultimi arrivi </h2>
+              {{latestItems}}
+              <a href="latestItems.php">Vedi tutti gli ultimi arrivi</a>
+            </div>
+            <div class="sezioneCard">
+              <h2> Prossimi arrivi </h2>
+              {{nextItems}}
+              <a href="nextItems.php">Vedi tutti i prossimi arrivi</a>
+            </div>
+            <div class="sezioneCard">
+              <h2> Promozioni</h2>
+              {{saleItems}}
+              <a href="saleItems.php">Vedi tutti i prodotti in offerta</a>
+            </div>
+        </main>
+        {{footer}}
+    </body>
+</html>

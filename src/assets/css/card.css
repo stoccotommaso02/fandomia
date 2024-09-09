@@ -1,0 +1,170 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Stile di base per la card */
+
+
+/* Stile per il titolo del prodotto */
+.card h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--headerBackgroundColor);
+}
+
+/* Stile per l'immagine del prodotto */
+.item-image picture {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.item-image img {
+  max-width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Stile per le informazioni del prodotto */
+.item-info dl {
+  text-align: center;
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap:0;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.item-info dt {
+  align-self: center;
+  display: block;
+  color: var(--headerBackgroundColor);
+  font-weight: bold;
+  margin: 0;
+  padding: .5em 1.5em;
+  border-right: 2px solid var(--headerBackgroundColor)
+}
+
+.item-info dd {
+  width: 100%;
+  align-self: center;
+  display: block;
+  margin: 0;
+  padding: .5em 0;
+}
+
+.item-info dt:nth-of-type(even), .item-info dd:nth-of-type(even) {
+  background-color: var(--backgroundColor);
+}
+
+/* Stile per i pulsanti di azione */
+.item-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: auto;
+}
+
+.item-actions form {
+  flex: 1;
+  margin: 5px;
+}
+
+.item-actions button {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--headerBackgroundColor);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: underline;
+}
+
+.item-actions button:hover {
+  background-color: var(--accentColor);
+  color: var(--textColor);
+}
+
+.item-actions button:active {
+  background-color: white;
+  color: var(--accentColor);
+}
+
+@media screen and (max-width: 760px){
+  .card {
+    margin: 0 auto;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: flex-start;
+    max-width: 95%;
+    box-sizing: border-box;
+}
+
+  .item-row {
+    display: grid;
+    width: 100%;
+    grid-template: 3fr 1fr / 1fr 1fr;
+  }
+
+  .item-image {
+    grid-area: 1 / 1 / span 2 / span 1;
+    padding: 1em;
+    align-self: center;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-info {
+    grid-area: 1 / 2 / span 1 / span 1;
+    align-self: end;
+  }
+
+  .item-info dl {
+    text-align: center;
+  }
+  
+  .item-actions {
+    grid-area: 2 / 2 / span 1 / span 1;
+    align-self: end;
+  }
+}
+
+@media screen and (max-width:650px) {
+  .item-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item-image picture{
+    height: 200px;
+  }
+
+  .item-info {
+    width: 100%;
+  }
+}

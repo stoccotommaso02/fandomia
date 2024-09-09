@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <title>Fandomia - Login</title>
+        <meta name="keywords" content="login, fandomia">
+        <meta name="description" content="Pagina di login al profilo del negozio virtuale di Fandomia">
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="assets/css/finalstyle.css">
+        <link rel="stylesheet" href="assets/css/print.css" media="print">
+        <script src="assets/script/script.js"></script>
+        <script src="assets/script/showPassword.js"></script>
+        <script src="assets/script/hamburgerMenu.js"></script>
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="Percorso" class="breadcrumb">
+            <p>Ti trovi in:&nbsp; </p>
+            <ul>
+              <li><a href="index.php" lang="en">Home</a></li>
+              <li><span lang="en">Login</span></li>
+            </ul>
+        </nav>
+        <main id="content">
+        <h2 lang="en">Login</h2>
+        {{state}}
+        <form class="userForm" name="loginForm" id="loginForm" action="./lib/loginController.php" method="post"> 
+            {{errors}}
+            <label for="mail">Email</label>
+            <input id="mail" type="email" id="mail" name="userEmail"  autocomplete="email"
+            placeholder="E-mail" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
+            <label for="pwd">Password</label>
+            <input id="pwd" type="password" name="password" id="mail"
+            placeholder="Inserisci la tua password" autocomplete="current-password" required  />
+            <label for="showPassword">Mostra password</label>
+            <input type="checkbox" id="showPassword" onclick="togglePassword()" /> 
+            <input type="hidden" id="redirect_url" name="redirect_url" value="{{redirect_url}}" />
+            <button type="submit">Accedi</button>
+            <a href="signup.php">Non sei già registrato?</a>
+        </form>    
+        </main>
+        {{footer}}
+    </body>
+</html>

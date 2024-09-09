@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="fandomia,fumetti,videogiochi,libri,musica,ultimi arrivi, novità, fresh">
+        <meta name="description" content="Scopri le ultime novità arrivate a Fandomia tra libri,fumetti,videogiochi e album musicali!">
+        <meta name="author" content="Iulius Signorelli, Joseph Grant, Tommaso Stocco, Pietro Busato">
+        <title>Fandomia - I nostri ultimi arrivi</title>
+        <script src="assets/script/script.js"></script>
+        <script src="assets/script/hamburgerMenu.js"></script>
+        <link rel="stylesheet" href="assets/css/finalstyle.css">
+        <link rel="stylesheet" href="assets/css/print.css" media="print">
+    </head>
+    <body>
+        {{header}}
+        <nav aria-label="Percorso" class="breadcrumb">
+            <p>Ti trovi in:&nbsp; </p>
+              <ul>
+                <li><a href="index.php" lang="en">Home</a></li>
+                <li>Ultimi arrivi</li>
+              </ul>
+        </nav>
+        <main id="content" class="products_page">
+            {{latest_items_list}}
+            {{pagination_links}}
+            <a href="#top">Torna all'inizio</a>
+        </main>
+        {{footer}}
+    </body>
+</html>

@@ -1,0 +1,254 @@
+@import "style.css";
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main h2 {
+    margin: .5em auto;
+    text-align: center;
+    color: var(--headerBackgroundColor);
+}
+
+
+main p{
+    align-self: center;
+    pointer-events: none;
+}
+
+main ul{
+    color:red; 
+    align-self: center; 
+    max-width:75%;
+}
+
+
+.userForm{
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    font-size: 110%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1em
+}
+
+.userForm input {
+    margin: auto;
+    width: max(30%, min(30em, 100%));
+    border: none;
+    border-bottom: 3px solid #AAAAAA;
+    transition: border-bottom 0.3s ease;
+    font-size: 1em;
+}
+
+.userForm input:focus, .userForm input:active, .userForm input:hover{
+    outline: none;
+    border-bottom: 2px solid var(--headerBackgroundColor);
+}
+
+
+.userForm label {
+    margin: .5em auto;
+    color: var(--headerBackgroundColor);
+    padding-top: 0.5em;
+}
+
+.userForm button {
+    width: 30%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+  }
+
+.userForm button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+  }
+
+.userForm button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+.reservedProducts {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: inline-block;
+    margin: 0 auto;
+    width: min(100%, 32em);
+}
+
+.reservedProducts > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.reservedProducts h2 {
+    width: 100%;
+    text-align: center;
+    margin: 1em 0;
+}
+
+.item-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservedProducts .item-image picture {
+    display: flex;
+    margin: 1em;
+}
+
+.item-image img {
+    width: min(100%, 30em);
+    aspect-ratio: 1/1;
+    border-radius: 5px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.item-info dl{
+    margin: 2em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap:0;
+    align-items: stretch;
+    justify-items: stretch;
+}
+
+.item-info dt {
+    display: block;
+    color: var(--headerBackgroundColor);
+    font-weight: bold;
+    margin: 0;
+    padding: 1.5em;
+    border-right: 2px solid var(--headerBackgroundColor)
+}
+
+.item-info dd {
+    width: auto;
+    display: block;
+    margin: 0;
+    padding: 1.5em 0 1.5em 1.5em;
+}
+
+.item-info dt:nth-of-type(even), .item-info dd:nth-of-type(even) {
+    background-color: var(--backgroundColor);
+}
+
+#reservationForm {
+    width: 100%;
+    flex: 1 1;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+    font-size: 110%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1em;
+}
+
+.reservation {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+#reservationForm input, #reservationForm select {
+    margin: auto;
+    min-width: min(30em, 30%);
+    border: none;
+    border-bottom: 3px solid #AAAAAA;
+    transition: border-bottom 0.3s ease;
+    font-size: 1em;
+}
+
+#reservationForm label {
+    margin: .5em auto;
+    color: var(--headerBackgroundColor);
+    padding-top: 0.5em;
+}
+
+#reservationForm textarea {
+    margin: 1em;
+    padding: .5em;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    resize:none;
+    background-color: transparent;
+    border: 3px solid #AAAAAA;
+    transition: border 0.3s ease;
+}
+
+#reservationForm textarea:active, #reservationForm textarea:focus {
+    border: 3px solid var(--headerBackgroundColor);
+    outline: none;
+}
+
+#reservationForm input:focus, #reservationForm input:active, #reservationForm input:hover{
+    outline: none;
+    border-bottom: 2px solid var(--headerBackgroundColor);
+}
+
+#reservationForm button {
+    width: 30%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--headerBackgroundColor);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: underline;
+}
+
+
+#reservationForm button:hover {
+    background-color: var(--accentColor);
+    color: var(--textColor);
+}
+
+#reservationForm button:active {
+    background-color: white;
+    color: var(--accentColor);
+}
+
+#reservationForm select {
+    height: 5em;
+    cursor: pointer;
+    text-align: center;
+    background-color: transparent;
+    transition: border 0.3s ease;
+}
+
+#reservationForm select:hover, #reservationForm select:focus, #reservationForm select:active {
+    border-bottom: 3px solid var(--headerBackgroundColor);
+}
