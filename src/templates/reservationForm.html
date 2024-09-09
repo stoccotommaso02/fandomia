@@ -32,10 +32,12 @@
                     aria-describedby="date-instructions" value="{{data_ritiro}}" lang="it" required>
                     <span id="date-instructions" class="sr-only">Inserisci la data nel formato MM-GG-AAAA.</span>
                     <label for="withdrawTime">Orario di ritiro:</label>
-                    <select id="withdrawTime" name="fascia_oraria" autocomplete="off" required>
+                    <select id="withdrawTime" name="fascia_oraria" autocomplete="off"
+                     aria-describedby="time-instructions"   required>
                         <option value="">--Seleziona una fascia oraria--</option>
                         {{option_values}}
                     </select>
+                    <span id="time-instructions" class="sr-only">Le opzioni disponibili rappresentano fasce orarie della durata di un'ora</span>
                     <label for="notes">Note:</label>
                     <textarea id="notes" name="notes" rows="5" cols="30" maxlength="500" autocomplete="off">{{notes}}</textarea>
                     <input type="hidden" name="product_id" value="{{product_id}}">
