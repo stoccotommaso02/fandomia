@@ -43,6 +43,7 @@ if (!empty($prodotti))  {
 
         $product_template = new Template();
         $prodotto['sale_info'] = '';
+        $prodotto['release_date_formatted'] = date("d/m/Y", strtotime($prodotto['release_date']));
         $product_template = $product_template->render("card.html",$prodotto);
 
         $products_list .= $product_template;

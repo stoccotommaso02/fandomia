@@ -1291,6 +1291,10 @@ p.error {
     width: 95%;
 }
 
+.reservationCard > div {
+    width: 100%;
+}
+
 .reservationCard h3 {
     text-align: center;
     color: var(--headerBackgroundColor);

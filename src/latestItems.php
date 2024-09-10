@@ -31,6 +31,7 @@ if (!empty($rows)) {
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $latestItemTemplate = new Template();
         $row['sale_info'] = '';
+        $row['release_date_formatted'] = date("d/m/Y", strtotime($row['release_date']));
         $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
         $latestItems .= $latestItemTemplate;
     }

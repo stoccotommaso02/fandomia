@@ -55,6 +55,7 @@ function getLatestItems() : string {
     $latestItemTemplate = new Template();
     $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
     $row['sale_info'] = '';
+    $row['release_date_formatted'] = date("d/m/Y", strtotime($row['release_date']));
     $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
     $latestItems .= $latestItemTemplate;
     }
@@ -83,6 +84,7 @@ function getNextItems() : string {
             $nextItemTemplate = new Template();
             $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
             $row['sale_info'] = '';
+            $row['release_date_formatted'] = date("d/m/Y", strtotime($row['release_date']));
             $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
@@ -112,6 +114,7 @@ function getSaleItems() : string {
             $prezzo_scontato = round($prezzo_scontato,2);
             $row['sale_info'] = "<dt>Prezzo scontato</dt><dd>{$prezzo_scontato} &euro;</dd>
                                 <dt>Sconto</dt><dd>{$row['sale_percentage']}%</dd>";
+            $row['release_date_formatted'] = date("d/m/Y", strtotime($row['release_date']));
             $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
             $saleItems .= $saleItemTemplate;
         }
