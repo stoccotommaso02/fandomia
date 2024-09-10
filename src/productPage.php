@@ -82,7 +82,9 @@ foreach ($record as $key => $value) {
     if ($index >= 9) {
         $extra_infos .= "<dt>$key</dt> <dd>$value</dd>";
     }
-}
+}           
+            $date = new DateTime($record['release_date']);
+            $record['release_date'] = $date->format('d-m-Y');
             $productTemplate = $productTemplate -> render("product_page.html",array("header" => $header,
                                                                                     "id" => $record['id'],
                                                                                     "name" => $record['name'],

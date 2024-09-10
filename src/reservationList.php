@@ -48,7 +48,8 @@ if (count($result) > 0 ) {
     $reservationList = "<ul>";
     foreach ($result as $record) {
         $reservation_card_template = new Template();
-        $record['reservation_date_formatted'] = date("d/m/Y", strtotime($record['release_date']));
+        $record['reservation_date_formatted'] = date("d/m/Y", strtotime($record['reservation_date']));
+        $record['release_date_formatted'] = date("d/m/Y", strtotime($record['release_date']));
         $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
         $reservationList .= $reservation_card_template;
     }
