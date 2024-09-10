@@ -30,6 +30,7 @@ if (!empty($rows)) {
     foreach ($rows as $row) {
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $nextItemTemplate = new Template();
+        $row['sale_info'] = '';
         $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
         $nextItems .= $nextItemTemplate;
     }

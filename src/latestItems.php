@@ -22,7 +22,6 @@ $connection -> setConnection();
 $query = "SELECT *
           from Products
           where release_date <= CURDATE()
-            and release_date >= CURDATE() - INTERVAL 30 DAY 
           order by release_date DESC
           limit {$products_per_page}
           offset {$offset} ";
@@ -31,6 +30,7 @@ if (!empty($rows)) {
     foreach ($rows as $row) {
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $latestItemTemplate = new Template();
+        $row['sale_info'] = '';
         $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
         $latestItems .= $latestItemTemplate;
     }
