@@ -74,8 +74,7 @@ CREATE TABLE `Reservation` (
   FOREIGN KEY(`email`) REFERENCES `Users`(`email`)
 );
 
-
-INSERT INTO `Users` VALUES ('iulius@gmail.com',''),('iulius2@mail.com','d-mase24'),('iulius3@mail.com','todaro24'),('iulius4@gmail.com','d-mase24'),('todaro@gmail.com','D-mase24'),('user1@email.com','password1'),('user10@email.com','password10'),('user2@email.com','password2'),('user3@email.com','password3'),('user4@email.com','password4'),('user5@email.com','password5'),('user6@email.com','password6'),('user7@email.com','password7'),('user8@email.com','password8'),('user9@email.com','password9');
+INSERT INTO  `Users` VALUES ('user@mail.com','$2y$10$qeyrWLTR.XcB4CQ6loAuCODU4ckpgeJMrR5DtTOMo.WmDKBob4YLK');
 INSERT INTO `Products` VALUES (1,'Pensieri',52.05,'2016-11-10','Libro','Disponibile',10, 'Collezione di pensieri e riflessioni personali di Marco Aurelio, imperatore romano, riguardo a temi esistenziali senza tempo.'),
                               (2,'Iliade',40.51,'2018-10-11','Libro','Disponibile',20, 'Opera epica che narra della guerra di Troia, radice profonda della narrazione e della cultura greca antica.'),
                               (3,'Odissea',35.67,'2018-09-20','Libro','Disponibile',20, 'Opera epica che narra del viaggio di ritorno dalla guerra di Troia da parte di Ulisse, eroe acheo e uomo moderno. Altro capostipite della cultura greca antica.'),
@@ -321,4 +320,3 @@ INSERT INTO `Videogames` VALUES (94,'Action RPG','FromSoftware'),
                                 (117,'Action Adventure/RPG','Capcom'),
                                 (118,'RPG','Eidos-Montreal');
 
-INSERT INTO `Reservation` VALUES (1,105,'user1@email.com','2024-08-28','10:00-11:00',''),(2,96,'user1@email.com','2024-08-29','12:00-13:00',''),(3,96,'user1@email.com','2024-09-03','10:00-11:00','');
