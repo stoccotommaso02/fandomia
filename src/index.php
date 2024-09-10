@@ -110,7 +110,7 @@ function getSaleItems() : string {
             $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
             $prezzo_scontato = $row['price'] * (100 - $row['sale_percentage'])/100;
             $prezzo_scontato = round($prezzo_scontato,2);
-            $row['sale_info'] = "<dt>Prezzo scontato</dt><dd>{$prezzo_scontato}</dd>
+            $row['sale_info'] = "<dt>Prezzo scontato</dt><dd>{$prezzo_scontato} &euro;</dd>
                                 <dt>Sconto</dt><dd>{$row['sale_percentage']}%</dd>";
             $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
             $saleItems .= $saleItemTemplate;
