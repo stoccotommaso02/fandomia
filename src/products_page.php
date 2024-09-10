@@ -75,6 +75,7 @@ if (!empty($result)) {
     foreach ($result as $row) {
         $product_template = new Template();
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
+        $row['sale_info'] = '';
         $product_template = $product_template->render("card.html",$row);
         $products_list .= $product_template;
         }

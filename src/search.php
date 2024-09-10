@@ -42,6 +42,7 @@ if (!empty($prodotti))  {
     foreach ($prodotti_pagina as $prodotto) {
 
         $product_template = new Template();
+        $prodotto['sale_info'] = '';
         $product_template = $product_template->render("card.html",$prodotto);
 
         $products_list .= $product_template;
