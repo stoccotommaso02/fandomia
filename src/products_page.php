@@ -76,6 +76,8 @@ if (!empty($result)) {
         $product_template = new Template();
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
         $row['sale_info'] = '';
+        $date = new DateTime($row['release_date']);
+        $row['release_date'] = $date->format('d-m-Y');
         $product_template = $product_template->render("card.html",$row);
         $products_list .= $product_template;
         }

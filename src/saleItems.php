@@ -34,6 +34,8 @@ if (!empty($rows)) {
         $prezzo_scontato = round($prezzo_scontato,2);
         $row['sale_info'] = "<dt>Prezzo scontato</dt><dd>{$prezzo_scontato} &euro;</dd>
                              <dt>Sconto</dt><dd>{$row['sale_percentage']}%</dd>";
+        $date = new DateTime($row['release_date']);
+        $row['release_date'] = $date->format('d-m-Y');
         $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
         $saleItems .= $saleItemTemplate;
     }
