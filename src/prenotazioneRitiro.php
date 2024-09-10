@@ -39,6 +39,8 @@ try{
             $product_name = $row["name"];
             $product_type = $row["product_type"];
             $release_date = $row['release_date'];
+            $date = new DateTime($row['release_date']);
+            $row['release_date'] = $date->format('d-m-Y');
             $reservedProduct = new Template();
             $reservedProduct = $reservedProduct->render("reservedProduct.html",$row);
         }

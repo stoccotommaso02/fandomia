@@ -47,6 +47,12 @@ $result = $connection -> queryDB($query);
 if (count($result) > 0 ) {
     $reservationList = "<ul>";
     foreach ($result as $record) {
+        $date = new DateTime($record['release_date']);
+        $record['release_date'] = $date->format('d-m-Y');
+
+        $date = new DateTime($record['reservation_date']);
+        $record['reservation_date'] = $date->format('d-m-Y');
+
         $reservation_card_template = new Template();
         $reservation_card_template = $reservation_card_template->render("reserved_card.html", $record );
         $reservationList .= $reservation_card_template;
