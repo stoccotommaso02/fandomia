@@ -75,6 +75,7 @@ if (!empty($result)) {
     foreach ($result as $row) {
         $product_template = new Template();
         $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
+        $row['sale_info'] = '';
         $product_template = $product_template->render("card.html",$row);
         $products_list .= $product_template;
         }
@@ -82,7 +83,7 @@ if (!empty($result)) {
 } else {
      header("Location: 404.php");
 }
-//Per la paginazione, devo conoscere il totale di prodotti della particolare categoria
+//Per la paginazione, è necessario conoscere il totale di prodotti della particolare categoria
 $total_products_query = "SELECT COUNT(*) as total_products
                          FROM Products join $genre_table on Products.id = {$genre_table}.id";
 $connection -> setConnection();
@@ -94,7 +95,6 @@ if (!empty($result)) {
     header("Location: 404.php");
 }
 
-// Creazione dei link di paginazione
 $pagination_links = get_pagination_links($page , $total_products, $products_per_page, $category);
 
 $products_page_template = new Template();

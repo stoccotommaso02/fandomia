@@ -64,7 +64,7 @@
         }
         //Altrimenti se è presente solo il codice identificativo del prodotto,
         //l'utente sta tentando per la prima volta di effettuarne le prenotazione
-        else if (isset($_POST['product_id']))   {
+        else   {
             if (!checkProductAvalaibility($product_id)) {
                 $errors[] = 'Prodotto non disponibile!';
                 $_SESSION['errors'] = $errors;
@@ -133,7 +133,7 @@
         }
         //Non è presente il codice del prodotto da prenotare, ne il codice identificativo di
         //una prenotazione da cancellare, quindi probabilmente c'è stato un problema di reperimento di
-        //una risorsa; che ci stia reindirizzamento ad una pagina 404/505 ?
+        //una risorsa
            else  {
 
             header("Location:../404.php");
@@ -157,13 +157,14 @@
 
     function checkWithdrawDate(string $product_id , string $date): array {
         $withdrawCheck = array();
-        $connection = getConnection();
+        $connection = new DBconnection;
+        $connection -> setConnection();
         $checkQuery = "SELECT * 
                        from Products
                        where id = '$product_id' ";
-        $result = $connection->query($checkQuery);
-        if ($result->num_rows > 0)  {
-            $record = $result->fetch_assoc();
+        $result = $connection->queryDB($checkQuery);
+        if (!empty($result))  {
+            $record = $result[0];
             if ($record['release_date'] <= $date) {
                 $withdrawCheck = array("avalaibility" => true);
                 return $withdrawCheck;

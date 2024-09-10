@@ -6,10 +6,7 @@ require_once("searchList.php");
 require_once("./pagination_links_factory.php");
 require_once("header.php");
 require_once("footer.php");
-/* step logici:
-    se il param è in POST, allora l'utente ha effettuato una nuova ricerca;
-    se invece c'è già un array di risultati, è già stata fatta una ricerca dall'utente, 
-    ed egli vuole solo navigare tra le pagine dei risultati;*/
+
 $searchParam = '';
 $prodotti = array();
 
@@ -29,8 +26,7 @@ if (isset($_POST['search']) ) {
 else    if(isset($_SESSION['search_result']))   {
     $prodotti = $_SESSION['search_result'];
 }
-/* Valori di default presenti nella pagina, cioè nel caso
-in cui la ricerca non abbia prodotto nessun risultato */
+
 $products_list = "<p>Spiacente, la tua ricerca non ha prodotto nessun risultato</p>";
 $pagination_links = '';
 
@@ -46,6 +42,7 @@ if (!empty($prodotti))  {
     foreach ($prodotti_pagina as $prodotto) {
 
         $product_template = new Template();
+        $prodotto['sale_info'] = '';
         $product_template = $product_template->render("card.html",$prodotto);
 
         $products_list .= $product_template;

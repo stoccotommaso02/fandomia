@@ -39,7 +39,7 @@ $homePageTemplate = $homePageTemplate->render("index.html",array("header" => $he
 echo($homePageTemplate);
 
 function getLatestItems() : string {
-    //implementazione;
+
     $connection =new DBconnection();
     $connection -> setConnection();
     $latestItems = '';
@@ -54,6 +54,7 @@ function getLatestItems() : string {
     foreach ($rows as $row) {
     $latestItemTemplate = new Template();
     $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
+    $row['sale_info'] = '';
     $latestItemTemplate = $latestItemTemplate->render("card.html",$row);
     $latestItems .= $latestItemTemplate;
     }
@@ -81,6 +82,7 @@ function getNextItems() : string {
         foreach ($rows as $row) {
             $nextItemTemplate = new Template();
             $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
+            $row['sale_info'] = '';
             $nextItemTemplate = $nextItemTemplate->render("card.html",$row);
             $nextItems .= $nextItemTemplate;
         }
@@ -102,10 +104,14 @@ function getSaleItems() : string {
               limit 3 ";
     $rows = $connection->queryDB($query);
     if (!empty($rows)) {
-        // ciclo dei record restituiti dalla query
+        
         foreach ($rows as $row) {
             $saleItemTemplate = new Template();
             $row['check_unavailable'] = $row['status'] == 'Non disponibile'? "disabled" : '';
+            $prezzo_scontato = $row['price'] * (100 - $row['sale_percentage'])/100;
+            $prezzo_scontato = round($prezzo_scontato,2);
+            $row['sale_info'] = "<dt>Prezzo scontato</dt><dd>{$prezzo_scontato}</dd>
+                                <dt>Sconto</dt><dd>{$row['sale_percentage']}%</dd>";
             $saleItemTemplate = $saleItemTemplate->render("card.html",$row);
             $saleItems .= $saleItemTemplate;
         }
